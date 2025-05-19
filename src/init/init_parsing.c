@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_null.c                                        :+:      :+:    :+:   */
+/*   init_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 18:47:58 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:17:44 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	init_config(t_config *cfg, char **argv)
 	cfg->ceiling_tex = NULL;
 	cfg->floor_tex = NULL;
 	cfg->map_name = argv[1];
+	ft_bzero(&cfg->flags, sizeof(t_flags));
 }

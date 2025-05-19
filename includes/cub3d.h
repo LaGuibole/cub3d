@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 18:46:42 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:16:47 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,17 @@
 # define	DOWN 65364
 
 // PARSING
+typedef struct s_flags
+{
+	int	no;
+	int so;
+	int we;
+	int ea;
+	int	f;
+	int	c;
+} t_flags;
+
+
 typedef	struct s_config
 {
 	char	*map_name;
@@ -62,7 +73,7 @@ typedef	struct s_config
 	char	*east_tex;
 	char	*floor_tex;
 	char	*ceiling_tex;
-
+	t_flags	*flags;
 } t_config;
 
 // GAME STRUCT

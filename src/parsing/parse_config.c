@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 18:51:57 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:24:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,34 @@ int	has_valid_extension(t_config *filename)
 	return (ft_strcmp(str_cpy, ".cub"));
 }
 
+int	mark_seen(t_flags *f, const char *id)
+{
+	if (ft_strcmp(id, "NO") == 0 && ++f->no > 1)
+		return (-1);
+	if (ft_strcmp(id, "SO") == 0 && ++f->so > 1)
+		return (-1);
+	if (ft_strcmp(id, "WE") == 0 && ++f->we > 1)
+		return (-1);
+	if (ft_strcmp(id, "EA") == 0 && ++f->ea > 1)
+		return (-1);
+	if (ft_strcmp(id, "F") == 0 && ++f->f > 1)
+		return (-1);
+	if (ft_strcmp(id, "C") == 0 && ++f->c > 1)
+		return (-1);
+	return (0);
+}
+
 int	parse_texture_line(char *line, t_config *cfg)
 {
 	char	**split;
+	int		status;
 
 	split = ft_split(line, ' ');
 	if (!split || !split[0] || !split[1])
 		return (free_double_tab(split), 0);
+	status = mark_seen(&cfg->flags, split[0]);
+	if (status == -1)
+		return (free_double_tab(split), -1);
 	if (ft_strcmp(split[0], "NO") == 0)
 		cfg->north_tex = ft_strdup(split[1]);
 	else if (ft_strcmp(split[0], "SO") == 0)
@@ -45,10 +66,7 @@ int	parse_texture_line(char *line, t_config *cfg)
 	else if (ft_strcmp(split[0], "C") == 0)
 		cfg->ceiling_tex = ft_strdup(split[1]);
 	else
-	{
-		free_double_tab(split);
-		return (0);
-	}
+		return(free_double_tab(split), 0);
 	free_double_tab(split);
 	return (1);
 }

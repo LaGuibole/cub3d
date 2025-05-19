@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 18:47:30 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:23:17 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	char		**lines;
 	t_config	 config;
 	int			i;
+	int			status;
 
 	config.map_name = argv[1];
 	if (argc != 2)
@@ -40,8 +41,12 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (lines[i])
 	{
-		if (!parse_texture_line(lines[i], &config))
+		status = parse_texture_line(lines[i], &config);
+		if (status == -1)
+		{
+			ft_printf("Error : double at line %d\n", i + 1);
 			break ;
+		}
 		i++;
 	}
 	print_config(&config);
