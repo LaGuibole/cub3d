@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:06:56 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 18:25:38 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:49:40 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static char	**add_line(char **lines, char *new_line, int count);
 
+/// @brief Reads all lines from the file and stores them in a null-term arr
+/// @param filepath Path to the .cub file to read
+/// @return A null-terminated arr of strings containing the file's lines or NUL
 char	**read_file_lines(char *filepath)
 {
 	int		fd;
@@ -39,6 +42,11 @@ char	**read_file_lines(char *filepath)
 	return (lines);
 }
 
+/// @brief Dynamically adds a new line to an existing arr of strings
+/// @param lines The current array of strings (can be NULL)
+/// @param new_line The new line to append to the array
+/// @param count The current number of lines in the array
+/// @return A new null-terminated array including the new line, or NULL fail
 static char	**add_line(char **lines, char *new_line, int count)
 {
 	char	**new_tab;

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:36:37 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:46:51 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	has_valid_extension(t_config *filename)
 	return (ft_strcmp(str_cpy, ".cub"));
 }
 
+/// @brief Marks a configuration identifier as seen, and checks for duplicata
+/// @param f Pointer to the flags structure tracking seen identifiers
+/// @param id Configuration identifer (e.g "NO" "F", "C")
+/// @return -1 if the id has already been seen, 0 otherwise
 int	mark_seen(t_flags *f, char *id)
 {
 	if (ft_strcmp(id, "NO") == 0 && ++f->no > 1)
@@ -42,6 +46,10 @@ int	mark_seen(t_flags *f, char *id)
 	return (0);
 }
 
+/// @brief Parses a configuration line and stores its value in the config
+/// @param line Line from the .cub file to parse (e.g "NO ./path")
+/// @param cfg Pointer to the configuration structure to populate
+/// @return 1 if successfully parsed, 0 if the line is unrelated, -1 if duplica
 int	parse_texture_line(char *line, t_config *cfg)
 {
 	char	**split;

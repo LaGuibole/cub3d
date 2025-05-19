@@ -6,12 +6,14 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:23:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 18:53:45 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:42:17 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief Frees all dynamically allocated memory inside the config struct
+/// @param cfg Pointer to the configuration structure to clean
 void	clean_config(t_config *cfg)
 {
 	free(cfg->east_tex);
