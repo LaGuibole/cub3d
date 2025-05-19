@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:23:17 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:35:01 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	main(int argc, char **argv)
 		return (ft_printf("no good\n"), 1);
 	if (has_valid_extension(&config) != 0)
 		return (ft_printf("no good extension\n"), 1);
+	init_config(&config, argv);
 	lines = read_file_lines(argv[1]);
 	if (!lines)
 		return (ft_printf("error reading file\n"), 1);
-	init_config(&config, argv);
 	i = 0;
 	while (lines[i])
 	{

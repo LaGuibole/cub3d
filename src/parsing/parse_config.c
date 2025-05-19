@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:24:59 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:36:37 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	has_valid_extension(t_config *filename)
 	return (ft_strcmp(str_cpy, ".cub"));
 }
 
-int	mark_seen(t_flags *f, const char *id)
+int	mark_seen(t_flags *f, char *id)
 {
 	if (ft_strcmp(id, "NO") == 0 && ++f->no > 1)
 		return (-1);
