@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:35:36 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 08:10:51 by jbastard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // WINDOWS DEFINES
 
 # define	WIN_WIDTH 1920
-# define	WIN_HEIGHT 1080
+# define	WIN_HEIGHT 960
 
 // MAP ASSETS
 
@@ -84,12 +84,15 @@ typedef	struct s_game
 	void	*win;
 } t_game;
 
-int	has_valid_extension(t_config *filename);
+int		has_valid_extension(t_config *filename);
 char	**read_file_lines(char *filepath);
-int	parse_texture_line(char *line, t_config *cfg);
+int		parse_texture_line(char *line, t_config *cfg);
 void	init_config(t_config *cfg, char **argv);
 void	clean_config(t_config *cfg);
 void	init_flags(t_flags *flags);
-
+int		clean_context(t_game *ctx);
+int		clean_and_exit(t_game *ctx);
+int 	close_window(t_game *ctx);
+int 	claim_hooks(t_game *ctx);
 
 #endif

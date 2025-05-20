@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handle_inputs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:35:01 by guphilip         ###   ########.fr       */
+/*   Created: 2025/05/20 10:14:38 by jbastard          #+#    #+#             */
+/*   Updated: 2025/05/20 11:35:35 by jbastard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int game_loop(t_game *ctx)
+int 	hook_handler(int keycode, t_game *ctx)
 {
-	(void)ctx;
+	if (keycode == ESC)
+		clean_and_exit(ctx);
 	return (0);
 }
 
-int main(void)
+int 	claim_hooks( t_game *ctx)
 {
-	t_game	ctx;
-
-	ctx = (t_game){0};
-	ctx.mlx = mlx_init();
-	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
-	claim_hooks(&ctx);
-	mlx_loop_hook(ctx.mlx, game_loop, &ctx);
-	mlx_loop(ctx.mlx);
+	mlx_hook(ctx->win, 17, 0, clean_and_exit, ctx);
+	mlx_hook(ctx->win, 2, 1L << 0, hook_handler, ctx);
+	return (0);
 }

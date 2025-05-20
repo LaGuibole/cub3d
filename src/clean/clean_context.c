@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean_context.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:35:01 by guphilip         ###   ########.fr       */
+/*   Created: 2025/05/20 09:28:31 by jbastard          #+#    #+#             */
+/*   Updated: 2025/05/20 11:06:58 by jbastard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int game_loop(t_game *ctx)
+int	clean_context(t_game *ctx)
 {
 	(void)ctx;
 	return (0);
 }
 
-int main(void)
+int close_window(t_game *ctx)
 {
-	t_game	ctx;
+	if (ctx->win)
+		mlx_destroy_window(ctx->mlx,ctx->win);
+	if (ctx->mlx)
+	{
+		mlx_destroy_display(ctx->mlx);
+		free(ctx->mlx);
+	}
+	return (1);
+}
 
-	ctx = (t_game){0};
-	ctx.mlx = mlx_init();
-	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
-	claim_hooks(&ctx);
-	mlx_loop_hook(ctx.mlx, game_loop, &ctx);
-	mlx_loop(ctx.mlx);
+int	clean_and_exit(t_game *ctx)
+{
+	close_window(ctx);
+	exit(0);
 }

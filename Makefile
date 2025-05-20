@@ -42,7 +42,9 @@ OBJ_DIR				= 		build
 
 SRC_FILES = \
 	src/clean/clean_config.c \
+	src/clean/clean_context.c \
 	src/init/init_parsing.c \
+	src/inputs/handle_inputs.c \
 	src/main.c \
 	src/parsing/parse_config.c \
 	src/parsing/read_map.c
