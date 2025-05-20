@@ -6,14 +6,13 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 15:30:44 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:28:06 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	init_rgb(t_config *cfg);
-
 
 /// @brief Initializes all fields of the configuration structure to default
 /// @param cfg Pointer to the configuration structure to init

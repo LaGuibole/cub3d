@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 15:13:57 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:26:16 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 		status = parse_texture_line(lines[i], &config);
 		if (status == -1)
 		{
-			ft_printf("Error : double at line %d\n", i + 1);
+			ft_printf("Error : config error at line %d\n", i + 1);
 			break ;
 		}
 		i++;

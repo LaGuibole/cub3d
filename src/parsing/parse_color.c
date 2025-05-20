@@ -6,12 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:59:30 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 15:35:06 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:48:32 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief
+/// @param line
+/// @return
 static int	validate_rgb_char(char *line)
 {
 	size_t	i;
@@ -20,12 +23,16 @@ static int	validate_rgb_char(char *line)
 	while (line[i] && line[i] != '\n')
 	{
 		if (!ft_isdigit(line[i]) && line[i] != ',')
-			return (fd_printf(STDERR_FILENO, "rgb contains letters\n"), RET_ERR);
+			return (fd_printf(STDERR_FILENO,
+					"rgb contains letters\n"), RET_ERR);
 		i++;
 	}
 	return (RET_OK);
 }
 
+/// @brief
+/// @param line
+/// @return
 static int	*get_rgb_tab(char *line)
 {
 	char		**split;
@@ -35,10 +42,12 @@ static int	*get_rgb_tab(char *line)
 		return (NULL);
 	split = ft_split(line, ',');
 	if (!split || !split[0] || !split[1] || !split[2] || split[3])
-		return (free_double_tab(split), fd_printf(STDERR_FILENO, "Wrong RGB format\n"), NULL);
+		return (free_double_tab(split),
+			fd_printf(STDERR_FILENO, "Wrong RGB format\n"), NULL);
 	color = malloc(sizeof(int) * 3);
 	if (!color)
-		return(free_double_tab(split), fd_printf(STDERR_FILENO, "Malloc failed\n"), NULL);
+		return (free_double_tab(split),
+			fd_printf(STDERR_FILENO, "Malloc failed\n"), NULL);
 	color[0] = ft_atoi(split[0]);
 	color[1] = ft_atoi(split[1]);
 	color[2] = ft_atoi(split[2]);
@@ -46,6 +55,9 @@ static int	*get_rgb_tab(char *line)
 	return (color);
 }
 
+/// @brief
+/// @param color
+/// @return
 static int	validate_rgb_int(int *color)
 {
 	if (!color)
@@ -57,9 +69,13 @@ static int	validate_rgb_int(int *color)
 	return (RET_OK);
 }
 
+/// @brief
+/// @param line
+/// @param dest
+/// @return
 int	parse_rgb_values(char *line, int *dest)
 {
-	int *rgb;
+	int	*rgb;
 
 	rgb = get_rgb_tab(line);
 	if (!rgb)
@@ -73,6 +89,12 @@ int	parse_rgb_values(char *line, int *dest)
 	return (RET_OK);
 }
 
+/// @brief
+/// @param r
+/// @param g
+/// @param b
+/// @param a
+/// @return
 int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);

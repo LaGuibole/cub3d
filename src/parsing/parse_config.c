@@ -6,11 +6,13 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 16:13:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:37:21 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	parse_texture_path(t_config *cfg, char **split);
 
 /// @brief A function to check if the map has .cub extension
 /// @param filename will be argv[1] so the map file
@@ -50,56 +52,6 @@ int	mark_seen(t_flags *f, char *id)
 /// @param line Line from the .cub file to parse (e.g "NO ./path")
 /// @param cfg Pointer to the configuration structure to populate
 /// @return 1 if successfully parsed, 0 if the line is unrelated, -1 if duplica
-// int	parse_texture_line(char *line, t_config *cfg)
-// {
-// 	char	**split;
-// 	int		status;
-
-// 	split = ft_split(line, ' ');
-// 	if (!split || !split[0] || !split[1])
-// 		return (free_double_tab(split), 0);
-// 	status = mark_seen(&cfg->flags, split[0]);
-// 	if (status == -1)
-// 		return (free_double_tab(split), -1);
-// 	if (ft_strcmp(split[0], "NO") == 0)
-// 		cfg->north_tex = ft_strdup(split[1]);
-// 	else if (ft_strcmp(split[0], "SO") == 0)
-// 		cfg->south_tex = ft_strdup(split[1]);
-// 	else if (ft_strcmp(split[0], "WE") == 0)
-// 		cfg->west_tex = ft_strdup(split[1]);
-// 	else if (ft_strcmp(split[0], "EA") == 0)
-// 		cfg->east_tex = ft_strdup(split[1]);
-// 	else if (ft_strcmp(split[0], "F") == 0)
-// 	{
-// 		if (parse_rgb_values(split[1], cfg->floor_rgb) != RET_OK)
-// 			return (free_double_tab(split), RET_NEG_ERR);
-// 	}
-// 	else if (ft_strcmp(split[0], "C") == 0)
-// 	{
-// 		if (parse_rgb_values(split[1], cfg->ceiling_rgb) != RET_OK)
-// 			return (free_double_tab(split), RET_NEG_ERR);
-// 	}
-// 	else
-// 		return(free_double_tab(split), 0);
-// 	free_double_tab(split);
-// 	return (1);
-// }
-
-static int	parse_texture_path(t_config *cfg, char **split)
-{
-	if (ft_strcmp(split[0], "NO") == 0)
-		cfg->north_tex = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "SO") == 0)
-		cfg->south_tex = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "WE") == 0)
-		cfg->west_tex = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "EA") == 0)
-		cfg->east_tex = ft_strdup(split[1]);
-	else
-		return (0);
-	return (1);
-}
-
 int	parse_texture_line(char *line, t_config *cfg)
 {
 	char	**split;
@@ -126,5 +78,24 @@ int	parse_texture_line(char *line, t_config *cfg)
 	else
 		return (free_double_tab(split), RET_NEG_ERR);
 	free_double_tab(split);
+	return (0);
+}
+
+/// @brief 
+/// @param cfg
+/// @param split
+/// @return
+static int	parse_texture_path(t_config *cfg, char **split)
+{
+	if (ft_strcmp(split[0], "NO") == 0)
+		cfg->north_tex = ft_strdup(split[1]);
+	else if (ft_strcmp(split[0], "SO") == 0)
+		cfg->south_tex = ft_strdup(split[1]);
+	else if (ft_strcmp(split[0], "WE") == 0)
+		cfg->west_tex = ft_strdup(split[1]);
+	else if (ft_strcmp(split[0], "EA") == 0)
+		cfg->east_tex = ft_strdup(split[1]);
+	else
+		return (0);
 	return (1);
 }
