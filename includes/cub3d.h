@@ -17,6 +17,9 @@
 # include "mlx.h"
 # include <fcntl.h>
 
+// TO SORT DEFINES
+#define RED_PIXEL 0xFF0000
+
 // WINDOWS DEFINES
 
 # define	WIN_WIDTH 1920
@@ -63,7 +66,6 @@ typedef struct s_flags
 	int	c;
 } t_flags;
 
-
 typedef	struct s_config
 {
 	char	*map_name;
@@ -76,12 +78,23 @@ typedef	struct s_config
 	t_flags	flags;
 } t_config;
 
-// GAME STRUCT
+// IMG STRUCT
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*img_addr;
+	int		bit_per_pixel;
+	int		line_len;
+	int		endian;
+	int		color;
+} t_img;
 
+// GAME STRUCT
 typedef	struct s_game
 {
 	void	*mlx;
 	void	*win;
+	t_img	img;
 } t_game;
 
 int		has_valid_extension(t_config *filename);
@@ -94,5 +107,7 @@ int		clean_context(t_game *ctx);
 int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
 int 	claim_hooks(t_game *ctx);
+int		update_game_display(t_game *ctx);
+void put_pixel(t_img img, int x, int y, int color);
 
 #endif

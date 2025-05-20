@@ -43,11 +43,13 @@ OBJ_DIR				= 		build
 SRC_FILES = \
 	src/clean/clean_config.c \
 	src/clean/clean_context.c \
+	src/display/init_display.c \
 	src/init/init_parsing.c \
 	src/inputs/handle_inputs.c \
 	src/main.c \
 	src/parsing/parse_config.c \
 	src/parsing/read_map.c
+
 OBJS				=		$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # MINILIBX

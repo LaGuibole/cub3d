@@ -24,8 +24,13 @@ int main(void)
 
 	ctx = (t_game){0};
 	ctx.mlx = mlx_init();
+
 	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
+
+	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
+
+	update_game_display(&ctx);
 	claim_hooks(&ctx);
-	mlx_loop_hook(ctx.mlx, game_loop, &ctx);
 	mlx_loop(ctx.mlx);
 }
