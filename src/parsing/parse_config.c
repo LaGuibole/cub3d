@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 15:49:37 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 16:13:27 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	parse_texture_line(char *line, t_config *cfg)
 		return (free_double_tab(split), 0);
 	status = mark_seen(&cfg->flags, split[0]);
 	if (status == -1)
-		return (free_double_tab(split), 0);
+		return (free_double_tab(split), -1);
 	if (parse_texture_path(cfg, split))
 		return (free_double_tab(split), 1);
 	else if (ft_strcmp(split[0], "F") == 0)
