@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:23:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:42:17 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 18:10:17 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,6 @@ void	clean_config(t_config *cfg)
 	free(cfg->west_tex);
 	free(cfg->ceiling_tex);
 	free(cfg->floor_tex);
+	if (cfg->map)
+		free_double_tab(cfg->map);
 }

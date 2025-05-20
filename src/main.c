@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 16:26:16 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:48:34 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ void	print_config(t_config *cfg)
 	ft_printf("Ceiling Red: %d\n", cfg->ceiling_rgb[0]);
 	ft_printf("Ceiling Green: %d\n", cfg->ceiling_rgb[1]);
 	ft_printf("Ceiling Blue: %d\n", cfg->ceiling_rgb[2]);
+}
+
+void	print_map(t_config *cfg)
+{
+	int	i = 0;
+	ft_printf("Map Loaded: \n");
+	while (cfg->map[i])
+	{
+		ft_printf("%s\n", cfg->map[i]);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -53,7 +64,13 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
+	if (parse_map(&config, lines) != RET_OK)
+	{
+		ft_printf("Map parsing failed\n");
+		return (1);
+	}
 	print_config(&config);
+	print_map(&config);
 	free_double_tab(lines);
 	clean_config(&config);
 	return (0);

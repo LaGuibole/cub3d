@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 15:16:10 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:23:46 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_flags
 typedef	struct s_config
 {
 	char	*map_name;
+	char	**map;
 	char	*north_tex;
 	char	*south_tex;
 	char	*west_tex;
@@ -97,5 +98,10 @@ void	init_flags(t_flags *flags);
 
 int	get_rgba(int r, int g, int b, int a);
 int	parse_rgb_values(char *line, int *dest);
+
+
+// map
+
+int	parse_map(t_config *cfg, char **lines);
 
 #endif

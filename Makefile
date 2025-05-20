@@ -47,6 +47,7 @@ SRC_FILES = \
 	src/main.c \
 	src/parsing/parse_color.c \
 	src/parsing/parse_config.c \
+	src/parsing/parse_map.c \
 	src/parsing/read_map.c
 OBJS				=		$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
