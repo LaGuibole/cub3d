@@ -6,11 +6,14 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:44:00 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:30:44 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	init_rgb(t_config *cfg);
+
 
 /// @brief Initializes all fields of the configuration structure to default
 /// @param cfg Pointer to the configuration structure to init
@@ -24,6 +27,7 @@ void	init_config(t_config *cfg, char **argv)
 	cfg->ceiling_tex = NULL;
 	cfg->floor_tex = NULL;
 	cfg->map_name = argv[1];
+	init_rgb(cfg);
 	init_flags(&cfg->flags);
 }
 
@@ -37,4 +41,14 @@ void	init_flags(t_flags *flags)
 	flags->ea = 0;
 	flags->c = 0;
 	flags->f = 0;
+}
+
+static void	init_rgb(t_config *cfg)
+{
+	cfg->floor_rgb[0] = -1;
+	cfg->floor_rgb[1] = -1;
+	cfg->floor_rgb[2] = -1;
+	cfg->ceiling_rgb[0] = -1;
+	cfg->ceiling_rgb[1] = -1;
+	cfg->ceiling_rgb[2] = -1;
 }

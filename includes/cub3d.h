@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:35:36 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/20 15:16:10 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ typedef	struct s_config
 	char	*south_tex;
 	char	*west_tex;
 	char	*east_tex;
-	char	*floor_tex;
-	char	*ceiling_tex;
+	char	*floor_tex; // parse
+	char	*ceiling_tex; // parse
+	int		ceiling_rgb[3];
+	int		floor_rgb[3];
 	t_flags	flags;
 } t_config;
 
@@ -84,12 +86,16 @@ typedef	struct s_game
 	void	*win;
 } t_game;
 
-int	has_valid_extension(t_config *filename);
+int		has_valid_extension(t_config *filename);
 char	**read_file_lines(char *filepath);
-int	parse_texture_line(char *line, t_config *cfg);
+int		parse_texture_line(char *line, t_config *cfg);
 void	init_config(t_config *cfg, char **argv);
 void	clean_config(t_config *cfg);
 void	init_flags(t_flags *flags);
 
+// colors
+
+int	get_rgba(int r, int g, int b, int a);
+int	parse_rgb_values(char *line, int *dest);
 
 #endif
