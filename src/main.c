@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 17:48:34 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:38:47 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,20 @@ void	print_config(t_config *cfg)
 	ft_printf("East: %s\n", cfg->east_tex);
 	ft_printf("Floor Red: %d\n", cfg->floor_rgb[0]);
 	ft_printf("Floor Green: %d\n", cfg->floor_rgb[1]);
-	ft_printf("Floor Blue: %d\n", cfg->floor_rgb[2]);
+	ft_printf("Floor Blue: %d\n\n", cfg->floor_rgb[2]);
 	ft_printf("Ceiling Red: %d\n", cfg->ceiling_rgb[0]);
 	ft_printf("Ceiling Green: %d\n", cfg->ceiling_rgb[1]);
-	ft_printf("Ceiling Blue: %d\n", cfg->ceiling_rgb[2]);
+	ft_printf("Ceiling Blue: %d\n\n", cfg->ceiling_rgb[2]);
+	ft_printf("Map width = [%d], Map height = [%d]\n", cfg->map_ctx.width, cfg->map_ctx.height);
 }
 
 void	print_map(t_config *cfg)
 {
 	int	i = 0;
 	ft_printf("Map Loaded: \n");
-	while (cfg->map[i])
+	while (cfg->map_ctx.map[i])
 	{
-		ft_printf("%s\n", cfg->map[i]);
+		ft_printf("%s\n", cfg->map_ctx.map[i]);
 		i++;
 	}
 }
@@ -43,6 +44,7 @@ int	main(int argc, char **argv)
 	t_config	 config;
 	int			i;
 	int			status;
+	int			map_start;
 
 	config.map_name = argv[1];
 	if (argc != 2)
@@ -54,7 +56,8 @@ int	main(int argc, char **argv)
 	if (!lines)
 		return (ft_printf("error reading file\n"), 1);
 	i = 0;
-	while (lines[i])
+	map_start = find_map_start_index(lines);
+	while (lines[i] && i < map_start)
 	{
 		status = parse_texture_line(lines[i], &config);
 		if (status == -1)

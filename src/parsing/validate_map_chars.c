@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map.c                                     :+:      :+:    :+:   */
+/*   validate_map_chars.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:42:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 10:50:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:52:04 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	check_map_char(char **map)
 		{
 			if (!is_valid_char(map[y][x]))
 			{
-				fd_printf(STDERR_FILENO, "Error : invalid char : '%c' at column %d, row %d\n", map[y][x], y + 1, x + 1);
+				fd_printf(STDERR_FILENO,
+					"Error : invalid char : '%c' at y: %d, x: %d\n",
+					map[y][x], y + 1, x + 1);
 				return (0);
 			}
 			x++;
@@ -49,7 +51,7 @@ int	check_map_char(char **map)
 static int	is_valid_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E'
-			|| c == 'W' || c == ' ');
+		|| c == 'W' || c == ' ');
 }
 
 /// @brief
@@ -84,10 +86,10 @@ static int	check_player_spawn_count(char **map)
 	}
 	if (count != 1)
 	{
-		fd_printf(STDERR_FILENO, "Error : invalid number of player spawns: %d (should be exactly 1)\n", count);
+		fd_printf(STDERR_FILENO,
+			"Error : invalid number of player spawns: %d \
+			(should be exactly 1)\n", count);
 		return (0);
 	}
 	return (1);
 }
-
-

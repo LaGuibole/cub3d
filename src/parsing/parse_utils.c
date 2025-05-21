@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:00:19 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 11:00:40 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:50:44 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 bool	is_config_line(char *line)
 {
-	return (ft_strncmp(line, "NO ", 3) == 0 ||
-			ft_strncmp(line, "SO ", 3) == 0 ||
-			ft_strncmp(line, "WE ", 3) == 0 ||
-			ft_strncmp(line, "EA ", 3) == 0 ||
-			ft_strncmp(line, "F ", 2) == 0 ||
-			ft_strncmp(line, "C ", 2) == 0);
+	return (ft_strncmp(line, "NO ", 3) == 0
+		|| ft_strncmp(line, "SO ", 3) == 0
+		|| ft_strncmp(line, "WE ", 3) == 0
+		|| ft_strncmp(line, "EA ", 3) == 0
+		|| ft_strncmp(line, "F ", 2) == 0
+		|| ft_strncmp(line, "C ", 2) == 0);
 }
 
 bool	is_map_line(char *line)
 {
 	while (*line && (*line == ' ' || *line == '\t'))
 		line++;
-	return (*line == '1' || *line == '0' || *line == 'N' ||
-			*line == 'S' || *line == 'E' || *line == 'W');
+	return (*line == '1' || *line == '0' || *line == 'N'
+		|| *line == 'S' || *line == 'E' || *line == 'W');
+}
+
+int	is_player_spawn(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }

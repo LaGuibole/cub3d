@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 09:48:18 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:32:48 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ void	init_config(t_config *cfg, char **argv)
 	cfg->west_tex = NULL;
 	cfg->ceiling_tex = NULL;
 	cfg->floor_tex = NULL;
+	cfg->map_ctx.map = NULL;
+	cfg->map_ctx.copy = NULL;
 	cfg->map_name = argv[1];
 	cfg->player_spawn = 0;
+	cfg->map_ctx.height = 0;
+	cfg->map_ctx.width = 0;
 	init_flags(&cfg->flags);
 	init_rgb(cfg);
 }

@@ -49,8 +49,11 @@ SRC_FILES = \
 	src/parsing/parse_config.c \
 	src/parsing/parse_map.c \
 	src/parsing/parse_utils.c \
+	src/parsing/prepare_flood_fill.c \
+	src/parsing/prepare_map_checks.c \
 	src/parsing/read_map.c \
-	src/parsing/validate_map.c
+	src/parsing/validate_map_chars.c \
+	src/parsing/validate_map_flood.c
 OBJS				=		$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # MINILIBX

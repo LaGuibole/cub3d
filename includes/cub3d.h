@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 11:01:39 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 16:36:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,20 @@ typedef struct s_flags
 	int	c;
 } t_flags;
 
+typedef struct s_map_ctx
+{
+	char	**map;
+	char	**copy;
+	int		width;
+	int		height;
+} t_map_ctx;
 
 typedef	struct s_config
 {
 	char	*map_name;
 	char	**map;
+	int		map_width;
+	int		map_height;
 	char	*north_tex;
 	char	*south_tex;
 	char	*west_tex;
@@ -78,6 +87,7 @@ typedef	struct s_config
 	int		floor_rgb[3];
 	int		player_spawn;
 	t_flags	flags;
+	t_map_ctx map_ctx;
 } t_config;
 
 // GAME STRUCT
@@ -97,16 +107,24 @@ void	init_flags(t_flags *flags);
 
 // colors
 
-int	get_rgba(int r, int g, int b, int a);
-int	parse_rgb_values(char *line, int *dest);
+int		get_rgba(int r, int g, int b, int a);
+int		parse_rgb_values(char *line, int *dest);
 
 
 // map
 
-int	parse_map(t_config *cfg, char **lines);
-int	check_map_char(char **map);
+int		parse_map(t_config *cfg, char **lines);
+int		check_map_char(char **map);
 
 bool	is_config_line(char *line);
 bool	is_map_line(char *line);
+
+int		get_map_dimensions(char **lines, int start, int *width, int *height);
+char	**prepare_map_for_flood(char **map, int height, int width);
+char	**rectangularize_map(char **map, int height, int width);
+int		is_player_spawn(char c);
+bool	flood_fill(t_map_ctx *map_ctx, int x, int y);
+int		check_map_closed(t_config *cfg);
+int		find_map_start_index(char **lines);
 
 #endif

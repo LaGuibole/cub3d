@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_config.c                                     :+:      :+:    :+:   */
+/*   prepare_map_checks.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 18:23:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 16:39:29 by guphilip         ###   ########.fr       */
+/*   Created: 2025/05/21 14:17:49 by guphilip          #+#    #+#             */
+/*   Updated: 2025/05/21 15:44:39 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/// @brief Frees all dynamically allocated memory inside the config struct
-/// @param cfg Pointer to the configuration structure to clean
-void	clean_config(t_config *cfg)
+int	get_map_dimensions(char **lines, int start, int *width, int *height)
 {
-	free(cfg->east_tex);
-	free(cfg->north_tex);
-	free(cfg->south_tex);
-	free(cfg->west_tex);
-	free(cfg->ceiling_tex);
-	free(cfg->floor_tex);
-	if (cfg->map_ctx.map)
-		free_double_tab(cfg->map_ctx.map);
+	int	y;
+	int	len;
+	int	max_len;
+
+	y = start;
+	max_len = 0;
+	while (lines[y] && lines[y][0] != '\0')
+	{
+		len = ft_strlen(lines[y]);
+		if (len > max_len)
+			max_len = len;
+		y++;
+	}
+	*width = max_len;
+	*height = y - start;
+	return (1);
 }
