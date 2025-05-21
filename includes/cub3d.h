@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 17:23:46 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:01:39 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef	struct s_config
 	char	*ceiling_tex; // parse
 	int		ceiling_rgb[3];
 	int		floor_rgb[3];
+	int		player_spawn;
 	t_flags	flags;
 } t_config;
 
@@ -103,5 +104,9 @@ int	parse_rgb_values(char *line, int *dest);
 // map
 
 int	parse_map(t_config *cfg, char **lines);
+int	check_map_char(char **map);
+
+bool	is_config_line(char *line);
+bool	is_map_line(char *line);
 
 #endif
