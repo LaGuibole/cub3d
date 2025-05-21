@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 16:36:23 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:35:25 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,7 @@ int		is_player_spawn(char c);
 bool	flood_fill(t_map_ctx *map_ctx, int x, int y);
 int		check_map_closed(t_config *cfg);
 int		find_map_start_index(char **lines);
+int	check_player_spawn_count(char **map);
+int	parse_cub_file(t_config *cfg, char *filepath);
 
 #endif

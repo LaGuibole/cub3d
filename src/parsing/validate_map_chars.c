@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:42:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 15:52:04 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:27:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	is_valid_char(char c);
 static int	count_player_spawn(char c);
-static int	check_player_spawn_count(char **map);
 
 /// @brief
 /// @param map
@@ -65,7 +64,7 @@ static int	count_player_spawn(char c)
 /// @brief
 /// @param map
 /// @return
-static int	check_player_spawn_count(char **map)
+int	check_player_spawn_count(char **map)
 {
 	int	x;
 	int	y;

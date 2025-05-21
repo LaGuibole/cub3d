@@ -45,6 +45,7 @@ SRC_FILES = \
 	src/init/init_parsing.c \
 	src/init/init_utils.c \
 	src/main.c \
+	src/parsing/global_parser.c \
 	src/parsing/parse_color.c \
 	src/parsing/parse_config.c \
 	src/parsing/parse_map.c \
