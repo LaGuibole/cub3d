@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:00 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 17:47:48 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:16:45 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ int	parse_cub_file(t_config *cfg, char *filepath)
 				RET_ERR);
 	map_start = find_map_start_index(lines);
 	if (map_start == RET_NEG_ERR)
-		return (free_double_tab(lines),
-			fd_printf(STDERR_FILENO, "Error : no map found\n"), RET_ERR);
+		return (fd_printf(STDERR_FILENO, "Error : no map found\n"), RET_ERR);
 	if (!parse_config_line(cfg, lines, map_start))
-		return (free_double_tab(lines), RET_ERR);
+		return (RET_ERR);
 	if (parse_map(cfg, lines))
-		return (free_double_tab(lines), RET_ERR);
+		return (RET_ERR);
 	free_double_tab(lines);
 	if (!validate_map(cfg))
-		return (clean_config(cfg), RET_ERR);
+		return (RET_ERR);
 	return (RET_OK);
 }
 

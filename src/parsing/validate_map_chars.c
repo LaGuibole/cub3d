@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:42:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 17:27:00 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:17:44 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	check_map_char(char **map)
 		}
 		y++;
 	}
-	check_player_spawn_count(map);
 	return (1);
 }
 

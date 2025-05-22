@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 17:48:40 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:18:37 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,9 @@ int main (int argc, char **argv)
 	if (has_valid_extension(&config) != 0)
 		return (fd_printf(STDERR_FILENO, "Error : Invalid file extension\n"), RET_ERR);
 	if (parse_cub_file(&config, argv[1]) != RET_OK)
+	{
 		return (clean_config(&config), RET_ERR);
+	}
 	print_config(&config);
 	print_map(&config);
 	clean_config(&config);
