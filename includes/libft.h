@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:07:07 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/08 17:15:50 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:26:32 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 
 int		ft_isprint(int c);
+
+int		ft_str_is_whitespace(char *str);
 
 size_t	ft_strlen(const char *s);
 

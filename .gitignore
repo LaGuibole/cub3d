@@ -2,3 +2,5 @@
 /build
 /libs
 *.a
+maps/bad/
+maps/good/
