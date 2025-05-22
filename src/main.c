@@ -10,12 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int game_loop(t_game *ctx)
 {
 	(void)ctx;
-	return (0);
+	while (1)
+	{
+		break;
+	}
+	return (1);
 }
 
 int main(void)
@@ -29,8 +33,8 @@ int main(void)
 
 	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
-
-	update_game_display(&ctx);
+	print_background(ctx);
 	claim_hooks(&ctx);
+	game_loop(&ctx);
 	mlx_loop(ctx.mlx);
 }

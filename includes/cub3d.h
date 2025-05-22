@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include <fcntl.h>
+# include <math.h>
 
 // TO SORT DEFINES
 #define RED_PIXEL 0xFF0000
@@ -89,6 +90,47 @@ typedef struct s_img
 	int		color;
 } t_img;
 
+// RAY-CASTING STRUCT
+typedef struct s_ray_casting
+{
+	int		w;
+	int 	h;
+
+	double	pPosX;
+	double	pPosY;
+
+	int		stepX;
+	int		stepY;
+
+	int		mapX;
+	int		mapY;
+	int		lineHeight;
+
+	double	dirPosX;
+	double	dirPosY;
+
+	double	planeX;
+	double	planeY;
+
+	double	perpWallDist;
+	int		hit;
+	int		side;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	double	dirX;
+	double	dirY;
+
+	int		drawStart;
+	int 	drawEnd;
+
+} t_ray_casting;
+
 // GAME STRUCT
 typedef	struct s_game
 {
@@ -108,6 +150,7 @@ int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
 int 	claim_hooks(t_game *ctx);
 int		update_game_display(t_game *ctx);
-void put_pixel(t_img img, int x, int y, int color);
+void	put_pixel(t_img img, int x, int y, int color);
+int		print_background(t_game ctx);
 
 #endif

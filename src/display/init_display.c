@@ -39,9 +39,9 @@ int	print_background(t_game ctx)
 		while (y < WIN_HEIGHT)
 		{
 			if (y > WIN_HEIGHT / 2)
-				put_pixel(ctx.img, x, y, 0);
+				put_pixel(ctx.img, x, y, 255001);
 			else
-				put_pixel(ctx.img, x, y, 0);
+				put_pixel(ctx.img, x, y, 002551);
 			y++;
 		}
 		x++;
@@ -52,6 +52,6 @@ int	print_background(t_game ctx)
 
 int	update_game_display(t_game *ctx)
 {
-	print_background(*ctx);
+	(void)ctx;
 	return (0);
 }
