@@ -14,12 +14,12 @@
 
 int calculate_pixel_to_fill(t_ray_casting *ray_cast)
 {
-	ray_cast->drawStart = -ray_cast->lineHeight / 2 + ray_cast->h / 2;
+	ray_cast->drawStart = -ray_cast->lineHeight / 2 + WIN_HEIGHT / 2;
 	if (ray_cast->drawStart < 0)
 		ray_cast->drawStart = 0;
-	ray_cast->drawEnd = ray_cast->lineHeight / 2 + ray_cast->h / 2;
-	if (ray_cast->drawEnd >= ray_cast->h)
-		ray_cast->drawEnd = ray_cast->h - 1;
+	ray_cast->drawEnd = ray_cast->lineHeight / 2 + WIN_HEIGHT / 2;
+	if (ray_cast->drawEnd >= WIN_HEIGHT)
+		ray_cast->drawEnd = WIN_HEIGHT - 1;
 	return (0);
 }
 
@@ -39,7 +39,7 @@ int perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 			ray_cast->mapY += ray_cast->stepY;
 			ray_cast->side = 1;
 		}
-		if (ctx.map[ray_cast->mapX][ray_cast->mapY] > 0)
+		if (ctx->map[ray_cast->mapX][ray_cast->mapY] != 0)
 			ray_cast->hit = 1;
 	}
 	return (0);
@@ -74,10 +74,30 @@ int calculate_step(t_ray_casting *ray_cast)
 	return (0);
 }
 
-int	init_ray_struct(t_ray_casting *ray_cast)
+//recuperer la position du joueur
+int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 {
-	ray_cast->w = WIN_WIDTH;
-	ray_cast->h = WIN_HEIGHT;
+	ray_cast->pPosX = player_posX;
+	ray_cast->pPosY = player_posY;
+
+
+	ray_cast->cameraX = 2 * x / WIN_WIDTH - 1;
+	//direction du rayon
+	ray_cast->rayDirX = ray_cast->dirX + ray_cast->planeX * ray_cast->cameraX;
+	ray_cast->rayDirY = ray_cast->dirY + ray_cast->planeY * ray_cast->cameraX;
+
+	//position du joueur defini sur la map
+	ray_cast->mapX = (int)ray_cast->pPosX;
+	ray_cast->mapY = (int)ray_cast->pPosY;
+
+
+
+
+
+	ray_cast->sideDistX = sqrt(1 + (ray_cast->rayDirY * ray_cast->rayDirY)
+								  / (ray_cast->rayDirX * ray_cast->rayDirX));
+	ray_cast->sideDistX = sqrt(1 + (ray_cast->rayDirX * ray_cast->rayDirX)
+								  / (ray_cast->rayDirY * ray_cast->rayDirY));
 
 	ray_cast->dirPosX = 10;
 	ray_cast->dirPosY = 10;
@@ -90,36 +110,25 @@ int	init_ray_struct(t_ray_casting *ray_cast)
 	return (0);
 }
 
+//recuperer la pPos, acceder a la map.
 int ray_casting(t_game *ctx)
 {
 	int x = 0;
 	t_ray_casting ray_cast;
 
 	ray_cast = (t_ray_casting){0};
-	init_ray_struct(&ray_cast);
-	while (x < ray_cast.w)
+	while (x < WIN_WIDTH)
 	{
-		ray_cast.cameraX = 2 * x / ray_cast.w - 1;
-		ray_cast.rayDirX = ray_cast.dirX + ray_cast.planeX * ray_cast.cameraX;
-		ray_cast.rayDirY = ray_cast.dirY + ray_cast.planeY * ray_cast.cameraX;
-
-		ray_cast.mapX = (int)ray_cast.pPosX;
-		ray_cast.mapY = (int)ray_cast.pPosY;
-
-		ray_cast.sideDistX = sqrt(1 + (ray_cast.rayDirY * ray_cast.rayDirY)
-								/ (ray_cast.rayDirX * ray_cast.rayDirX));
-		ray_cast.sideDistX = sqrt(1 + (ray_cast.rayDirX * ray_cast.rayDirX)
-								/ (ray_cast.rayDirY * ray_cast.rayDirY));
-
-		calculate_step(&ray_cast);
+		init_ray_struct(&ray_cast, ctx, x);
 		perform_dda(&ray_cast, ctx);
+		calculate_step(&ray_cast);
 
 		if (ray_cast.side == 0)
 			ray_cast.perpWallDist = ray_cast.sideDistX - ray_cast.deltaDistX;
 		else
 			ray_cast.perpWallDist = ray_cast.sideDistY - ray_cast.deltaDistY;
 
-		ray_cast.lineHeight = (int)(ray_cast.h / ray_cast.perpWallDist);
+		ray_cast.lineHeight = (int)(WIN_HEIGHT / ray_cast.perpWallDist);
 
 		calculate_pixel_to_fill(&ray_cast);
 
