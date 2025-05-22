@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:00 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:16:45 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:56:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 static int	parse_config_line(t_config *cfg, char **lines, int limit);
 static int	validate_map(t_config *cfg);
 
-
+/// @brief Parses the entire .cub file, separating config and map sections
+/// @param cfg Pointer to the main configuration structure to populate
+/// @param filepath Path to the .cub configuration file
+/// @return RET_OK on success, RET_ERR on failure
 int	parse_cub_file(t_config *cfg, char *filepath)
 {
 	char	**lines;
@@ -24,7 +27,7 @@ int	parse_cub_file(t_config *cfg, char *filepath)
 	lines = read_file_lines(filepath);
 	if (!lines)
 		return (fd_printf(STDERR_FILENO, "Error: failed to read file\n"),
-				RET_ERR);
+			RET_ERR);
 	map_start = find_map_start_index(lines);
 	if (map_start == RET_NEG_ERR)
 		return (fd_printf(STDERR_FILENO, "Error : no map found\n"), RET_ERR);
@@ -38,6 +41,11 @@ int	parse_cub_file(t_config *cfg, char *filepath)
 	return (RET_OK);
 }
 
+/// @brief Parses the configuration lines (tex, colors) before the map section
+/// @param cfg Pointer to the configuration structure to fill
+/// @param lines Array of string representing all lines from the .cub file
+/// @param limit Index up to which configlines should be parsed (m_start)
+/// @return 1 on success, 0 on error
 static int	parse_config_line(t_config *cfg, char **lines, int limit)
 {
 	int	i;
@@ -57,6 +65,9 @@ static int	parse_config_line(t_config *cfg, char **lines, int limit)
 	return (1);
 }
 
+/// @brief Validates the map section by checking chars, player spawn and close
+/// @param cfg Pointer to the configuration structure containing the map_ctx
+/// @return 1 if the map is valid, 0 on error
 static int	validate_map(t_config *cfg)
 {
 	if (!check_map_char(cfg->map_ctx.map))
@@ -67,4 +78,3 @@ static int	validate_map(t_config *cfg)
 		return (0);
 	return (1);
 }
-

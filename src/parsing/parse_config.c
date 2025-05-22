@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 17:41:40 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:34:37 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ int	parse_texture_line(char *line, t_config *cfg)
 	return (0);
 }
 
-/// @brief
-/// @param cfg
-/// @param split
-/// @return
+/// @brief Assigns the correct texture path to the corresponding dir in conf
+/// @param cfg Pointer to the configuration structure to update
+/// @param split Array containing the id ("NO")and the correcttexture path
+/// @return 1 if a valid direction if is found and path assigned, 0 otherwise
 static int	parse_texture_path(t_config *cfg, char **split)
 {
 	if (ft_strcmp(split[0], "NO") == 0)

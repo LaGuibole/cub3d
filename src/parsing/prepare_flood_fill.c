@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:37:50 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 16:56:09 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:55:38 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 static char	**alloc_rectangular_map(int height, int width);
 static void	fill_line_with_padding(char *dest, char *src, int width);
 
+/// @brief Creates a new rectangular version of the map with padding spaces
+///	if needed
+/// @param map Original map as a NULL-terminated array of strings
+/// @param height Number of lines in the map
+/// @param width Maximum width of the map (used for padding)
+/// @return A newly allocated rectangular map, or NULL on failure
 char	**rectangularize_map(char **map, int height, int width)
 {
 	char	**new_map;
@@ -32,6 +38,13 @@ char	**rectangularize_map(char **map, int height, int width)
 	return (new_map);
 }
 
+/// @brief Prepares a padded copy of the map for flood fill by replacing
+//  spaces with walls ('1')
+/// @param map Original map to copy
+/// @param height Height of the map
+/// @param width Width of the map (used for padding)
+/// @return A padded and normalized copy of the map ready for flood fill,
+/// or NULL on failure
 char	**prepare_map_for_flood(char **map, int height, int width)
 {
 	char	**copy;
@@ -56,6 +69,10 @@ char	**prepare_map_for_flood(char **map, int height, int width)
 	return (copy);
 }
 
+/// @brief Allocates memory for a rectangular map of given dimensions
+/// @param height Number of rows in the map
+/// @param width Number of columns (characters) per row
+/// @return A newly allocated 2D array of characters, or NULL on alloc fail
 static char	**alloc_rectangular_map(int height, int width)
 {
 	char	**map;
@@ -76,6 +93,11 @@ static char	**alloc_rectangular_map(int height, int width)
 	return (map);
 }
 
+/// @brief Fills a line with the content of another,
+/// add spaces as padding if needed
+/// @param dest Destination string to fill
+/// @param src Source string to copy
+/// @param width Desired width of the destination string (with padding)
 static void	fill_line_with_padding(char *dest, char *src, int width)
 {
 	int	x;

@@ -6,12 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 17:00:53 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 17:45:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:55:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief Cleans up the map lines by removing newline characters and
+///			Replace spaces with tab
+/// @param lines An array of strings representing lines from the .cub file
 static void	sanitize_map(char **lines)
 {
 	char	*tmp;
@@ -35,6 +38,9 @@ static void	sanitize_map(char **lines)
 	}
 }
 
+/// @brief Finds the index of the first line that marks the beginning of map
+/// @param lines An array of strings representing lines from the .cub file
+/// @return Index of the first map line, or RET_NEG_ERR if not found
 int	find_map_start_index(char **lines)
 {
 	int		i;
@@ -50,6 +56,11 @@ int	find_map_start_index(char **lines)
 	return (RET_NEG_ERR);
 }
 
+/// @brief Extracts the map lines from the .cub file starting at a given index
+/// @param lines Array of all lines from the .cub file
+/// @param start Index of the first line of the map
+/// @return A newly allocated array of strings containig only the map
+/// lines, or NULL on failure
 char	**extract_map(char **lines, int start)
 {
 	int		i;
@@ -73,6 +84,11 @@ char	**extract_map(char **lines, int start)
 	return (map);
 }
 
+/// @brief Parses the map section from the .cub file, populates dimensions and
+/// validates structure
+/// @param cfg Pointer to the configuration structure to fill
+/// @param lines Array of all lines from the .cub file
+/// @return RET_OK on success, RET_ERR on failure
 int	parse_map(t_config *cfg, char **lines)
 {
 	int		start;

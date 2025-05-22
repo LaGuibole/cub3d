@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 16:32:48 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:21:31 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	init_flags(t_flags *flags)
 	flags->f = 0;
 }
 
+/// @brief Initializes all rgb values to be parsed
+/// @param cfg Pointer to the config structure to init
 static void	init_rgb(t_config *cfg)
 {
 	cfg->floor_rgb[0] = -1;

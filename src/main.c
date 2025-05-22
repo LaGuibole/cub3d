@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:18:37 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:57:15 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ void	print_config(t_config *cfg)
 	ft_printf("Ceiling Red: %d\n", cfg->ceiling_rgb[0]);
 	ft_printf("Ceiling Green: %d\n", cfg->ceiling_rgb[1]);
 	ft_printf("Ceiling Blue: %d\n\n", cfg->ceiling_rgb[2]);
-	ft_printf("Map width = [%d], Map height = [%d]\n", cfg->map_ctx.width, cfg->map_ctx.height);
+	ft_printf("Map width = [%d], Map height = [%d]\n",
+		cfg->map_ctx.width, cfg->map_ctx.height);
 }
 
 void	print_map(t_config *cfg)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	ft_printf("Map Loaded: \n");
 	while (cfg->map_ctx.map[i])
 	{
@@ -79,16 +82,18 @@ void	print_map(t_config *cfg)
 // 	return (0);
 // }
 
-int main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_config	config;
 
 	if (argc != 2)
-		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"), RET_ERR);
+		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
+			RET_ERR);
 	init_config(&config, argv);
 	config.map_name = argv[1];
 	if (has_valid_extension(&config) != 0)
-		return (fd_printf(STDERR_FILENO, "Error : Invalid file extension\n"), RET_ERR);
+		return (fd_printf(STDERR_FILENO,
+				"Error : Invalid file extension\n"), RET_ERR);
 	if (parse_cub_file(&config, argv[1]) != RET_OK)
 	{
 		return (clean_config(&config), RET_ERR);

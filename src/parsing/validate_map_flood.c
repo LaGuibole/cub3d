@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:13:02 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 17:03:56 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:54:50 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ static int	init_map_copy_for_flood(t_config *cfg);
 static int	should_flood_from(char c);
 static int	handle_open_map(t_map_ctx *ctx);
 
-
+/// @brief Performs a recursive flood algo tocheck if the map is fully enclosed
+/// @param map_ctx Pointer to the map context containing the copy of the map
+/// @param x Current x-coordinate in the map
+/// @param y Current y-coordinate in the map
+/// @return true if the area is enclosed, false if an open space is found
 bool	flood_fill(t_map_ctx *map_ctx, int x, int y)
 {
 	if (y < 0 || y >= map_ctx->height || x < 0 || x >= map_ctx->width)
@@ -34,6 +38,10 @@ bool	flood_fill(t_map_ctx *map_ctx, int x, int y)
 	);
 }
 
+/// @brief Verifies that the map is properly enclosed by walls using
+/// flood fill from valid points
+/// @param cfg Pointer to the configuration structure containing the map context
+/// @return 1 if the map is closed, 0 if an open area is detected
 int	check_map_closed(t_config *cfg)
 {
 	int		y;
@@ -60,6 +68,9 @@ int	check_map_closed(t_config *cfg)
 	return (1);
 }
 
+/// @brief Initializes the map copy used for flood fill checking.
+/// @param cfg Pointer to the configuration structure containing the map ctx
+/// @return 1 on successful initialization, 0 on failure (with error message)
 static int	init_map_copy_for_flood(t_config *cfg)
 {
 	cfg->map_ctx.copy = prepare_map_for_flood(
@@ -72,6 +83,9 @@ static int	init_map_copy_for_flood(t_config *cfg)
 	return (1);
 }
 
+/// @brief Determines whether a character is a valid start point for flood fill
+/// @param c The character to test
+/// @return 1 if the char is a floor tile ('0') or a player spawn, 0 otherwise
 static int	should_flood_from(char c)
 {
 	return ((c == '0' || is_player_spawn(c)) && c != 'V');

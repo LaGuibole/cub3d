@@ -6,15 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:59:30 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/20 16:48:32 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:55:06 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/// @brief
-/// @param line
-/// @return
+/// @brief Validates that teh RGB string only contains digits and commas
+/// @param line The string to check (expected format "R,G,B")
+/// @return RET_OK if valid, RET_ERR if the string contains invalid chars
 static int	validate_rgb_char(char *line)
 {
 	size_t	i;
@@ -30,9 +30,9 @@ static int	validate_rgb_char(char *line)
 	return (RET_OK);
 }
 
-/// @brief
-/// @param line
-/// @return
+/// @brief Parses a comma-separated RGB string and returns an int arr[3]
+/// @param line the RGB string to parse (e.g., "220,100,0")
+/// @return Pointer to an int array containing the RGB values, or NULL om fail
 static int	*get_rgb_tab(char *line)
 {
 	char		**split;
@@ -55,9 +55,9 @@ static int	*get_rgb_tab(char *line)
 	return (color);
 }
 
-/// @brief
-/// @param color
-/// @return
+/// @brief Check if the given RGB values are within the valid range [0, 255]
+/// @param color Pointer to an array of 3 integers representing RGB values
+/// @return RET_OK if all values are valid, RET_ERR otherwise
 static int	validate_rgb_int(int *color)
 {
 	if (!color)
@@ -69,10 +69,11 @@ static int	validate_rgb_int(int *color)
 	return (RET_OK);
 }
 
-/// @brief
-/// @param line
-/// @param dest
-/// @return
+/// @brief Parses and validates an RGB string, then stores the result in dst ar
+/// @param line The string to parse (e.g., "220,100,0")
+/// @param dest Pointer to an array of 3 integers where the RGB values will
+/// be stored
+/// @return RET_OK on success, RET_ERR on failure
 int	parse_rgb_values(char *line, int *dest)
 {
 	int	*rgb;
@@ -89,12 +90,12 @@ int	parse_rgb_values(char *line, int *dest)
 	return (RET_OK);
 }
 
-/// @brief
-/// @param r
-/// @param g
-/// @param b
-/// @param a
-/// @return
+/// @brief Combines red, green, blue and alpha values into an int
+/// @param r Red component
+/// @param g Green component
+/// @param b Blue component
+/// @param a Alpha component
+/// @return A 32 bit int representing the RGBA color
 int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);

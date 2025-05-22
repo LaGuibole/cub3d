@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:42:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:17:44 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 13:53:24 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	is_valid_char(char c);
 static int	count_player_spawn(char c);
 
-/// @brief
-/// @param map
-/// @return
+/// @brief Checks that all characters in the map are valid
+/// @param map 2D array representing the map
+/// @return 1 if all characters are valid, 0 otherwise (with error message)
 int	check_map_char(char **map)
 {
 	int	x;
@@ -43,26 +43,26 @@ int	check_map_char(char **map)
 	return (1);
 }
 
-/// @brief
-/// @param c
-/// @return
+/// @brief Verifies whether a character is a valid map symbol
+/// @param c Character to validate
+/// @return 1 if the character is allowed in the map, 0 otherwise
 static int	is_valid_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E'
 		|| c == 'W' || c == ' ');
 }
 
-/// @brief
-/// @param c
-/// @return
+/// @brief Checks if the character represents a player spawn direction
+/// @param c Character to evaluate
+/// @return 1 if the character is 'N', 'S', 'E', or 'W', 0 otherwise
 static int	count_player_spawn(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-/// @brief
-/// @param map
-/// @return
+/// @brief Ensures that exactly one player spawn point is present in the map
+/// @param map 2D array representing the map
+/// @return 1 if exactly one player spawn is found, 0 otherwise
 int	check_player_spawn_count(char **map)
 {
 	int	x;
