@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/21 17:35:25 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:26:02 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef	struct s_config
 	int		player_spawn;
 	t_flags	flags;
 	t_map_ctx map_ctx;
+	// coordonnes du jouer
+	// regard du joueur
 } t_config;
 
 // GAME STRUCT
@@ -128,5 +130,13 @@ int		check_map_closed(t_config *cfg);
 int		find_map_start_index(char **lines);
 int	check_player_spawn_count(char **map);
 int	parse_cub_file(t_config *cfg, char *filepath);
+int	validate_map_block(char **lines, int start, int *width, int *height);
+int free_config_and_lines(t_config *cfg, char **lines, int ret);
+int	is_valid_texture_path(char *path);
 
+bool	is_color_config_line(char *line);
+
+void	sanitize_path(char *path);
+
+int	is_texture_missing(t_flags *flags);
 #endif

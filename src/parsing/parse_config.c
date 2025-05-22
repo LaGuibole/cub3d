@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:34:37 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:16:48 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	parse_texture_line(char *line, t_config *cfg)
 	status = mark_seen(&cfg->flags, split[0]);
 	if (status == -1)
 		return (free_double_tab(split), status);
-	if (parse_texture_path(cfg, split))
+	if (!is_color_config_line(split[0]) && parse_texture_path(cfg, split))
 		return (free_double_tab(split), 1);
 	else if (ft_strcmp(split[0], "F") == 0)
 	{
@@ -87,6 +87,9 @@ int	parse_texture_line(char *line, t_config *cfg)
 /// @return 1 if a valid direction if is found and path assigned, 0 otherwise
 static int	parse_texture_path(t_config *cfg, char **split)
 {
+	sanitize_path(split[1]);
+	if (is_valid_texture_path(split[1]) == RET_ERR)
+		return (0);
 	if (ft_strcmp(split[0], "NO") == 0)
 		cfg->north_tex = ft_strdup(split[1]);
 	else if (ft_strcmp(split[0], "SO") == 0)

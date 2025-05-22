@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:00:19 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:54:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:25:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ bool	is_config_line(char *line)
 		|| ft_strncmp(line, "EA ", 3) == 0
 		|| ft_strncmp(line, "F ", 2) == 0
 		|| ft_strncmp(line, "C ", 2) == 0);
+}
+
+bool	is_color_config_line(char *line)
+{
+	return (ft_strncmp(line, "C", 1) == 0
+		|| ft_strncmp(line, "F", 1) == 0);
 }
 
 /// @brief Determines whether a line is part of the map section
@@ -46,4 +52,60 @@ bool	is_map_line(char *line)
 int	is_player_spawn(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+// int	is_valid_texture_path(char *path)
+// {
+// 	int	len;
+
+// 	len = ft_strlen(path);
+// 	if (len < 6)
+// 		return (fd_printf(STDERR_FILENO, "Error: invalid texture path %s\n", path), RET_ERR);
+// 	if (ft_strncmp(path + len - 5, ".xpm\n", 5) != 0)
+// 		return (fd_printf(STDERR_FILENO, "Error: texture must be a .xpm file: %s", path), RET_ERR);
+// 	if (path[len - 1] == '/')
+// 		return (fd_printf(STDERR_FILENO, "Error: '%s' is a directory path\n", path), RET_ERR);
+// 	return (RET_OK);
+// }
+
+int	is_valid_texture_path(char *path)
+{
+	int	len;
+
+	len = ft_strlen(path);
+	if (len < 5)
+		return (fd_printf(STDERR_FILENO, "Error: invalid texture path: %s\n", path), RET_ERR);
+	if (ft_strncmp(path + len - 4, ".xpm", 4) != 0)
+		return (fd_printf(STDERR_FILENO, "Error: texture must be a .xpm file: %s\n", path), RET_ERR);
+	if (len == 4 || path[len - 5] == '/')
+		return (fd_printf(STDERR_FILENO, "Error: filename is missing before .xpm: %s\n", path), RET_ERR);
+	return (RET_OK);
+}
+
+void	sanitize_path(char *path)
+{
+	char	*tmp;
+
+	if (!path)
+		return ;
+	tmp = ft_strchr(path, '\n');
+	if (tmp)
+		*tmp = '\0';
+}
+
+int	is_texture_missing(t_flags *flags)
+{
+	if (flags->f == 0)
+		return (fd_printf(STDERR_FILENO, "Error: Floor textures is missing\n"), RET_ERR);
+	if (flags->c == 0)
+		return (fd_printf(STDERR_FILENO, "Error: Ceiling textures is missing\n"), RET_ERR);
+	if (flags->no == 0)
+		return (fd_printf(STDERR_FILENO, "Error: North textures is missing\n"), RET_ERR);
+	if (flags->so == 0)
+		return (fd_printf(STDERR_FILENO, "Error: South textures is missing\n"), RET_ERR);
+	if (flags->ea == 0)
+		return (fd_printf(STDERR_FILENO, "Error: East textures is missing\n"), RET_ERR);
+	if (flags->we == 0)
+		return (fd_printf(STDERR_FILENO, "Error: West textures is missing\n"), RET_ERR);
+	return (RET_OK);
 }

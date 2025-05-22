@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:59:30 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:55:06 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 14:08:18 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ static int	*get_rgb_tab(char *line)
 	if (validate_rgb_char(line) != RET_OK)
 		return (NULL);
 	split = ft_split(line, ',');
-	if (!split || !split[0] || !split[1] || !split[2] || split[3])
+	if (!split || !split[0] || !split[1] || !split[2] || split[3]
+		|| split[0][0] == '\0' || split[1][0] == '\0' || split[2][0] == '\0'
+		|| split[0][0] == '\n' || split[1][0] == '\n' || split[2][0] == '\n')
 		return (free_double_tab(split),
 			fd_printf(STDERR_FILENO, "Wrong RGB format\n"), NULL);
 	color = malloc(sizeof(int) * 3);
