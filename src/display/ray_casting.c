@@ -39,7 +39,10 @@ int perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 			ray_cast->mapY += ray_cast->stepY;
 			ray_cast->side = 1;
 		}
-		if (ray_cast->mapY < 0 || ray_cast->mapX < 0 || !ctx.map[ray_cast->mapY] || !ctx.map[ray_cast->mapY][ray_cast->mapX])
+		if (ray_cast->mapY < 0
+			|| ray_cast->mapX < 0
+			|| !ctx.map[ray_cast->mapY]
+			|| !ctx.map[ray_cast->mapY][ray_cast->mapX])
 			ray_cast->hit = 0;
 		if (ctx->map[ray_cast->mapX][ray_cast->mapY] == '1')
 			ray_cast->hit = 1;
@@ -47,8 +50,10 @@ int perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 	return (0);
 }
 
-int calculate_step(t_ray_casting *ray_cast)
+int init_dda(t_ray_casting *ray_cast, t_game *ctx)
 {
+	ray_cast->pPosX = ctx->cfg.player.posX;
+	ray_cast->pPosY = ctx->cfg.player.posX;
 	if (ray_cast->rayDirX < 0)
 	{
 		ray_cast->stepX = -1;
@@ -76,45 +81,26 @@ int calculate_step(t_ray_casting *ray_cast)
 	return (0);
 }
 
-//recuperer la position du joueur et sa direction
 int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 {
-	ray_cast->pPosX = player_posX;
-	ray_cast->pPosY = player_posY;
-
-	// a definir directement au moment du parsing
-	ray_cast->planeX =
-	ray_cast->planeY =
-
-	ray_cast->cameraX = 2 * x / WIN_WIDTH - 1;
-	//direction du rayon
-	ray_cast->rayDirX = ray_cast->dirX + ray_cast->planeX * ray_cast->cameraX;
-	ray_cast->rayDirY = ray_cast->dirY + ray_cast->planeY * ray_cast->cameraX;
-
-	//position du joueur defini sur la map
+	ray_cast->pPosX = ctx.cfg.player.posX;
+	ray_cast->pPosY = ctx.cfg.player.posX;
+	ray_cast->cameraX = 2 * x / (double)WIN_WIDTH - 1;
+	ray_cast->rayDirX = ctx.cfg.player.dirX + ctx.cfg.player.planeX
+			* ray_cast->cameraX;
+	ray_cast->rayDirY = ctx.cfg.player.posY + ctx.cfg.player.planeY
+			* ray_cast->cameraX;
 	ray_cast->mapX = (int)ray_cast->pPosX;
 	ray_cast->mapY = (int)ray_cast->pPosY;
-
-	//Calcul des deltas dist
 	if (ray_cast->dirX == 0)
-		ray_cast->dirX = 1e30;
+		ray_cast->deltaDistX = 1e30;
 	else
-		ray_cast->deltaDistX =fabs(1 / ray_cast->dirPosX);
+		ray_cast->deltaDistX = fabs(1 / ray_cast->dirPosX);
 	if (ray_cast->dirY == 0)
-		ray_cast->dirY = 1e30;
+		ray_cast->deltaDistX = 1e30;
 	else
-		ray_cast->deltaDistY =fabs(1 / ray_cast->dirPosY);
-
+		ray_cast->deltaDistY = fabs(1 / ray_cast->dirPosY);
 	ray_cast->hit = 0;
-
-	return (0);
-
-	ray_cast->dirPosX = 10;
-	ray_cast->dirPosY = 10;
-
-	ray_cast->dirX = -1;
-	ray_cast->dirY = 0;
-
 	return (0);
 }
 
@@ -129,7 +115,7 @@ int ray_casting(t_game *ctx)
 	while (x < WIN_WIDTH)
 	{
 		init_ray_struct(&ray_cast, ctx, x);
-		calculate_step(&ray_cast);
+		init_dda(&ray_cast, ctx);
 		perform_dda(&ray_cast, ctx);
 
 		if (ray_cast.side == 0)
