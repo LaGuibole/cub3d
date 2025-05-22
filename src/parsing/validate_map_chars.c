@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:42:55 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 16:05:26 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:49:52 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static int	count_player_spawn(char c)
 /// @return 1 if exactly one player spawn is found, 0 otherwise
 int	check_player_spawn_count(char **map)
 {
-	// t_config cfg;
 	int	x;
 	int	y;
 	int	count;
@@ -78,10 +77,7 @@ int	check_player_spawn_count(char **map)
 		while (map[y][x])
 		{
 			if (count_player_spawn(map[y][x]))
-			{
-				//ajouter player position
 				count++;
-			}
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:23:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 16:24:22 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:52:47 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	clean_floor_ceiling(t_config *cfg)
 	}
 }
 
-int free_config_and_lines(t_config *cfg, char **lines, int ret)
+int	free_config_and_lines(t_config *cfg, char **lines, int ret)
 {
 	if (lines)
 		free_double_tab(lines);

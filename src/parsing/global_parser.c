@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:00 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 18:27:26 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:56:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ int	parse_cub_file(t_config *cfg, char *filepath)
 
 	lines = read_file_lines(filepath);
 	if (!lines)
-		return (fd_printf(STDERR_FILENO, "Error: failed to read file\n"), RET_ERR);
+		return (fd_printf(STDERR_FILENO,
+				"Error: failed to read file\n"), RET_ERR);
 	map_start = find_map_start_index(lines);
 	if (map_start == RET_NEG_ERR)
-		return (fd_printf(STDERR_FILENO, "Error: no map found\n"), free_config_and_lines(cfg, lines, RET_ERR));
+		return (fd_printf(STDERR_FILENO,
+				"Error: no map found\n"),
+			free_config_and_lines(cfg, lines, RET_ERR));
 	if (!parse_config_line(cfg, lines, map_start))
 		return (free_config_and_lines(cfg, lines, RET_ERR));
 	if (parse_map(cfg, lines))
@@ -63,10 +66,11 @@ static int	parse_config_line(t_config *cfg, char **lines, int limit)
 	}
 	if (is_texture_missing(&cfg->flags))
 		return (0);
-	if (cfg->floor_rgb[0] == -1 || cfg->floor_rgb[1] == -1 || cfg->floor_rgb[2] == -1
-		|| cfg->ceiling_rgb[0] == -1 || cfg->ceiling_rgb[1] == -1 || cfg->ceiling_rgb[2] == -1)
-		return(fd_printf(STDERR_FILENO,
-			"Error: missing or incomplete RGB color define\n"), 0);
+	if (cfg->floor_rgb[0] == -1 || cfg->floor_rgb[1] == -1
+		|| cfg->floor_rgb[2] == -1 || cfg->ceiling_rgb[0] == -1
+		|| cfg->ceiling_rgb[1] == -1 || cfg->ceiling_rgb[2] == -1)
+		return (fd_printf(STDERR_FILENO,
+				"Error: missing or incomplete RGB color define\n"), 0);
 	return (1);
 }
 
@@ -79,6 +83,8 @@ static int	validate_map(t_config *cfg)
 		return (0);
 	if (!check_player_spawn_count(cfg->map_ctx.map))
 		return (0);
+	else
+		find_player_pos(&cfg->map_ctx);
 	if (!check_map_closed(cfg))
 		return (0);
 	return (1);

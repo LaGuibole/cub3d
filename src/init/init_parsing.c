@@ -6,13 +6,15 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:21:31 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:46:33 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	init_rgb(t_config *cfg);
+static void	init_vec(t_vec2 *vec);
+static void	init_flags(t_flags *flags);
 
 /// @brief Initializes all fields of the configuration structure to default
 /// @param cfg Pointer to the configuration structure to init
@@ -33,11 +35,12 @@ void	init_config(t_config *cfg, char **argv)
 	cfg->map_ctx.width = 0;
 	init_flags(&cfg->flags);
 	init_rgb(cfg);
+	init_vec(&cfg->map_ctx.player_pos);
 }
 
 /// @brief Initializes all parsing flags to zero
 /// @param flags Pointer to the flags structure to init
-void	init_flags(t_flags *flags)
+static void	init_flags(t_flags *flags)
 {
 	flags->no = 0;
 	flags->so = 0;
@@ -57,4 +60,16 @@ static void	init_rgb(t_config *cfg)
 	cfg->ceiling_rgb[0] = -1;
 	cfg->ceiling_rgb[1] = -1;
 	cfg->ceiling_rgb[2] = -1;
+}
+
+static void	init_vec(t_vec2 *vec)
+{
+	vec->x = 0;
+	vec->y = 0;
+}
+
+void	init_game_from_config(t_game *game, t_config *cfg)
+{
+	game->player_pos = cfg->map_ctx.player_pos;
+	game->player_dir = cfg->map_ctx.player_dir;
 }

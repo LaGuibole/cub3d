@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 16:35:22 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:47:08 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	print_config(t_config *cfg)
 	ft_printf("Ceiling Blue: %d\n\n", cfg->ceiling_rgb[2]);
 	ft_printf("Map width = [%d], Map height = [%d]\n",
 		cfg->map_ctx.width, cfg->map_ctx.height);
+	printf("Player Pos x = [%.2f], y = [%.2f]\n", cfg->map_ctx.player_pos.x, cfg->map_ctx.player_pos.y);
+	ft_printf("Player Dir = [%c]", cfg->map_ctx.player_dir);
 }
 
 void	print_map(t_config *cfg)
@@ -85,6 +87,7 @@ void	print_map(t_config *cfg)
 int	main(int argc, char **argv)
 {
 	t_config	config;
+	t_game		game;
 
 	if (argc != 2)
 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
@@ -98,6 +101,7 @@ int	main(int argc, char **argv)
 	{
 		return (RET_ERR);
 	}
+	init_game_from_config(&game, &config);
 	print_config(&config);
 	print_map(&config);
 	clean_config(&config);
