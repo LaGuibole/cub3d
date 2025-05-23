@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:50:21 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 15:31:38 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 15:59:44 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_game_parser(t_game *game)
 void	init_game_from_config(t_game *game, t_config *cfg)
 {
 	game->player_pos = cfg->map_ctx.player_pos;
-	game->player_dir = cfg->map_ctx.player_dir;
+	game->dir_char = cfg->map_ctx.player_dir;
 	game->map = copy_map(cfg->map_ctx.map);
 
 	set_floor_ceiling_colors(game, cfg);
