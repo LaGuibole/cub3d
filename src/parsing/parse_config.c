@@ -6,11 +6,13 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 15:49:17 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:46:51 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:16:48 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	parse_texture_path(t_config *cfg, char **split);
 
 /// @brief A function to check if the map has .cub extension
 /// @param filename will be argv[1] so the map file
@@ -32,17 +34,17 @@ int	has_valid_extension(t_config *filename)
 int	mark_seen(t_flags *f, char *id)
 {
 	if (ft_strcmp(id, "NO") == 0 && ++f->no > 1)
-		return (-1);
+		return (RET_NEG_ERR);
 	if (ft_strcmp(id, "SO") == 0 && ++f->so > 1)
-		return (-1);
+		return (RET_NEG_ERR);
 	if (ft_strcmp(id, "WE") == 0 && ++f->we > 1)
-		return (-1);
+		return (RET_NEG_ERR);
 	if (ft_strcmp(id, "EA") == 0 && ++f->ea > 1)
-		return (-1);
+		return (RET_NEG_ERR);
 	if (ft_strcmp(id, "F") == 0 && ++f->f > 1)
-		return (-1);
+		return (RET_NEG_ERR);
 	if (ft_strcmp(id, "C") == 0 && ++f->c > 1)
-		return (-1);
+		return (RET_NEG_ERR);
 	return (0);
 }
 
@@ -60,7 +62,34 @@ int	parse_texture_line(char *line, t_config *cfg)
 		return (free_double_tab(split), 0);
 	status = mark_seen(&cfg->flags, split[0]);
 	if (status == -1)
-		return (free_double_tab(split), -1);
+		return (free_double_tab(split), status);
+	if (!is_color_config_line(split[0]) && parse_texture_path(cfg, split))
+		return (free_double_tab(split), 1);
+	else if (ft_strcmp(split[0], "F") == 0)
+	{
+		if (parse_rgb_values(split[1], cfg->floor_rgb) != RET_OK)
+			return (free_double_tab(split), RET_NEG_ERR);
+	}
+	else if (ft_strcmp(split[0], "C") == 0)
+	{
+		if (parse_rgb_values(split[1], cfg->ceiling_rgb) != RET_OK)
+			return (free_double_tab(split), RET_NEG_ERR);
+	}
+	else
+		return (free_double_tab(split), RET_NEG_ERR);
+	free_double_tab(split);
+	return (0);
+}
+
+/// @brief Assigns the correct texture path to the corresponding dir in conf
+/// @param cfg Pointer to the configuration structure to update
+/// @param split Array containing the id ("NO")and the correcttexture path
+/// @return 1 if a valid direction if is found and path assigned, 0 otherwise
+static int	parse_texture_path(t_config *cfg, char **split)
+{
+	sanitize_path(split[1]);
+	if (is_valid_texture_path(split[1]) == RET_ERR)
+		return (0);
 	if (ft_strcmp(split[0], "NO") == 0)
 		cfg->north_tex = ft_strdup(split[1]);
 	else if (ft_strcmp(split[0], "SO") == 0)
@@ -69,13 +98,7 @@ int	parse_texture_line(char *line, t_config *cfg)
 		cfg->west_tex = ft_strdup(split[1]);
 	else if (ft_strcmp(split[0], "EA") == 0)
 		cfg->east_tex = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "F") == 0)
-		cfg->floor_tex = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "C") == 0)
-		cfg->ceiling_tex = ft_strdup(split[1]);
 	else
-		return(free_double_tab(split), 0);
-	free_double_tab(split);
+		return (0);
 	return (1);
 }
-
