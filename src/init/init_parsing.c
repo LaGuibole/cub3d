@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:46:33 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 09:36:03 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ void	init_game_from_config(t_game *game, t_config *cfg)
 {
 	game->player_pos = cfg->map_ctx.player_pos;
 	game->player_dir = cfg->map_ctx.player_dir;
+	game->map = cfg->map_ctx.map;
 }

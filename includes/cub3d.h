@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:35:36 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 09:35:38 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef	struct s_game
 	t_vec2	player_plane;
 	char	player_dir;
 	t_img	img;
+	char	**map;
 } t_game;
 
 int		has_valid_extension(t_config *filename);
