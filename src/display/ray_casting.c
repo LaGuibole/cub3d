@@ -52,8 +52,8 @@ int perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 
 int init_dda(t_ray_casting *ray_cast, t_game *ctx)
 {
-	ray_cast->pPosX = ctx->cfg.player.posX;
-	ray_cast->pPosY = ctx->cfg.player.posX;
+	ray_cast->pPosX = ctx->player_pos.x;
+	ray_cast->pPosY = ctx->player_pos.y;
 	if (ray_cast->rayDirX < 0)
 	{
 		ray_cast->stepX = -1;
