@@ -42,10 +42,20 @@ OBJ_DIR				= 		build
 
 SRC_FILES = \
 	src/clean/clean_config.c \
+<<<<<<< HEAD
 	src/init/init_game.c \
 	src/init/init_map_textures.c \
 	src/init/init_parsing.c \
 	src/load/load_walls.c \
+=======
+	src/clean/clean_context.c \
+	src/display/init_display.c \
+	src/display/ray_casting.c \
+	src/init/init_map_textures.c \
+	src/init/init_parsing.c \
+	src/init/init_utils.c \
+	src/inputs/handle_inputs.c \
+>>>>>>> origin/jbastard
 	src/main.c \
 	src/parsing/config_parse_utils.c \
 	src/parsing/copy_map.c \

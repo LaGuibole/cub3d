@@ -4,3 +4,5 @@
 *.a
 maps/bad/
 maps/good/
+Makefile
+cub3d

@@ -16,17 +16,22 @@
 # include "libft.h"
 # include "mlx.h"
 # include <fcntl.h>
+# include <math.h>
+
+// TO SORT DEFINES
+#define RED_PIXEL 0xFF0000
 
 // WINDOWS DEFINES
 
 # define	WIN_WIDTH 1920
-# define	WIN_HEIGHT 1080
+# define	WIN_HEIGHT 960
 
 // MAP ASSETS
 
 # define	WALL	'1'
 # define	VOID	' '
 # define	FLOOR	'0'
+# define	PLAYER	'P'
 
 // FILE EXTENSION
 
@@ -103,25 +108,76 @@ typedef	struct s_config
 	t_map_ctx map_ctx;
 } t_config;
 
-// GAME STRUCT
+// IMG STRUCT
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*img_addr;
+	int		bit_per_pixel;
+	int		line_len;
+	int		endian;
+	int		color;
+} t_img;
 
+// RAY-CASTING STRUCT
+typedef struct s_ray_casting
+{
+	int		w;
+	int 	h;
+
+	double	pPosX;
+	double	pPosY;
+
+	int		stepX;
+	int		stepY;
+
+	int		mapX;
+	int		mapY;
+	int		lineHeight;
+
+	double	perpWallDist;
+	int		hit;
+	int		side;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+
+	double	cameraX;
+	double	dirX;
+	double	dirY;
+
+	int		drawStart;
+	int 	drawEnd;
+
+} t_ray_casting;
+
+// GAME STRUCT
 typedef	struct s_game
 {
 	void	*mlx;
 	void	*win;
 	t_vec2	player_pos;
-	char	player_dir;
-	char	**map;
 	long	floor_color;
 	long	ceiling_color;
+<<<<<<< HEAD
 	void	*north_wall;
 	void	*south_wall;
 	void	*west_wall;
 	void	*east_wall;
 	int		wall_height;
 	int		wall_width;
+=======
+	t_vec2	player_plane;
+	t_vec2	player_dir;
+	char	dir_char;
+	t_img	img;
+	char	**map;
+>>>>>>> origin/jbastard
 } t_game;
 
+int		ray_casting(t_game *ctx);
+void	put_pixel(t_img img, int x, int y, int color);
 int		has_valid_extension(t_config *filename);
 char	**read_file_lines(char *filepath);
 int		parse_texture_line(char *line, t_config *cfg);
@@ -153,10 +209,20 @@ void	init_game_from_config(t_game *game, t_config *cfg);
 void	set_floor_ceiling_colors(t_game *game, t_config *cfg);
 void	init_game_parser(t_game *game);
 char	**extract_map(char **lines, int start, int height);
+<<<<<<< HEAD
 char	**copy_map(char **src);
 int		check_textures_accessibility(t_config *cfg);
 void	init_textures_fds(t_config *cfg);
 void	load_walls(t_config *cfg, t_game *game);
 
+=======
+int		clean_context(t_game *ctx);
+int		clean_and_exit(t_game *ctx);
+int 	close_window(t_game *ctx);
+int 	claim_hooks(t_game *ctx);
+int		update_game_display(t_game *ctx);
+int		print_background(t_game ctx);
+void	print_map(char **map);
+>>>>>>> origin/jbastard
 
 #endif
