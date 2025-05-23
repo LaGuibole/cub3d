@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:46:33 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 15:55:22 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	init_rgb(t_config *cfg);
 static void	init_vec(t_vec2 *vec);
@@ -33,6 +33,7 @@ void	init_config(t_config *cfg, char **argv)
 	cfg->player_spawn = 0;
 	cfg->map_ctx.height = 0;
 	cfg->map_ctx.width = 0;
+	init_textures_fds(cfg);
 	init_flags(&cfg->flags);
 	init_rgb(cfg);
 	init_vec(&cfg->map_ctx.player_pos);
@@ -62,14 +63,55 @@ static void	init_rgb(t_config *cfg)
 	cfg->ceiling_rgb[2] = -1;
 }
 
+/// @brief
+/// @param vec
 static void	init_vec(t_vec2 *vec)
 {
 	vec->x = 0;
 	vec->y = 0;
 }
 
+void	init_game_parser(t_game *game)
+{
+	game->floor_color = 0;
+	game->ceiling_color = 0;
+}
+
+char	**copy_map(char **src)
+{
+	char	**copy;
+	int		height;
+	int		i;
+
+	if (!src)
+		return (NULL);
+	height = 0;
+	while (src[height])
+		height++;
+	copy = malloc(sizeof(char *) * (height + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		copy[i] = ft_strdup(src[i]);
+		if (!copy[i])
+		{
+			free_double_tab(copy);
+			return (NULL);
+		}
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
+}
+
+
 void	init_game_from_config(t_game *game, t_config *cfg)
 {
 	game->player_pos = cfg->map_ctx.player_pos;
-	game->player_dir = cfg->map_ctx.player_dir;
+	game->dir_char = cfg->map_ctx.player_dir;
+	game->map = copy_map(cfg->map_ctx.map);
+	set_floor_ceiling_colors(game, cfg);
 }
+

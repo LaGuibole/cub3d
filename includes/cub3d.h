@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/19 19:35:36 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 15:53:55 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct s_map_ctx
 	char	player_dir;
 } t_map_ctx;
 
-
 typedef	struct s_config
 {
 	char	*map_name;
@@ -99,6 +98,12 @@ typedef	struct s_config
 	int		ceiling_rgb[3];
 	int		floor_rgb[3];
 	int		player_spawn;
+	long	floor_color;
+	long	ceiling_color;
+	int		no_fd;
+	int		so_fd;
+	int		we_fd;
+	int		ea_fd;
 	t_flags	flags;
 	t_map_ctx map_ctx;
 } t_config;
@@ -130,12 +135,6 @@ typedef struct s_ray_casting
 	int		mapY;
 	int		lineHeight;
 
-	double	dirPosX;
-	double	dirPosY;
-
-	double	planeX;
-	double	planeY;
-
 	double	perpWallDist;
 	int		hit;
 	int		side;
@@ -145,8 +144,6 @@ typedef struct s_ray_casting
 	double	deltaDistY;
 
 	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
 	double	dirX;
 	double	dirY;
 
@@ -161,17 +158,29 @@ typedef	struct s_game
 	void	*mlx;
 	void	*win;
 	t_vec2	player_pos;
+	long	floor_color;
+	long	ceiling_color;
+	void	*north_wall;
+	void	*south_wall;
+	void	*west_wall;
+	void	*east_wall;
+	int		wall_height;
+	int		wall_width;
 	t_vec2	player_plane;
-	char	player_dir;
+	t_vec2	player_dir;
+	char	dir_char;
 	t_img	img;
+	char	**map;
 } t_game;
 
+int		ray_casting(t_game *ctx);
+void	put_pixel(t_img img, int x, int y, int color);
 int		has_valid_extension(t_config *filename);
 char	**read_file_lines(char *filepath);
 int		parse_texture_line(char *line, t_config *cfg);
 void	init_config(t_config *cfg, char **argv);
 void	clean_config(t_config *cfg);
-int		get_rgba(int r, int g, int b, int a);
+int		get_rgba(int r, int g, int b);
 int		parse_rgb_values(char *line, int *dest);
 int		parse_map(t_config *cfg, char **lines);
 int		check_map_char(char **map);
@@ -194,13 +203,19 @@ void	sanitize_path(char *path);
 int		is_texture_missing(t_flags *flags);
 void	find_player_pos(t_map_ctx *map);
 void	init_game_from_config(t_game *game, t_config *cfg);
-void	init_flags(t_flags *flags);
+void	set_floor_ceiling_colors(t_game *game, t_config *cfg);
+void	init_game_parser(t_game *game);
+char	**extract_map(char **lines, int start, int height);
+char	**copy_map(char **src);
+int		check_textures_accessibility(t_config *cfg);
+void	init_textures_fds(t_config *cfg);
+void	load_walls(t_config *cfg, t_game *game);
 int		clean_context(t_game *ctx);
 int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
 int 	claim_hooks(t_game *ctx);
 int		update_game_display(t_game *ctx);
-void	put_pixel(t_img img, int x, int y, int color);
 int		print_background(t_game ctx);
+void	print_map(char **map);
 
 #endif

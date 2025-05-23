@@ -6,12 +6,14 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:53:38 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:54:28 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:49:52 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief 
+/// @param map
 void	find_player_pos(t_map_ctx *map)
 {
 	int	y;
@@ -25,8 +27,8 @@ void	find_player_pos(t_map_ctx *map)
 		{
 			if (is_player_spawn(map->map[y][x]))
 			{
-				map->player_pos.x = x + 0.5;
-				map->player_pos.y = y + 0.5;
+				map->player_pos.x = x;
+				map->player_pos.y = y;
 				map->player_dir = map->map[y][x];
 				return ;
 			}
