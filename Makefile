@@ -6,11 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 15:26:24 by guphilip          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/05/23 16:58:25 by guphilip         ###   ########.fr        #
-=======
-#    Updated: 2025/05/23 15:53:12 by guphilip         ###   ########.fr        #
->>>>>>> d170c08 (~ | fix on load_walls)
+#    Updated: 2025/05/23 17:01:16 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,13 +49,22 @@ SRC_FILES = \
 	src/init/init_map_textures.c \
 	src/init/init_parsing.c \
 <<<<<<< HEAD
+<<<<<<< HEAD
 	src/init/init_utils.c \
 =======
 >>>>>>> d170c08 (~ | fix on load_walls)
+=======
+>>>>>>> b0d4046 (~ | jbastard <- master)
 	src/inputs/camera.c \
 	src/inputs/handle_inputs.c \
 	src/inputs/move.c \
 	src/load/load_walls.c \
+=======
+	src/init/init_utils.c \
+	src/inputs/camera.c \
+	src/inputs/handle_inputs.c \
+	src/inputs/move.c \
+>>>>>>> 9d54615 (+ | Walls apears, segfault w/o valgrind)
 	src/main.c \
 	src/parsing/config_parse_utils.c \
 	src/parsing/copy_map.c \

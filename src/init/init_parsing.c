@@ -114,4 +114,3 @@ void	init_game_from_config(t_game *game, t_config *cfg)
 	game->map_height = cfg->map_height;
 	set_floor_ceiling_colors(game, cfg);
 }
-
