@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:37:50 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 13:55:38 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:06:10 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static void	fill_line_with_padding(char *dest, char *src, int width)
 	x = 0;
 	while (x < width)
 	{
-		if (src && x < len)
+		if (src && x < len && src[x])
 			dest[x] = src[x];
 		else
 			dest[x] = ' ';

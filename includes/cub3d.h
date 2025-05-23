@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 19:30:52 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 20:56:02 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ typedef	struct s_game
 	t_img	img;
 	char	**map;
 	int 	map_height;
+	int		map_width;
 } t_game;
 
 int		ray_casting(t_game *ctx);
@@ -243,6 +244,4 @@ void	load_walls(t_config *cfg, t_game *game);
 
 void    player_angle(t_game *ctx);
 void	draw_minimap(t_game *game);
-
-
 #endif

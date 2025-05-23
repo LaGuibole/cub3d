@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 19:04:45 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 19:29:45 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:16:09 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	draw_player_dot(t_game *game)
 	int		center_y;
 
 	size = 2;
-	center_x = 10 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
-	center_y = 10 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
+	center_x = 12 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
+	center_y = 12 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
 	p.y = -size;
 	while (p.y <= size)
 	{
@@ -61,8 +61,8 @@ static void	draw_direction_ray(t_game *game)
 	double	dir_x;
 	double	dir_y;
 
-	start.x = 10 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
-	start.y = 10 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
+	start.x = 12 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
+	start.y = 12 + MINI_MAP_RADIUS * MINI_TILE_SIZE;
 	dir_x = game->player_dir.x;
 	dir_y = game->player_dir.y;
 	i = 0;
@@ -95,15 +95,15 @@ void	draw_minimap(t_game *game)
 		{
 			mapx = cx + x;
 			mapy = cy + y;
-			if (mapy >= 0 && mapx >= 0
-				&& mapy < game->map_height
-				&& mapx < (int)ft_strlen(game->map[mapy]))
+			if (mapy >= 0 && mapy < game->map_height
+				&& mapx >= 0 && mapx < game->map_width)
 			{
-				color = 0x222222;
 				if (game->map[mapy][mapx] == '1')
-					color = 0xFFFFFF;
+					color = 0xFF0000;
 				else if (game->map[mapy][mapx] == '0')
 					color = 0x666666;
+				else
+					color = 0x222222;
 				draw_square(game,
 					10 + (x + MINI_MAP_RADIUS) * MINI_TILE_SIZE,
 					10 + (y + MINI_MAP_RADIUS) * MINI_TILE_SIZE,
@@ -116,3 +116,4 @@ void	draw_minimap(t_game *game)
 	draw_player_dot(game);
 	draw_direction_ray(game);
 }
+
