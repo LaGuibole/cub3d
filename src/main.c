@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 12:30:40 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:56:51 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int main(int argc, char **argv)
 		return (fd_printf(STDERR_FILENO,
 				"Error : Invalid file extension\n"), RET_ERR);
 	if (parse_cub_file(&config, argv[1]) != RET_OK)
+		return (RET_ERR);
+	if (check_textures_accessibility(&config))
 		return (RET_ERR);
 	init_game_from_config(&ctx, &config);
 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);

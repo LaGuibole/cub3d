@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 17:09:00 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:56:59 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:24:36 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	parse_cub_file(t_config *cfg, char *filepath)
 				"Error: no map found\n"),
 			free_config_and_lines(cfg, lines, RET_ERR));
 	if (!parse_config_line(cfg, lines, map_start))
+		return (free_config_and_lines(cfg, lines, RET_ERR));
+	if (check_textures_accessibility(cfg) == RET_ERR)
 		return (free_config_and_lines(cfg, lines, RET_ERR));
 	if (parse_map(cfg, lines))
 		return (free_config_and_lines(cfg, lines, RET_ERR));
