@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 09:08:34 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/23 09:21:22 by jbastard         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:33:01 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int ray_casting(t_game *ctx)
 	print_background(ctx);
 	while (x < WIN_WIDTH)
 	{
-		player_angle(ctx);
+		// player_angle(ctx);
 		init_ray_struct(&ray_cast, ctx, x);
 		init_dda(&ray_cast, ctx);
 		perform_dda(&ray_cast, ctx);
@@ -170,6 +170,7 @@ int ray_casting(t_game *ctx)
 		calculate_pixel_to_fill(&ray_cast, ctx, x);
 		x++;
 	}
+	draw_minimap(ctx);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img.img_ptr, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 17:06:32 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:30:52 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@
 
 #define ROT_SPEED 0.03
 #define PLAYER_SPEED 0.05
+
+
+// MINIMAP
+
+# define MINI_TILE_SIZE 5
+# define MINI_MAP_RADIUS 10
 
 // PARSING
 typedef struct s_flags
@@ -234,6 +240,9 @@ char	**copy_map(char **src);
 int		check_textures_accessibility(t_config *cfg);
 void	init_textures_fds(t_config *cfg);
 void	load_walls(t_config *cfg, t_game *game);
+
+void    player_angle(t_game *ctx);
+void	draw_minimap(t_game *game);
 
 
 #endif

@@ -53,6 +53,7 @@ SRC_FILES = \
 	src/inputs/move.c \
 	src/load/load_walls.c \
 	src/main.c \
+	src/minimap/draw_minimap.c \
 	src/parsing/config_parse_utils.c \
 	src/parsing/copy_map.c \
 	src/parsing/game_parse_utils.c \

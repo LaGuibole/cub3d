@@ -1,15 +1,15 @@
-NO ./textures/BricksOv.xpm
+NO ./textures/BrickOv.xpm
 SO ./textures/Bricks.xpm
 EA ./textures/Glass.xpm
 WE ./textures/Gold0.xpm
-F 220,100,0
-C 225,30,0
+F 24,26,33
+C 98,188,227
 
 111111
 100001
 1000N1
-11111111111111
-        100001
-        100001
+10001111111111
+11000000000001
+11111111100001
         100001
         111111
