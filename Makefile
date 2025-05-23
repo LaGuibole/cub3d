@@ -48,7 +48,6 @@ SRC_FILES = \
 	src/init/init_game.c \
 	src/init/init_map_textures.c \
 	src/init/init_parsing.c \
-	src/init/init_utils.c \
 	src/inputs/camera.c \
 	src/inputs/handle_inputs.c \
 	src/inputs/move.c \
