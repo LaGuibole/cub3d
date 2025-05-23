@@ -161,6 +161,7 @@ typedef	struct s_game
 	void	*mlx;
 	void	*win;
 	t_vec2	player_pos;
+	t_vec2	player_plane;
 	char	player_dir;
 	t_img	img;
 } t_game;

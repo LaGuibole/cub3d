@@ -43,67 +43,10 @@ void	print_map(t_config *cfg)
 	}
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	char		**lines;
-// 	t_config	 config;
-// 	int			i;
-// 	int			status;
-// 	int			map_start;
-
-// 	config.map_name = argv[1];
-// 	if (argc != 2)
-// 		return (ft_printf("no good\n"), 1);
-// 	if (has_valid_extension(&config) != 0)
-// 		return (ft_printf("no good extension\n"), 1);
-// 	init_config(&config, argv);
-// 	lines = read_file_lines(argv[1]);
-// 	if (!lines)
-// 		return (ft_printf("error reading file\n"), 1);
-// 	i = 0;
-// 	map_start = find_map_start_index(lines);
-// 	while (lines[i] && i < map_start)
-// 	{
-// 		status = parse_texture_line(lines[i], &config);
-// 		if (status == -1)
-// 		{
-// 			ft_printf("Error : config error at line %d\n", i + 1);
-// 			break ;
-// 		}
-// 		i++;
-// 	}
-// 	if (parse_map(&config, lines) != RET_OK)
-// 	{
-// 		ft_printf("Map parsing failed\n");
-// 		return (1);
-// 	}
-// 	print_config(&config);
-// 	print_map(&config);
-// 	free_double_tab(lines);
-// 	clean_config(&config);
-// 	return (0);
-// }
-
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
+	t_game		ctx;
 	t_config	config;
-	t_game		game;
-}
-
-int game_loop(t_game *ctx)
-{
-	(void)ctx;
-	while (1)
-	{
-		break;
-	}
-	return (1);
-}
-
-int main(void)
-{
-	t_game	ctx;
-
 	ctx = (t_game){0};
 	ctx.mlx = mlx_init();
 
@@ -113,7 +56,6 @@ int main(void)
 	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
 	print_background(ctx);
 	claim_hooks(&ctx);
-	game_loop(&ctx);
 	mlx_loop(ctx.mlx);
 	if (argc != 2)
 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
@@ -127,7 +69,7 @@ int main(void)
 	{
 		return (RET_ERR);
 	}
-	init_game_from_config(&game, &config);
+	init_game_from_config(&ctx, &config);
 	print_config(&config);
 	print_map(&config);
 	clean_config(&config);

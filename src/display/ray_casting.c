@@ -6,7 +6,7 @@
 /*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 09:08:34 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/22 10:57:40 by jbastard         ###   ########.fr       */
+/*   Updated: 2025/05/23 09:21:22 by jbastard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ int init_dda(t_ray_casting *ray_cast, t_game *ctx)
 
 int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 {
-	ray_cast->pPosX = ctx.player_pos.x;
-	ray_cast->pPosY = ctx.player_pos.y;
+	ray_cast->pPosX = ctx->player_pos.x;
+	ray_cast->pPosY = ctx->player_pos.y;
 	ray_cast->cameraX = 2 * x / (double)WIN_WIDTH - 1;
-	ray_cast->rayDirX = ctx.cfg.player.dirX + ctx.cfg.player.planeX
+	ray_cast->rayDirX = ctx->player_pos.y + ctx->player_plane.x
 			* ray_cast->cameraX;
-	ray_cast->rayDirY = ctx.cfg.player.posY + ctx.cfg.player.planeY
+	ray_cast->rayDirY = ctx->player_pos.y + ctx->player_plane.y
 			* ray_cast->cameraX;
 	ray_cast->mapX = (int)ray_cast->pPosX;
 	ray_cast->mapY = (int)ray_cast->pPosY;
