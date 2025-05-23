@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 12:00:47 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:30:40 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,15 @@ int	main(int argc, char **argv)
 	{
 		return (RET_ERR);
 	}
-	set_floor_ceiling_colors(&game, &config);
+	// set_floor_ceiling_colors(&game, &config);
 	init_game_from_config(&game, &config);
-	// print_config(&config);
+	print_config(&config);
 	// print_map(&config);
 	print_map(game.map);
+	printf("%ld\n", game.ceiling_color);
+	printf("%ld\n", game.floor_color);
 	clean_config(&config);
+	if (game.map)
+		free_double_tab(game.map);
 	return (0);
 }
