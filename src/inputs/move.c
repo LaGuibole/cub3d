@@ -32,8 +32,6 @@ void	move_backward(t_game *game)
 
 	new_x = game->player_pos.x - game->player_dir.x * PLAYER_SPEED;
 	new_y = game->player_pos.y - game->player_dir.y * PLAYER_SPEED;
-
-	// Vérification des collisions avec les murs
 	if (game->map[(int)new_y][(int)game->player_pos.x] != '1')
 		game->player_pos.y = new_y;
 	if (game->map[(int)game->player_pos.y][(int)new_x] != '1')
