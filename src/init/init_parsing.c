@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 12:30:23 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:54:24 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	init_config(t_config *cfg, char **argv)
 	cfg->player_spawn = 0;
 	cfg->map_ctx.height = 0;
 	cfg->map_ctx.width = 0;
+	init_textures_fds(cfg);
 	init_flags(&cfg->flags);
 	init_rgb(cfg);
 	init_vec(&cfg->map_ctx.player_pos);
@@ -62,6 +63,8 @@ static void	init_rgb(t_config *cfg)
 	cfg->ceiling_rgb[2] = -1;
 }
 
+/// @brief
+/// @param vec
 static void	init_vec(t_vec2 *vec)
 {
 	vec->x = 0;
@@ -73,18 +76,6 @@ void	init_game_parser(t_game *game)
 	game->floor_color = 0;
 	game->ceiling_color = 0;
 }
-
-// void copy_map(char **o_map, char **d_map)
-// {
-// 	int	y;
-
-// 	y = 0;
-// 	while (o_map[y])
-// 	{
-// 		d_map[y] = ft_strdup(o_map[y]);
-// 		y++;
-// 	}
-// }
 
 char	**copy_map(char **src)
 {
@@ -115,7 +106,6 @@ char	**copy_map(char **src)
 	return (copy);
 }
 
-
 void	init_game_from_config(t_game *game, t_config *cfg)
 {
 	game->player_pos = cfg->map_ctx.player_pos;
@@ -124,3 +114,4 @@ void	init_game_from_config(t_game *game, t_config *cfg)
 	game->map_height = cfg->map_height;
 	set_floor_ceiling_colors(game, cfg);
 }
+
