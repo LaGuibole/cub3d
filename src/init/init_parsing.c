@@ -121,6 +121,6 @@ void	init_game_from_config(t_game *game, t_config *cfg)
 	game->player_pos = cfg->map_ctx.player_pos;
 	game->dir_char = cfg->map_ctx.player_dir;
 	game->map = copy_map(cfg->map_ctx.map);
+	game->map_height = cfg->map_height;
 	set_floor_ceiling_colors(game, cfg);
 }
-

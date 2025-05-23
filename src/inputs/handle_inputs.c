@@ -10,12 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 int 	hook_handler(int keycode, t_game *ctx)
 {
 	if (keycode == ESC)
 		clean_and_exit(ctx);
+	if (keycode == W)
+		move_forward(ctx);
+	if (keycode == S)
+		move_backward(ctx);
+	if (keycode == A)
+		move_left(ctx);
+	if (keycode == D)
+		move_right(ctx);
+	if (keycode == LEFT)
+		rotate_left(ctx);
+	if (keycode == RIGHT)
+		rotate_right(ctx);
 	return (0);
 }
 

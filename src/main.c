@@ -68,7 +68,7 @@ int main(int argc, char **argv)
 	if (parse_cub_file(&config, argv[1]) != RET_OK)
 		return (RET_ERR);
 	init_game_from_config(&ctx, &config);
-//	print_map(ctx.map);
+	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
 	ray_casting(&ctx);
 	clean_config(&config);
 	if (ctx.map)

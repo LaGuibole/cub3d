@@ -27,7 +27,7 @@ void put_pixel(t_img img, int x, int y, int color)
 }
 
 //Attention : color doit etre changee par get_rgba quand le parsing le mettra a disposition.
-int	print_background(t_game ctx)
+int	print_background(t_game *ctx)
 {
 	int x;
 	int y;
@@ -39,14 +39,14 @@ int	print_background(t_game ctx)
 		while (y < WIN_HEIGHT)
 		{
 			if (y > WIN_HEIGHT / 2)
-				put_pixel(ctx.img, x, y, 14443520);
+				put_pixel(ctx->img, x, y, 14443520);
 			else
-				put_pixel(ctx.img, x, y, 14443775);
+				put_pixel(ctx->img, x, y, 14443775);
 			y++;
 		}
 		x++;
 	}
-	mlx_put_image_to_window(ctx.mlx, ctx.win, ctx.img.img_ptr, 0, 0);
+	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img.img_ptr, 0, 0);
 	return (0);
 }
 

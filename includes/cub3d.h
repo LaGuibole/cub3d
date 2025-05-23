@@ -56,6 +56,11 @@
 # define	RIGHT 65363
 # define	DOWN 65364
 
+//
+
+#define ROT_SPEED 0.03
+#define PLAYER_SPEED 0.05
+
 // PARSING
 typedef struct s_flags
 {
@@ -162,6 +167,7 @@ typedef	struct s_game
 	char	dir_char;
 	t_img	img;
 	char	**map;
+	int 	map_height;
 } t_game;
 
 int		ray_casting(t_game *ctx);
@@ -202,7 +208,15 @@ int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
 int 	claim_hooks(t_game *ctx);
 int		update_game_display(t_game *ctx);
-int		print_background(t_game ctx);
+int		print_background(t_game *ctx);
 void	print_map(char **map);
+
+void	rotate_left(t_game *game);
+void	rotate_right(t_game *game);
+
+void	move_right(t_game *game);
+void	move_left(t_game *game);
+void	move_forward(t_game *game);
+void	move_backward(t_game *game);
 
 #endif

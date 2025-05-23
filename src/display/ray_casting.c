@@ -135,7 +135,7 @@ int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 	ray_cast->cameraX = 2 * x / (double)WIN_WIDTH - 1;
 	ray_cast->dirX = ctx->player_dir.x + ctx->player_plane.x
 			* ray_cast->cameraX;
-	ray_cast->dirY = ctx->player_pos.y + ctx->player_plane.y
+	ray_cast->dirY = ctx->player_dir.y + ctx->player_plane.y
 			* ray_cast->cameraX;
 	ray_cast->mapX = (int)ctx->player_pos.x;
 	ray_cast->mapY = (int)ctx->player_pos.y;
@@ -159,7 +159,7 @@ int ray_casting(t_game *ctx)
 
 	x = 0;
 	ray_cast = (t_ray_casting){0};
-	print_background(*ctx);
+	print_background(ctx);
 	while (x < WIN_WIDTH)
 	{
 		player_angle(ctx);
