@@ -42,9 +42,6 @@ OBJ_DIR				= 		build
 
 SRC_FILES = \
 	src/clean/clean_config.c \
-	src/clean/clean_context.c \
-	src/display/init_display.c \
-	src/display/ray_casting.c \
 	src/init/init_parsing.c \
 	src/init/init_utils.c \
 	src/inputs/handle_inputs.c \
