@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 17:02:39 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:46:57 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,6 @@ int main(int argc, char **argv)
 	t_game		ctx;
 	t_config	config;
 	ctx = (t_game){0};
-	ctx.mlx = mlx_init();
-
-	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
-
-	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
-	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
-	claim_hooks(&ctx);
 
 	if (argc != 2)
 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
@@ -70,11 +63,18 @@ int main(int argc, char **argv)
 	if (check_textures_accessibility(&config))
 		return (RET_ERR);
 	init_game_from_config(&ctx, &config);
+	ctx.mlx = mlx_init();
+
+	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
+
+	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
+	claim_hooks(&ctx);
 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
 	ray_casting(&ctx);
 	clean_config(&config);
+	mlx_loop(ctx.mlx);
 	if (ctx.map)
 		free_double_tab(ctx.map);
-	mlx_loop(ctx.mlx);
 	return (0);
 }

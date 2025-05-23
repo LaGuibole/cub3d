@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:59:30 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 11:12:45 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:45:27 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	parse_rgb_values(char *line, int *dest)
 /// @return A 32 bit int representing the RGBA color
 int	get_rgba(int r, int g, int b)
 {
-	long	tmp;
+	int	tmp;
 
-	tmp = (r << 16 | g << 8 | b << 4);
+	tmp = ((r & 0xff) << 16 | (g & 0xff) << 8 | (b & 0xff));
 	return (tmp);
 }

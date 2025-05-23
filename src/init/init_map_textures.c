@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:41:20 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 14:52:50 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:25:37 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_textures_accessibility(t_config *cfg)
 {
 	if (!cfg->north_tex)
 		return (fd_printf(STDERR_FILENO, "NO texture path = NULL\n"), RET_ERR);
-	cfg->no_fd = open(cfg->north_tex, O_RDONLY);
+	cfg->no_fd = open(cfg->north_tex, 0644);
 	if (cfg->no_fd == -1)
 		return (fd_printf(STDERR_FILENO, "Can't open NO textures\n"), RET_ERR);
 	close(cfg->no_fd);

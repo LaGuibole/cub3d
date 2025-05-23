@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:45:01 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/20 11:45:03 by jbastard         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:45:45 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	print_background(t_game *ctx)
 		while (y < WIN_HEIGHT)
 		{
 			if (y > WIN_HEIGHT / 2)
-				put_pixel(ctx->img, x, y, 14443520);
+				put_pixel(ctx->img, x, y, ctx->floor_color);
 			else
-				put_pixel(ctx->img, x, y, 14443775);
+				put_pixel(ctx->img, x, y, ctx->ceiling_color);
 			y++;
 		}
 		x++;
