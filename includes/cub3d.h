@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 16:57:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 16:58:55 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_map_ctx
 	t_vec2	player_pos;
 	char	player_dir;
 } t_map_ctx;
-
 
 typedef	struct s_config
 {
@@ -172,6 +171,12 @@ typedef	struct s_game
 	t_img	img;
 	char	**map;
 	int 	map_height;
+	void	*north_wall;
+	void	*south_wall;
+	void	*west_wall;
+	void	*east_wall;
+	int		wall_height;
+	int		wall_width;
 } t_game;
 
 int		ray_casting(t_game *ctx);
@@ -225,6 +230,7 @@ void	move_backward(t_game *game);
 char	**copy_map(char **src);
 int		check_textures_accessibility(t_config *cfg);
 void	init_textures_fds(t_config *cfg);
+void	load_walls(t_config *cfg, t_game *game);
 
 
 #endif

@@ -1,7 +1,7 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-EA ./textures/east.xpm
-WE ./textures/west.xpm
+NO ./textures/BricksOv.xpm
+SO ./textures/Bricks.xpm
+EA ./textures/Glass.xpm
+WE ./textures/Gold0.xpm
 F 220,100,0
 C 225,30,0
 

@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 15:26:24 by guphilip          #+#    #+#              #
-#    Updated: 2025/05/23 16:57:25 by guphilip         ###   ########.fr        #
+#    Updated: 2025/05/23 16:58:25 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC_FILES = \
 	src/inputs/camera.c \
 	src/inputs/handle_inputs.c \
 	src/inputs/move.c \
+	src/load/load_walls.c \
 	src/main.c \
 	src/parsing/config_parse_utils.c \
 	src/parsing/copy_map.c \
