@@ -6,7 +6,7 @@
 #    By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 15:26:24 by guphilip          #+#    #+#              #
-#    Updated: 2025/05/19 14:38:59 by guphilip         ###   ########.fr        #
+#    Updated: 2025/05/23 15:53:12 by guphilip         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,20 +42,16 @@ OBJ_DIR				= 		build
 
 SRC_FILES = \
 	src/clean/clean_config.c \
-<<<<<<< HEAD
-	src/init/init_game.c \
-	src/init/init_map_textures.c \
-	src/init/init_parsing.c \
-	src/load/load_walls.c \
-=======
 	src/clean/clean_context.c \
 	src/display/init_display.c \
 	src/display/ray_casting.c \
+	src/init/init_game.c \
 	src/init/init_map_textures.c \
 	src/init/init_parsing.c \
-	src/init/init_utils.c \
+	src/inputs/camera.c \
 	src/inputs/handle_inputs.c \
->>>>>>> origin/jbastard
+	src/inputs/move.c \
+	src/load/load_walls.c \
 	src/main.c \
 	src/parsing/config_parse_utils.c \
 	src/parsing/copy_map.c \

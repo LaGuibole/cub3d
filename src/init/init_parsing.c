@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 14:51:28 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 15:55:22 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,12 @@ static void	init_vec(t_vec2 *vec)
 	vec->x = 0;
 	vec->y = 0;
 }
-<<<<<<< HEAD
-=======
 
 void	init_game_parser(t_game *game)
 {
 	game->floor_color = 0;
 	game->ceiling_color = 0;
 }
-
-// void copy_map(char **o_map, char **d_map)
-// {
-// 	int	y;
-
-// 	y = 0;
-// 	while (o_map[y])
-// 	{
-// 		d_map[y] = ft_strdup(o_map[y]);
-// 		y++;
-// 	}
-// }
 
 char	**copy_map(char **src)
 {
@@ -129,4 +115,3 @@ void	init_game_from_config(t_game *game, t_config *cfg)
 	set_floor_ceiling_colors(game, cfg);
 }
 
->>>>>>> origin/jbastard

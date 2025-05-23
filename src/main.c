@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 13:50:54 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 15:55:42 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 void	print_config(t_config *cfg)
 {
@@ -67,22 +67,12 @@ int main(int argc, char **argv)
 				"Error : Invalid file extension\n"), RET_ERR);
 	if (parse_cub_file(&config, argv[1]) != RET_OK)
 		return (RET_ERR);
-<<<<<<< HEAD
-	}
 	if (check_textures_accessibility(&config))
 		return (RET_ERR);
 	// set_floor_ceiling_colors(&game, &config);
-	init_game_from_config(&game, &config);
-	print_config(&config);
-	// print_map(&config);
-	print_map(game.map);
-	printf("%ld\n", game.ceiling_color);
-	printf("%ld\n", game.floor_color);
-=======
 	init_game_from_config(&ctx, &config);
 //	print_map(ctx.map);
 	ray_casting(&ctx);
->>>>>>> origin/jbastard
 	clean_config(&config);
 	if (ctx.map)
 		free_double_tab(ctx.map);
