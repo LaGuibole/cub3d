@@ -90,13 +90,12 @@ int perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 			ray_cast->mapY += ray_cast->stepY;
 			ray_cast->side = 1;
 		}
-//		printf("\ntest :%c\n", ctx->map[5][2]);
 		if (ray_cast->mapY < 0
 			|| ray_cast->mapX < 0
 			|| !ctx->map[ray_cast->mapY]
 			|| !ctx->map[ray_cast->mapY][ray_cast->mapX])
 			ray_cast->hit = 0;
-		if (ctx->map[ray_cast->mapX][ray_cast->mapY] == '1')
+		if (ctx->map[ray_cast->mapY][ray_cast->mapX] == '1')
 			ray_cast->hit = 1;
 	}
 	return (0);
@@ -104,30 +103,28 @@ int perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 
 int init_dda(t_ray_casting *ray_cast, t_game *ctx)
 {
-	ray_cast->pPosX = ctx->player_pos.x;
-	ray_cast->pPosY = ctx->player_pos.y;
 	if (ray_cast->dirX < 0)
 	{
 		ray_cast->stepX = -1;
-		ray_cast->sideDistX = (ray_cast->pPosX - ray_cast->mapX)
+		ray_cast->sideDistX = (ctx->player_pos.x - ray_cast->mapX)
 				* ray_cast->deltaDistX;
 	}
 	else
 	{
 		ray_cast->stepX = 1;
-		ray_cast->sideDistX = (ray_cast->mapX + 1 - ray_cast->pPosX)
+		ray_cast->sideDistX = (ray_cast->mapX + 1 - ctx->player_pos.x)
 				* ray_cast->deltaDistX;
 	}
 	if (ray_cast->dirY < 0)
 	{
 		ray_cast->stepY = -1;
-		ray_cast->sideDistY = (ray_cast->pPosY - ray_cast->mapY)
-								* ray_cast->deltaDistX;
+		ray_cast->sideDistY = (ctx->player_pos.y - ray_cast->mapY)
+								* ray_cast->deltaDistY;
 	}
 	else
 	{
 		ray_cast->stepY = 1;
-		ray_cast->sideDistY = (ray_cast->mapY + 1 - ray_cast->pPosY)
+		ray_cast->sideDistY = (ray_cast->mapY + 1 - ctx->player_pos.y)
 								* ray_cast->deltaDistY;
 	}
 	return (0);
@@ -135,21 +132,19 @@ int init_dda(t_ray_casting *ray_cast, t_game *ctx)
 
 int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 {
-	ray_cast->pPosX = ctx->player_pos.x;
-	ray_cast->pPosY = ctx->player_pos.y;
 	ray_cast->cameraX = 2 * x / (double)WIN_WIDTH - 1;
-	ray_cast->dirX = ctx->player_dir.y + ctx->player_plane.x
+	ray_cast->dirX = ctx->player_dir.x + ctx->player_plane.x
 			* ray_cast->cameraX;
 	ray_cast->dirY = ctx->player_pos.y + ctx->player_plane.y
 			* ray_cast->cameraX;
-	ray_cast->mapX = (int)ray_cast->pPosX;
-	ray_cast->mapY = (int)ray_cast->pPosY;
+	ray_cast->mapX = (int)ctx->player_pos.x;
+	ray_cast->mapY = (int)ctx->player_pos.y;
 	if (ray_cast->dirX == 0)
 		ray_cast->deltaDistX = 1e30;
 	else
 		ray_cast->deltaDistX = fabs(1 / ctx->player_dir.x);
 	if (ray_cast->dirY == 0)
-		ray_cast->deltaDistX = 1e30;
+		ray_cast->deltaDistY = 1e30;
 	else
 		ray_cast->deltaDistY = fabs(1 / ctx->player_dir.y);
 	ray_cast->hit = 0;
@@ -167,6 +162,7 @@ int ray_casting(t_game *ctx)
 	print_background(*ctx);
 	while (x < WIN_WIDTH)
 	{
+		player_angle(ctx);
 		init_ray_struct(&ray_cast, ctx, x);
 		init_dda(&ray_cast, ctx);
 		perform_dda(&ray_cast, ctx);

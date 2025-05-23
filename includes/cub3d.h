@@ -203,5 +203,6 @@ int 	close_window(t_game *ctx);
 int 	claim_hooks(t_game *ctx);
 int		update_game_display(t_game *ctx);
 int		print_background(t_game ctx);
+void	print_map(char **map);
 
 #endif

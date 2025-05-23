@@ -30,19 +30,6 @@ void	print_config(t_config *cfg)
 	ft_printf("Player Dir = [%c]\n", cfg->map_ctx.player_dir);
 }
 
-// void	print_map(t_config *cfg)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	ft_printf("Map Loaded: \n");
-// 	while (cfg->map_ctx.map[i])
-// 	{
-// 		ft_printf("%s\n", cfg->map_ctx.map[i]);
-// 		i++;
-// 	}
-// }
-
 void	print_map(char **map)
 {
 	int	i;
@@ -73,7 +60,7 @@ int main(int argc, char **argv)
 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
 			RET_ERR);
 	init_config(&config, argv);
-	init_game_parser(&game);
+	init_game_parser(&ctx);
 	config.map_name = argv[1];
 	if (has_valid_extension(&config) != 0)
 		return (fd_printf(STDERR_FILENO,
@@ -81,11 +68,11 @@ int main(int argc, char **argv)
 	if (parse_cub_file(&config, argv[1]) != RET_OK)
 		return (RET_ERR);
 	init_game_from_config(&ctx, &config);
-	print_map(&config);
+//	print_map(ctx.map);
 	ray_casting(&ctx);
 	clean_config(&config);
-	if (game.map)
-		free_double_tab(game.map);
+	if (ctx.map)
+		free_double_tab(ctx.map);
 	mlx_loop(ctx.mlx);
 	return (0);
 }

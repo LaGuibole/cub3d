@@ -119,7 +119,7 @@ char	**copy_map(char **src)
 void	init_game_from_config(t_game *game, t_config *cfg)
 {
 	game->player_pos = cfg->map_ctx.player_pos;
-	game->player_dir = cfg->map_ctx.player_dir;
+	game->dir_char = cfg->map_ctx.player_dir;
 	game->map = copy_map(cfg->map_ctx.map);
 	set_floor_ceiling_colors(game, cfg);
 }
