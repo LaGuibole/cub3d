@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:46:33 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:00:03 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,66 @@ static void	init_vec(t_vec2 *vec)
 	vec->y = 0;
 }
 
+void	init_game_parser(t_game *game)
+{
+	game->floor_color = 0;
+	game->ceiling_color = 0;
+}
+
+// void copy_map(char **o_map, char **d_map)
+// {
+// 	int	y;
+
+// 	y = 0;
+// 	while (o_map[y])
+// 	{
+// 		d_map[y] = ft_strdup(o_map[y]);
+// 		y++;
+// 	}
+// }
+
+char	**copy_map(char **src)
+{
+	char	**copy;
+	int		height;
+	int		i;
+
+	if (!src)
+		return (NULL);
+
+	// Mesurer la hauteur de la map
+	height = 0;
+	while (src[height])
+		height++;
+
+	// Allouer un nouveau tableau de pointeurs
+	copy = malloc(sizeof(char *) * (height + 1));
+	if (!copy)
+		return (NULL);
+
+	i = 0;
+	while (i < height)
+	{
+		copy[i] = ft_strdup(src[i]);
+		if (!copy[i])
+		{
+			// Libération partielle en cas d'échec
+			while (--i >= 0)
+				free(copy[i]);
+			free(copy);
+			return (NULL);
+		}
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
+}
+
+
 void	init_game_from_config(t_game *game, t_config *cfg)
 {
 	game->player_pos = cfg->map_ctx.player_pos;
 	game->player_dir = cfg->map_ctx.player_dir;
+	game->map = copy_map(cfg->map_ctx.map);
 }
+

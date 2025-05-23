@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:46:42 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 11:55:27 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef	struct s_config
 	int		ceiling_rgb[3];
 	int		floor_rgb[3];
 	int		player_spawn;
+	long	floor_color;
+	long	ceiling_color;
 	t_flags	flags;
 	t_map_ctx map_ctx;
 } t_config;
@@ -106,6 +108,9 @@ typedef	struct s_game
 	void	*win;
 	t_vec2	player_pos;
 	char	player_dir;
+	char	**map;
+	long	floor_color;
+	long	ceiling_color;
 } t_game;
 
 int		has_valid_extension(t_config *filename);
@@ -113,7 +118,7 @@ char	**read_file_lines(char *filepath);
 int		parse_texture_line(char *line, t_config *cfg);
 void	init_config(t_config *cfg, char **argv);
 void	clean_config(t_config *cfg);
-int		get_rgba(int r, int g, int b, int a);
+int		get_rgba(int r, int g, int b);
 int		parse_rgb_values(char *line, int *dest);
 int		parse_map(t_config *cfg, char **lines);
 int		check_map_char(char **map);
@@ -136,5 +141,11 @@ void	sanitize_path(char *path);
 int		is_texture_missing(t_flags *flags);
 void	find_player_pos(t_map_ctx *map);
 void	init_game_from_config(t_game *game, t_config *cfg);
+void	set_floor_ceiling_colors(t_game *game, t_config *cfg);
+void	init_game_parser(t_game *game);
+char	**extract_map(char **lines, int start, int height);
+
+
+
 
 #endif

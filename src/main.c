@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:47:08 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:00:47 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,31 @@ void	print_config(t_config *cfg)
 	ft_printf("Map width = [%d], Map height = [%d]\n",
 		cfg->map_ctx.width, cfg->map_ctx.height);
 	printf("Player Pos x = [%.2f], y = [%.2f]\n", cfg->map_ctx.player_pos.x, cfg->map_ctx.player_pos.y);
-	ft_printf("Player Dir = [%c]", cfg->map_ctx.player_dir);
+	ft_printf("Player Dir = [%c]\n", cfg->map_ctx.player_dir);
 }
 
-void	print_map(t_config *cfg)
+// void	print_map(t_config *cfg)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	ft_printf("Map Loaded: \n");
+// 	while (cfg->map_ctx.map[i])
+// 	{
+// 		ft_printf("%s\n", cfg->map_ctx.map[i]);
+// 		i++;
+// 	}
+// }
+
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
 	ft_printf("Map Loaded: \n");
-	while (cfg->map_ctx.map[i])
+	while (map[i])
 	{
-		ft_printf("%s\n", cfg->map_ctx.map[i]);
+		ft_printf("%s\n", map[i]);
 		i++;
 	}
 }
@@ -93,6 +106,7 @@ int	main(int argc, char **argv)
 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
 			RET_ERR);
 	init_config(&config, argv);
+	init_game_parser(&game);
 	config.map_name = argv[1];
 	if (has_valid_extension(&config) != 0)
 		return (fd_printf(STDERR_FILENO,
@@ -101,9 +115,11 @@ int	main(int argc, char **argv)
 	{
 		return (RET_ERR);
 	}
+	set_floor_ceiling_colors(&game, &config);
 	init_game_from_config(&game, &config);
-	print_config(&config);
-	print_map(&config);
+	// print_config(&config);
+	// print_map(&config);
+	print_map(game.map);
 	clean_config(&config);
 	return (0);
 }
