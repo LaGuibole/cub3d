@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 17:02:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:10:04 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,48 +69,4 @@ static void	init_vec(t_vec2 *vec)
 {
 	vec->x = 0;
 	vec->y = 0;
-}
-
-void	init_game_parser(t_game *game)
-{
-	game->floor_color = 0;
-	game->ceiling_color = 0;
-}
-
-char	**copy_map(char **src)
-{
-	char	**copy;
-	int		height;
-	int		i;
-
-	if (!src)
-		return (NULL);
-	height = 0;
-	while (src[height])
-		height++;
-	copy = malloc(sizeof(char *) * (height + 1));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < height)
-	{
-		copy[i] = ft_strdup(src[i]);
-		if (!copy[i])
-		{
-			free_double_tab(copy);
-			return (NULL);
-		}
-		i++;
-	}
-	copy[i] = NULL;
-	return (copy);
-}
-
-void	init_game_from_config(t_game *game, t_config *cfg)
-{
-	game->player_pos = cfg->map_ctx.player_pos;
-	game->dir_char = cfg->map_ctx.player_dir;
-	game->map = copy_map(cfg->map_ctx.map);
-	game->map_height = cfg->map_height;
-	set_floor_ceiling_colors(game, cfg);
 }
