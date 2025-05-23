@@ -142,11 +142,11 @@ int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 	if (ray_cast->dirX == 0)
 		ray_cast->deltaDistX = 1e30;
 	else
-		ray_cast->deltaDistX = fabs(1 / ctx->player_dir.x);
+		ray_cast->deltaDistX = fabs(1 / ray_cast->dirX);
 	if (ray_cast->dirY == 0)
 		ray_cast->deltaDistY = 1e30;
 	else
-		ray_cast->deltaDistY = fabs(1 / ctx->player_dir.y);
+		ray_cast->deltaDistY = fabs(1 / ray_cast->dirY);
 	ray_cast->hit = 0;
 	return (0);
 }
