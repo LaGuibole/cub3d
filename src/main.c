@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	print_config(t_config *cfg)
 {
@@ -56,51 +56,18 @@ void	print_map(char **map)
 	}
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	char		**lines;
-// 	t_config	 config;
-// 	int			i;
-// 	int			status;
-// 	int			map_start;
-
-// 	config.map_name = argv[1];
-// 	if (argc != 2)
-// 		return (ft_printf("no good\n"), 1);
-// 	if (has_valid_extension(&config) != 0)
-// 		return (ft_printf("no good extension\n"), 1);
-// 	init_config(&config, argv);
-// 	lines = read_file_lines(argv[1]);
-// 	if (!lines)
-// 		return (ft_printf("error reading file\n"), 1);
-// 	i = 0;
-// 	map_start = find_map_start_index(lines);
-// 	while (lines[i] && i < map_start)
-// 	{
-// 		status = parse_texture_line(lines[i], &config);
-// 		if (status == -1)
-// 		{
-// 			ft_printf("Error : config error at line %d\n", i + 1);
-// 			break ;
-// 		}
-// 		i++;
-// 	}
-// 	if (parse_map(&config, lines) != RET_OK)
-// 	{
-// 		ft_printf("Map parsing failed\n");
-// 		return (1);
-// 	}
-// 	print_config(&config);
-// 	print_map(&config);
-// 	free_double_tab(lines);
-// 	clean_config(&config);
-// 	return (0);
-// }
-
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
+	t_game		ctx;
 	t_config	config;
-	t_game		game;
+	ctx = (t_game){0};
+	ctx.mlx = mlx_init();
+
+	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
+
+	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
+	claim_hooks(&ctx);
 
 	if (argc != 2)
 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
@@ -112,18 +79,13 @@ int	main(int argc, char **argv)
 		return (fd_printf(STDERR_FILENO,
 				"Error : Invalid file extension\n"), RET_ERR);
 	if (parse_cub_file(&config, argv[1]) != RET_OK)
-	{
 		return (RET_ERR);
-	}
-	// set_floor_ceiling_colors(&game, &config);
-	init_game_from_config(&game, &config);
-	print_config(&config);
-	// print_map(&config);
-	print_map(game.map);
-	printf("%ld\n", game.ceiling_color);
-	printf("%ld\n", game.floor_color);
+	init_game_from_config(&ctx, &config);
+	print_map(&config);
+	ray_casting(&ctx);
 	clean_config(&config);
 	if (game.map)
 		free_double_tab(game.map);
+	mlx_loop(ctx.mlx);
 	return (0);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	init_rgb(t_config *cfg);
 static void	init_vec(t_vec2 *vec);

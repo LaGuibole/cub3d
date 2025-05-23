@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	clean_textures(t_config *cfg);
 static void	clean_floor_ceiling(t_config *cfg);
