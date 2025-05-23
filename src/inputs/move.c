@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:40:51 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/23 17:31:04 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:41:56 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,4 @@ void	move_right(t_game *game)
 	if (game->map[(int)game->player_pos.y][(int)new_x] != '1')
 		game->player_pos.x = new_x;
 }
+

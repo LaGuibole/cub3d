@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 17:46:57 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 18:45:21 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int main(int argc, char **argv)
 	if (check_textures_accessibility(&config))
 		return (RET_ERR);
 	init_game_from_config(&ctx, &config);
+	player_angle(&ctx);
 	ctx.mlx = mlx_init();
 
 	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
