@@ -42,11 +42,13 @@ OBJ_DIR				= 		build
 
 SRC_FILES = \
 	src/clean/clean_config.c \
+	src/init/init_game.c \
 	src/init/init_map_textures.c \
 	src/init/init_parsing.c \
 	src/init/init_utils.c \
 	src/main.c \
 	src/parsing/config_parse_utils.c \
+	src/parsing/copy_map.c \
 	src/parsing/game_parse_utils.c \
 	src/parsing/global_parser.c \
 	src/parsing/parse_color.c \

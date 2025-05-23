@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 11:55:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 14:47:11 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ typedef	struct s_config
 	int		player_spawn;
 	long	floor_color;
 	long	ceiling_color;
+	int		no_fd;
+	int		so_fd;
+	int		we_fd;
+	int		ea_fd;
 	t_flags	flags;
 	t_map_ctx map_ctx;
 } t_config;
@@ -144,8 +148,9 @@ void	init_game_from_config(t_game *game, t_config *cfg);
 void	set_floor_ceiling_colors(t_game *game, t_config *cfg);
 void	init_game_parser(t_game *game);
 char	**extract_map(char **lines, int start, int height);
-
-
+char	**copy_map(char **src);
+int		check_textures_accessibility(t_config *cfg);
+void	init_textures_fds(t_config *cfg);
 
 
 #endif

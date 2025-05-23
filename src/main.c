@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 12:30:40 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:50:54 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ int	main(int argc, char **argv)
 	{
 		return (RET_ERR);
 	}
+	if (check_textures_accessibility(&config))
+		return (RET_ERR);
 	// set_floor_ceiling_colors(&game, &config);
 	init_game_from_config(&game, &config);
 	print_config(&config);
