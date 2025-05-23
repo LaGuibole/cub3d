@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 12:00:03 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:14:57 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,27 +94,19 @@ char	**copy_map(char **src)
 
 	if (!src)
 		return (NULL);
-
-	// Mesurer la hauteur de la map
 	height = 0;
 	while (src[height])
 		height++;
-
-	// Allouer un nouveau tableau de pointeurs
 	copy = malloc(sizeof(char *) * (height + 1));
 	if (!copy)
 		return (NULL);
-
 	i = 0;
 	while (i < height)
 	{
 		copy[i] = ft_strdup(src[i]);
 		if (!copy[i])
 		{
-			// Libération partielle en cas d'échec
-			while (--i >= 0)
-				free(copy[i]);
-			free(copy);
+			free_double_tab(copy);
 			return (NULL);
 		}
 		i++;
