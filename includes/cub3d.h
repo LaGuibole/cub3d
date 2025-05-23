@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 14:47:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 15:37:00 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ typedef struct s_map_ctx
 	char	player_dir;
 } t_map_ctx;
 
-
 typedef	struct s_config
 {
 	char	*map_name;
@@ -115,6 +114,12 @@ typedef	struct s_game
 	char	**map;
 	long	floor_color;
 	long	ceiling_color;
+	void	*north_wall;
+	void	*south_wall;
+	void	*west_wall;
+	void	*east_wall;
+	int		wall_height;
+	int		wall_width;
 } t_game;
 
 int		has_valid_extension(t_config *filename);
@@ -151,6 +156,7 @@ char	**extract_map(char **lines, int start, int height);
 char	**copy_map(char **src);
 int		check_textures_accessibility(t_config *cfg);
 void	init_textures_fds(t_config *cfg);
+void	load_walls(t_config *cfg, t_game *game);
 
 
 #endif

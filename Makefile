@@ -45,7 +45,7 @@ SRC_FILES = \
 	src/init/init_game.c \
 	src/init/init_map_textures.c \
 	src/init/init_parsing.c \
-	src/init/init_utils.c \
+	src/load/load_walls.c \
 	src/main.c \
 	src/parsing/config_parse_utils.c \
 	src/parsing/copy_map.c \
