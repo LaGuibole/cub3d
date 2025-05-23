@@ -44,22 +44,22 @@ SRC_FILES = \
 	src/clean/clean_config.c \
 	src/clean/clean_context.c \
 	src/display/init_display.c \
+	src/display/ray_casting.c \
 	src/init/init_parsing.c \
-	src/inputs/handle_inputs.c \
 	src/init/init_utils.c \
+	src/inputs/handle_inputs.c \
 	src/main.c \
+	src/parsing/config_parse_utils.c \
+	src/parsing/game_parse_utils.c \
 	src/parsing/global_parser.c \
 	src/parsing/parse_color.c \
 	src/parsing/parse_config.c \
-	src/parsing/read_map.c \
 	src/parsing/parse_map.c \
-	src/parsing/parse_utils.c \
 	src/parsing/prepare_flood_fill.c \
 	src/parsing/prepare_map_checks.c \
 	src/parsing/read_map.c \
 	src/parsing/validate_map_chars.c \
 	src/parsing/validate_map_flood.c
-
 OBJS				=		$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # MINILIBX

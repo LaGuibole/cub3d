@@ -130,12 +130,6 @@ typedef struct s_ray_casting
 	int		mapY;
 	int		lineHeight;
 
-	double	dirPosX;
-	double	dirPosY;
-
-	double	planeX;
-	double	planeY;
-
 	double	perpWallDist;
 	int		hit;
 	int		side;
@@ -145,8 +139,6 @@ typedef struct s_ray_casting
 	double	deltaDistY;
 
 	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
 	double	dirX;
 	double	dirY;
 
@@ -162,11 +154,14 @@ typedef	struct s_game
 	void	*win;
 	t_vec2	player_pos;
 	t_vec2	player_plane;
-	char	player_dir;
+	t_vec2	player_dir;
+	char	dir_char;
 	t_img	img;
 	char	**map;
 } t_game;
 
+int		ray_casting(t_game *ctx);
+void	put_pixel(t_img img, int x, int y, int color);
 int		has_valid_extension(t_config *filename);
 char	**read_file_lines(char *filepath);
 int		parse_texture_line(char *line, t_config *cfg);
@@ -195,13 +190,11 @@ void	sanitize_path(char *path);
 int		is_texture_missing(t_flags *flags);
 void	find_player_pos(t_map_ctx *map);
 void	init_game_from_config(t_game *game, t_config *cfg);
-void	init_flags(t_flags *flags);
 int		clean_context(t_game *ctx);
 int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
 int 	claim_hooks(t_game *ctx);
 int		update_game_display(t_game *ctx);
-void	put_pixel(t_img img, int x, int y, int color);
 int		print_background(t_game ctx);
 
 #endif

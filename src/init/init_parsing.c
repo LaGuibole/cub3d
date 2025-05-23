@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 static void	init_rgb(t_config *cfg);
 static void	init_vec(t_vec2 *vec);
@@ -71,6 +71,6 @@ static void	init_vec(t_vec2 *vec)
 void	init_game_from_config(t_game *game, t_config *cfg)
 {
 	game->player_pos = cfg->map_ctx.player_pos;
-	game->player_dir = cfg->map_ctx.player_dir;
+	game->dir_char = cfg->map_ctx.player_dir;
 	game->map = cfg->map_ctx.map;
 }

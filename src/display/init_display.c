@@ -39,9 +39,9 @@ int	print_background(t_game ctx)
 		while (y < WIN_HEIGHT)
 		{
 			if (y > WIN_HEIGHT / 2)
-				put_pixel(ctx.img, x, y, 255001);
+				put_pixel(ctx.img, x, y, 14443520);
 			else
-				put_pixel(ctx.img, x, y, 002551);
+				put_pixel(ctx.img, x, y, 14443775);
 			y++;
 		}
 		x++;
