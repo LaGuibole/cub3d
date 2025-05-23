@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 09:08:34 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/23 18:44:55 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:33:01 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ int ray_casting(t_game *ctx)
 		calculate_pixel_to_fill(&ray_cast, ctx, x);
 		x++;
 	}
+	draw_minimap(ctx);
 	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img.img_ptr, 0, 0);
 	return (0);
 }

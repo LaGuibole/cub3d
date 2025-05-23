@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 18:45:21 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:37:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int main(int argc, char **argv)
 	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
 	claim_hooks(&ctx);
 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
-	ray_casting(&ctx);
 	clean_config(&config);
 	mlx_loop(ctx.mlx);
 	if (ctx.map)
