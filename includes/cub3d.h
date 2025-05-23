@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 17:01:07 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/23 17:02:23 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,12 @@ typedef	struct s_game
 	t_vec2	player_pos;
 	long	floor_color;
 	long	ceiling_color;
+	void	*north_wall;
+	void	*south_wall;
+	void	*west_wall;
+	void	*east_wall;
+	int		wall_height;
+	int		wall_width;
 	t_vec2	player_plane;
 	t_vec2	player_dir;
 	char	dir_char;
@@ -212,6 +218,10 @@ void	init_game_from_config(t_game *game, t_config *cfg);
 void	set_floor_ceiling_colors(t_game *game, t_config *cfg);
 void	init_game_parser(t_game *game);
 char	**extract_map(char **lines, int start, int height);
+char	**copy_map(char **src);
+int		check_textures_accessibility(t_config *cfg);
+void	init_textures_fds(t_config *cfg);
+void	load_walls(t_config *cfg, t_game *game);
 int		clean_context(t_game *ctx);
 int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
