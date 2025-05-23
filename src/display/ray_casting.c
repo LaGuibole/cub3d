@@ -83,8 +83,8 @@ int init_dda(t_ray_casting *ray_cast, t_game *ctx)
 
 int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 {
-	ray_cast->pPosX = ctx.cfg.player.posX;
-	ray_cast->pPosY = ctx.cfg.player.posX;
+	ray_cast->pPosX = ctx.player_pos.x;
+	ray_cast->pPosY = ctx.player_pos.y;
 	ray_cast->cameraX = 2 * x / (double)WIN_WIDTH - 1;
 	ray_cast->rayDirX = ctx.cfg.player.dirX + ctx.cfg.player.planeX
 			* ray_cast->cameraX;
