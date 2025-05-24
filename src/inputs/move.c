@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:40:51 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/23 18:41:56 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/24 10:26:11 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	move_backward(t_game *game)
 	new_x = game->player_pos.x - game->player_dir.x * PLAYER_SPEED;
 	new_y = game->player_pos.y - game->player_dir.y * PLAYER_SPEED;
 
-	// Vérification des collisions avec les murs
 	if (game->map[(int)new_y][(int)game->player_pos.x] != '1')
 		game->player_pos.y = new_y;
 	if (game->map[(int)game->player_pos.y][(int)new_x] != '1')
@@ -61,7 +60,6 @@ void	move_right(t_game *game)
 	new_x = game->player_pos.x - game->player_dir.y * PLAYER_SPEED;
 	new_y = game->player_pos.y + game->player_dir.x * PLAYER_SPEED;
 
-	// Vérification des collisions avec les murs
 	if (game->map[(int)new_y][(int)game->player_pos.x] != '1')
 		game->player_pos.y = new_y;
 	if (game->map[(int)game->player_pos.y][(int)new_x] != '1')
