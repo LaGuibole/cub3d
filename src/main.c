@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 20:12:42 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/24 12:13:51 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,5 @@ int main(int argc, char **argv)
 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
 	clean_config(&config);
 	mlx_loop(ctx.mlx);
-	if (ctx.map)
-		free_double_tab(ctx.map);
 	return (0);
 }
