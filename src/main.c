@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void	print_config(t_config *cfg)
 {
@@ -71,6 +71,7 @@ int main(int argc, char **argv)
 	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
 	claim_hooks(&ctx);
+	load_walls(&ctx, &config);
 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
 	clean_config(&config);
 	mlx_loop(ctx.mlx);

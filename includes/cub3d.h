@@ -32,6 +32,11 @@
 # define	VOID	' '
 # define	FLOOR	'0'
 # define	PLAYER	'P'
+# define	TEX_NORTH 0
+# define	TEX_SOUTH 1
+# define	TEX_EAST 2
+# define	TEX_WEST 3
+# define	TEX_COUNT 4
 
 // FILE EXTENSION
 
@@ -160,7 +165,8 @@ typedef struct s_ray_casting
 
 	int		drawStart;
 	int 	drawEnd;
-
+	int texNum;
+	int texX;
 } t_ray_casting;
 
 // GAME STRUCT
@@ -171,10 +177,7 @@ typedef	struct s_game
 	t_vec2	player_pos;
 	long	floor_color;
 	long	ceiling_color;
-	void	*north_wall;
-	void	*south_wall;
-	void	*west_wall;
-	void	*east_wall;
+	t_img	*textures[TEX_COUNT];
 	int		wall_height;
 	int		wall_width;
 	t_vec2	player_plane;
@@ -220,7 +223,7 @@ void	init_game_parser(t_game *game);
 char	**extract_map(char **lines, int start, int height);
 char	**copy_map(char **src);
 void	init_textures_fds(t_config *cfg);
-void	load_walls(t_config *cfg, t_game *game);
+void	load_walls(t_game *game, t_config *cfg);
 int		clean_context(t_game *ctx);
 int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
@@ -239,7 +242,6 @@ void	move_backward(t_game *game);
 char	**copy_map(char **src);
 int		check_textures_accessibility(t_config *cfg);
 void	init_textures_fds(t_config *cfg);
-void	load_walls(t_config *cfg, t_game *game);
 
 void    player_angle(t_game *ctx);
 void	draw_minimap(t_game *game);
