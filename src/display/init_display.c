@@ -12,46 +12,52 @@
 
 #include "../../includes/cub3d.h"
 
-/// @brief Print pixel at img address without mlx_put_pixel (+ opti)
-/// @param img Reference to the image struct for editing
-/// @param color Color in hexadecimal
-void put_pixel(t_img img, int x, int y, int color)
+int	init_dda(t_ray_casting *ray_cast, t_game *ctx)
 {
-	char *dst;
-
-	if (x >= 0 && x < WIN_WIDTH && y >= 0 && y < WIN_HEIGHT)
+	if (ray_cast->dirX < 0)
 	{
-		dst = img.img_addr + (y * img.line_len + x * (img.bit_per_pixel / 8));
-		*(unsigned int *)dst = color;
+		ray_cast->stepX = -1;
+		ray_cast->sideDistX = (ctx->player_pos.x - ray_cast->mapX)
+			* ray_cast->deltaDistX;
 	}
-}
-
-//Attention : color doit etre changee par get_rgba quand le parsing le mettra a disposition.
-int	print_background(t_game *ctx)
-{
-	int x;
-	int y;
-
-	x = 0;
-	while (x < WIN_WIDTH)
+	else
 	{
-		y = 0;
-		while (y < WIN_HEIGHT)
-		{
-			if (y > WIN_HEIGHT / 2)
-				put_pixel(ctx->img, x, y, ctx->floor_color);
-			else
-				put_pixel(ctx->img, x, y, ctx->ceiling_color);
-			y++;
-		}
-		x++;
+		ray_cast->stepX = 1;
+		ray_cast->sideDistX = (ray_cast->mapX + 1 - ctx->player_pos.x)
+			* ray_cast->deltaDistX;
 	}
-	mlx_put_image_to_window(ctx->mlx, ctx->win, ctx->img.img_ptr, 0, 0);
+	if (ray_cast->dirY < 0)
+	{
+		ray_cast->stepY = -1;
+		ray_cast->sideDistY = (ctx->player_pos.y - ray_cast->mapY)
+			* ray_cast->deltaDistY;
+	}
+	else
+	{
+		ray_cast->stepY = 1;
+		ray_cast->sideDistY = (ray_cast->mapY + 1 - ctx->player_pos.y)
+			* ray_cast->deltaDistY;
+	}
 	return (0);
 }
 
-int	update_game_display(t_game *ctx)
+int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 {
-	(void)ctx;
+	ray_cast->cameraX = 2 * x / (double)WIN_WIDTH - 1;
+	ray_cast->dirX = ctx->player_dir.x + ctx->player_plane.x
+		* ray_cast->cameraX;
+	ray_cast->dirY = ctx->player_dir.y + ctx->player_plane.y
+		* ray_cast->cameraX;
+	ray_cast->mapX = (int)ctx->player_pos.x;
+	ray_cast->mapY = (int)ctx->player_pos.y;
+	if (ray_cast->dirX == 0)
+		ray_cast->deltaDistX = 1e30;
+	else
+		ray_cast->deltaDistX = fabs(1 / ray_cast->dirX);
+	if (ray_cast->dirY == 0)
+		ray_cast->deltaDistY = 1e30;
+	else
+		ray_cast->deltaDistY = fabs(1 / ray_cast->dirY);
+	ray_cast->hit = 0;
 	return (0);
 }

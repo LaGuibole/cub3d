@@ -63,7 +63,7 @@ static void	init_rgb(t_config *cfg)
 	cfg->ceiling_rgb[2] = -1;
 }
 
-/// @brief
+/// @brief fill vector struct with 0
 /// @param vec
 static void	init_vec(t_vec2 *vec)
 {

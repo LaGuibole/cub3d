@@ -27,12 +27,10 @@ void	init_textures_fds(t_config *cfg)
 /// @param cfg
 void	set_floor_ceiling_colors(t_game *game, t_config *cfg)
 {
-	if (cfg->ceiling_rgb)
-		game->ceiling_color = get_rgba(cfg->ceiling_rgb[0],
-				cfg->ceiling_rgb[1], cfg->ceiling_rgb[2]);
-	if (cfg->floor_rgb)
-		game->floor_color = get_rgba(cfg->floor_rgb[0],
-				cfg->floor_rgb[1], cfg->floor_rgb[2]);
+	game->ceiling_color = get_rgba(cfg->ceiling_rgb[0],
+			cfg->ceiling_rgb[1], cfg->ceiling_rgb[2]);
+	game->floor_color = get_rgba(cfg->floor_rgb[0],
+			cfg->floor_rgb[1], cfg->floor_rgb[2]);
 }
 
 /// @brief
