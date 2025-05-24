@@ -188,8 +188,24 @@ typedef	struct s_game
 	int 	map_height;
 } t_game;
 
-int		ray_casting(t_game *ctx);
+//DISPLAY
+	//DISPLAY.C
 void	put_pixel(t_img img, int x, int y, int color);
+int		print_background(t_game *ctx);
+	//INIT_DISPLAY.C
+int	init_dda(t_ray_casting *ray_cast, t_game *ctx);
+int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x);
+	//PLAYER_ANGLE.C
+void	player_angle(t_game *ctx);
+	//RAY_CASTING.C
+int	calculate_pixel_to_fill(t_ray_casting *ray_cast, t_game *game, int x);
+int	perform_dda(t_ray_casting *ray_cast, t_game *ctx);
+int	ray_casting(t_game *ctx);
+	//WALL.C
+void	calc_wall_dist(t_ray_casting *ray_cast, t_game *ctx);
+void	draw_textured_column(t_ray_casting *r, t_game *g, int x);
+void	pick_texture_and_texx(t_ray_casting *r, t_game *g);
+
 int		has_valid_extension(t_config *filename);
 char	**read_file_lines(char *filepath);
 int		parse_texture_line(char *line, t_config *cfg);
@@ -229,7 +245,6 @@ int		clean_and_exit(t_game *ctx);
 int 	close_window(t_game *ctx);
 int 	claim_hooks(t_game *ctx);
 int		update_game_display(t_game *ctx);
-int		print_background(t_game *ctx);
 void	print_map(char **map);
 
 void	rotate_left(t_game *game);
@@ -239,11 +254,7 @@ void	move_right(t_game *game);
 void	move_left(t_game *game);
 void	move_forward(t_game *game);
 void	move_backward(t_game *game);
-char	**copy_map(char **src);
 int		check_textures_accessibility(t_config *cfg);
-void	init_textures_fds(t_config *cfg);
-
-void    player_angle(t_game *ctx);
 void	draw_minimap(t_game *game);
 
 
