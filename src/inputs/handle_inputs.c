@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-int 	hook_handler(int keycode, t_game *ctx)
+int	hook_handler(int keycode, t_game *ctx)
 {
 	if (keycode == ESC)
 		clean_and_exit(ctx);
@@ -31,7 +31,7 @@ int 	hook_handler(int keycode, t_game *ctx)
 	return (0);
 }
 
-int 	claim_hooks( t_game *ctx)
+int	claim_hooks( t_game *ctx)
 {
 	mlx_hook(ctx->win, 17, 0, clean_and_exit, ctx);
 	mlx_hook(ctx->win, 2, 1L << 0, hook_handler, ctx);

@@ -14,10 +14,10 @@
 
 #include "../../includes/cub3d.h"
 
-static void load_north(t_game *g, t_config *cfg)
+static void	load_north(t_game *g, t_config *cfg)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
 	g->textures[TEX_NORTH] = malloc(sizeof(t_img));
 	if (!g->textures[TEX_NORTH])
@@ -26,7 +26,7 @@ static void load_north(t_game *g, t_config *cfg)
 			g->mlx, cfg->north_tex, &w, &h);
 	if (!g->textures[TEX_NORTH]->img_ptr)
 		return ;
-	g->wall_width  = w;
+	g->wall_width = w;
 	g->wall_height = h;
 	g->textures[TEX_NORTH]->img_addr = mlx_get_data_addr(
 			g->textures[TEX_NORTH]->img_ptr,
@@ -35,10 +35,10 @@ static void load_north(t_game *g, t_config *cfg)
 			&g->textures[TEX_NORTH]->endian);
 }
 
-static void load_south(t_game *g, t_config *cfg)
+static void	load_south(t_game *g, t_config *cfg)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
 	g->textures[TEX_SOUTH] = malloc(sizeof(t_img));
 	if (!g->textures[TEX_SOUTH])
@@ -54,10 +54,10 @@ static void load_south(t_game *g, t_config *cfg)
 			&g->textures[TEX_SOUTH]->endian);
 }
 
-static void load_east(t_game *g, t_config *cfg)
+static void	load_east(t_game *g, t_config *cfg)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
 	g->textures[TEX_EAST] = malloc(sizeof(t_img));
 	if (!g->textures[TEX_EAST])
@@ -73,10 +73,10 @@ static void load_east(t_game *g, t_config *cfg)
 			&g->textures[TEX_EAST]->endian);
 }
 
-static void load_west(t_game *g, t_config *cfg)
+static void	load_west(t_game *g, t_config *cfg)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
 	g->textures[TEX_WEST] = malloc(sizeof(t_img));
 	if (!g->textures[TEX_WEST])
@@ -92,7 +92,7 @@ static void load_west(t_game *g, t_config *cfg)
 			&g->textures[TEX_WEST]->endian);
 }
 
-void load_walls(t_game *g, t_config *cfg)
+void	load_walls(t_game *g, t_config *cfg)
 {
 	load_north(g, cfg);
 	load_south(g, cfg);

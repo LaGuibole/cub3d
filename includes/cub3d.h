@@ -189,83 +189,111 @@ typedef	struct s_game
 	int		map_width;
 } t_game;
 
+//CLEAN
+	//CLEAN_CONFIG.C
+void	clean_config(t_config *cfg);
+int		free_config_and_lines(t_config *cfg, char **lines, int ret);
+	//CLEAN_CONTEXT.C
+int		clean_context(t_game *ctx);
+int		close_window(t_game *ctx);
+int		clean_and_exit(t_game *ctx);
+	//CLEAN_EXIT_GAME.C
+void	exit_game(t_game *game);
+
 //DISPLAY
 	//DISPLAY.C
 void	put_pixel(t_img img, int x, int y, int color);
 int		print_background(t_game *ctx);
 	//INIT_DISPLAY.C
-int	init_dda(t_ray_casting *ray_cast, t_game *ctx);
-int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x);
+int		init_dda(t_ray_casting *ray_cast, t_game *ctx);
+int		init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x);
 	//PLAYER_ANGLE.C
 void	player_angle(t_game *ctx);
 	//RAY_CASTING.C
-int	calculate_pixel_to_fill(t_ray_casting *ray_cast, t_game *game, int x);
-int	perform_dda(t_ray_casting *ray_cast, t_game *ctx);
-int	ray_casting(t_game *ctx);
+int		calculate_pixel_to_fill(t_ray_casting *ray_cast, t_game *game, int x);
+int		perform_dda(t_ray_casting *ray_cast, t_game *ctx);
+int		ray_casting(t_game *ctx);
 	//WALL.C
 void	calc_wall_dist(t_ray_casting *ray_cast, t_game *ctx);
 void	draw_textured_column(t_ray_casting *r, t_game *g, int x);
 void	pick_texture_and_texx(t_ray_casting *r, t_game *g);
 
-int		has_valid_extension(t_config *filename);
-char	**read_file_lines(char *filepath);
-int		parse_texture_line(char *line, t_config *cfg);
-void	init_config(t_config *cfg, char **argv);
-void	clean_config(t_config *cfg);
-int		get_rgba(int r, int g, int b);
-int		parse_rgb_values(char *line, int *dest);
-int		parse_map(t_config *cfg, char **lines);
-int		check_map_char(char **map);
-bool	is_config_line(char *line);
-bool	is_map_line(char *line);
-int		get_map_dimensions(char **lines, int start, int *width, int *height);
-char	**prepare_map_for_flood(char **map, int height, int width);
-char	**rectangularize_map(char **map, int height, int width);
-int		is_player_spawn(char c);
-bool	flood_fill(t_map_ctx *map_ctx, int x, int y);
-int		check_map_closed(t_config *cfg);
-int		find_map_start_index(char **lines);
-int		check_player_spawn_count(char **map);
-int		parse_cub_file(t_config *cfg, char *filepath);
-int		validate_map_block(char **lines, int start, int *width, int *height);
-int		free_config_and_lines(t_config *cfg, char **lines, int ret);
-int		is_valid_texture_path(char *path);
-bool	is_color_config_line(char *line);
-void	sanitize_path(char *path);
-int		is_texture_missing(t_flags *flags);
-void	find_player_pos(t_map_ctx *map);
-void	init_game_from_config(t_game *game, t_config *cfg);
-void	set_floor_ceiling_colors(t_game *game, t_config *cfg);
+// INIT
+	//INIT_GAME.C
 void	init_game_parser(t_game *game);
-char	**extract_map(char **lines, int start, int height);
-char	**copy_map(char **src);
+void	init_game_from_config(t_game *game, t_config *cfg);
+	//INIT_MAP_TEXTURES.C
 void	init_textures_fds(t_config *cfg);
-void	load_walls(t_game *game, t_config *cfg);
-int		clean_context(t_game *ctx);
-int		clean_and_exit(t_game *ctx);
-int 	close_window(t_game *ctx);
-int 	claim_hooks(t_game *ctx);
-int		update_game_display(t_game *ctx);
-void	print_map(char **map);
+void	set_floor_ceiling_colors(t_game *game, t_config *cfg);
+int		check_textures_accessibility(t_config *cfg);
+	//INIT_PARSING.C
+void	init_config(t_config *cfg, char **argv);
 
-void	rotate_left(t_game *game);
+//INPUTS
+	//CAMERA.C
 void	rotate_right(t_game *game);
-
-void	move_right(t_game *game);
-void	move_left(t_game *game);
+void	rotate_left(t_game *game);
+	//HANDLE_INPUTS.C
+int 	hook_handler(int keycode, t_game *ctx);
+int 	claim_hooks( t_game *ctx);
+	//MOVE.C
 void	move_forward(t_game *game);
 void	move_backward(t_game *game);
-int		check_textures_accessibility(t_config *cfg);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+
+//LOAD
+	//LOAD_WALLS.C
+void	load_walls(t_game *g, t_config *cfg);
+
+//MINIMAP
+	//DRAW_MINIMAP.C
 void	draw_minimap(t_game *game);
+	//MINIMAP_UTILS.C
 void	draw_square(t_game *game, int px, int py, int color);
 void	draw_player_dot(t_game *game);
 void	draw_direction_ray(t_game *game);
 int		get_tile_color(t_game *game, t_vec2 map);
 void	draw_minimap_tiles(t_game *game, t_vec2 c);
 
-
-void	exit_game(t_game *game);
-
-
+//PARSING
+	//CONFIG_PARSE_UTILS.C
+bool	is_config_line(char *line);
+bool	is_color_config_line(char *line);
+int		is_valid_texture_path(char *path);
+void	sanitize_path(char *path);
+int		is_texture_missing(t_flags *flags);
+	//COPY_MAP.C
+char	**copy_map(char **src);
+	//GAME_PARSER_UTILS.C
+bool	is_map_line(char *line);
+int		is_player_spawn(char c);
+void	find_player_pos(t_map_ctx *map);
+	//GLOBAL_PARSER.C
+int	parse_cub_file(t_config *cfg, char *filepath);
+	//PARSE_COLOR.C
+int	parse_rgb_values(char *line, int *dest);
+int	get_rgba(int r, int g, int b);
+	//PARSE_CONFIG.C
+int		has_valid_extension(t_config *filename);
+int		mark_seen(t_flags *f, char *id);
+int		parse_texture_line(char *line, t_config *cfg);
+	//PARSE_MAP.C
+int		find_map_start_index(char **lines);
+char	**extract_map(char **lines, int start, int height);
+int		parse_map(t_config *cfg, char **lines);
+	//PREPARE_FLOOD_FILL.C
+char	**rectangularize_map(char **map, int height, int width);
+char	**prepare_map_for_flood(char **map, int height, int width);
+	//PREPARE_MAP_CHECKS.C
+int		validate_map_block(char **lines, int start, int *width, int *height);
+	//READ_MAP.C
+char	**read_file_lines(char *filepath);
+	//VALIDATE_MAP_CHAR.C
+int		check_map_char(char **map);
+int		check_player_spawn_count(char **map);
+	//VALIDATE_MAP_FLOOD.C
+int		check_map_closed(t_config *cfg);
+bool	flood_fill(t_map_ctx *map_ctx, int x, int y);
 
 #endif
