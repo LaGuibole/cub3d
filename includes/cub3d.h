@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 19:30:52 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/24 13:07:39 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef	struct s_game
 	t_img	img;
 	char	**map;
 	int 	map_height;
+	int		map_width;
 } t_game;
 
 //DISPLAY
@@ -256,6 +257,15 @@ void	move_forward(t_game *game);
 void	move_backward(t_game *game);
 int		check_textures_accessibility(t_config *cfg);
 void	draw_minimap(t_game *game);
+void	draw_square(t_game *game, int px, int py, int color);
+void	draw_player_dot(t_game *game);
+void	draw_direction_ray(t_game *game);
+int		get_tile_color(t_game *game, t_vec2 map);
+void	draw_minimap_tiles(t_game *game, t_vec2 c);
+
+
+void	exit_game(t_game *game);
+
 
 
 #endif

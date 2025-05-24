@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_context.c                                    :+:      :+:    :+:   */
+/*   clean_exit_game.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 09:28:31 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/24 12:18:59 by guphilip         ###   ########.fr       */
+/*   Created: 2025/05/24 11:36:39 by guphilip          #+#    #+#             */
+/*   Updated: 2025/05/24 12:16:41 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	clean_context(t_game *ctx)
+void	exit_game(t_game *game)
 {
-	(void)ctx;
-	return (0);
-}
-
-int	close_window(t_game *ctx)
-{
-	if (ctx->win)
-		mlx_destroy_window(ctx->mlx, ctx->win);
-	if (ctx->mlx)
-	{
-		mlx_destroy_display(ctx->mlx);
-		free(ctx->mlx);
-	}
-	return (1);
-}
-
-int	clean_and_exit(t_game *ctx)
-{
-	exit_game(ctx);
-	close_window(ctx);
-	exit(0);
+	if (game->map)
+		free_double_tab(game->map);
+	if (game->img.img_ptr)
+		mlx_destroy_image(game->mlx, game->img.img_ptr);
 }

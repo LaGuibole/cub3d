@@ -44,6 +44,7 @@ SRC_FILES = \
 	src/clean/clean_config.c \
 	src/clean/clean_context.c \
 	src/display/display.c \
+	src/clean/clean_exit_game.c \
 	src/display/init_display.c \
 	src/display/player_angle.c \
 	src/display/ray_casting.c \
@@ -57,6 +58,7 @@ SRC_FILES = \
 	src/load/load_walls.c \
 	src/main.c \
 	src/minimap/draw_minimap.c \
+	src/minimap/minimap_utils.c \
 	src/parsing/config_parse_utils.c \
 	src/parsing/copy_map.c \
 	src/parsing/game_parse_utils.c \
