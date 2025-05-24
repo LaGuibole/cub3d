@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 11:14:22 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/24 11:17:31 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/24 12:44:25 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int	get_tile_color(t_game *game, t_vec2 map)
 
 	tile = game->map[(int)map.y][(int)map.x];
 	if (tile == '1')
-		return (0xFF0000);
+		return (0x5B676E);
 	if (tile == '0' || tile == game->dir_char)
-		return (0x666666);
+		return (game->floor_color);
 	return (0);
 }
 
