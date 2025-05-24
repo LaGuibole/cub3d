@@ -27,8 +27,8 @@ void	find_player_pos(t_map_ctx *map)
 		{
 			if (is_player_spawn(map->map[y][x]))
 			{
-				map->player_pos.x = x;
-				map->player_pos.y = y;
+				map->player_pos.x = x + 0.5;
+				map->player_pos.y = y + 0.5;
 				map->player_dir = map->map[y][x];
 				return ;
 			}
