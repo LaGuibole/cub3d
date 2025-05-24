@@ -19,53 +19,49 @@
 # include <math.h>
 
 // TO SORT DEFINES
-#define RED_PIXEL 0xFF0000
+# define RED_PIXEL 0xFF0000
 
 // WINDOWS DEFINES
 
-# define	WIN_WIDTH 1920
-# define	WIN_HEIGHT 960
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 960
 
 // MAP ASSETS
 
-# define	WALL	'1'
-# define	VOID	' '
-# define	FLOOR	'0'
-# define	PLAYER	'P'
-# define	TEX_NORTH 0
-# define	TEX_SOUTH 1
-# define	TEX_EAST 2
-# define	TEX_WEST 3
-# define	TEX_COUNT 4
+# define WALL	'1'
+# define VOID	' '
+# define FLOOR	'0'
+# define PLAYER	'P'
+# define TEX_NORTH 0
+# define TEX_SOUTH 1
+# define TEX_EAST 2
+# define TEX_WEST 3
+# define TEX_COUNT 4
 
 // FILE EXTENSION
 
-# define	EXT_XPM ".xpm"
-# define	EXT_CUB ".cub"
+# define EXT_XPM ".xpm"
+# define EXT_CUB ".cub"
 
 // RETURN DEFINES
 
-# define	RET_OK	0
-# define	RET_ERR	1
-# define	RET_NEG_ERR -1
+# define RET_OK	0
+# define RET_ERR	1
 
 // HOOKS DEFINES
 
-# define	ESC 65307
-# define	W 119
-# define	A 97
-# define	S 115
-# define	D 100
-# define	UP 65362
-# define	LEFT 65361
-# define	RIGHT 65363
-# define	DOWN 65364
+# define ESC 65307
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define UP 65362
+# define LEFT 65361
+# define RIGHT 65363
+# define DOWN 65364
 
-//
-
-#define ROT_SPEED 0.03
-#define PLAYER_SPEED 0.05
-
+# define ROT_SPEED 0.03
+# define PLAYER_SPEED 0.05
 
 // MINIMAP
 
@@ -75,19 +71,19 @@
 // PARSING
 typedef struct s_flags
 {
+	int	so;
 	int	no;
-	int so;
-	int we;
-	int ea;
+	int	we;
+	int	ea;
 	int	f;
 	int	c;
-} t_flags;
+}	t_flags;
 
 typedef struct s_vec2
 {
 	double	x;
 	double	y;
-} t_vec2;
+}	t_vec2;
 
 typedef struct s_map_ctx
 {
@@ -97,32 +93,32 @@ typedef struct s_map_ctx
 	int		height;
 	t_vec2	player_pos;
 	char	player_dir;
-} t_map_ctx;
+}	t_map_ctx;
 
-typedef	struct s_config
+typedef struct s_config
 {
-	char	*map_name;
-	char	**map;
-	int		map_width;
-	int		map_height;
-	char	*north_tex;
-	char	*south_tex;
-	char	*west_tex;
-	char	*east_tex;
-	char	*floor_tex;
-	char	*ceiling_tex;
-	int		ceiling_rgb[3];
-	int		floor_rgb[3];
-	int		player_spawn;
-	long	floor_color;
-	long	ceiling_color;
-	int		no_fd;
-	int		so_fd;
-	int		we_fd;
-	int		ea_fd;
-	t_flags	flags;
-	t_map_ctx map_ctx;
-} t_config;
+	char		*map_name;
+	char		**map;
+	int			map_width;
+	int			map_height;
+	char		*north_tex;
+	char		*south_tex;
+	char		*west_tex;
+	char		*east_tex;
+	char		*floor_tex;
+	char		*ceiling_tex;
+	int			ceiling_rgb[3];
+	int			floor_rgb[3];
+	int			player_spawn;
+	long		floor_color;
+	long		ceiling_color;
+	int			no_fd;
+	int			so_fd;
+	int			we_fd;
+	int			ea_fd;
+	t_flags		flags;
+	t_map_ctx	map_ctx;
+}	t_config;
 
 // IMG STRUCT
 typedef struct s_img
@@ -133,13 +129,13 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 	int		color;
-} t_img;
+}	t_img;
 
 // RAY-CASTING STRUCT
 typedef struct s_ray_casting
 {
 	int		w;
-	int 	h;
+	int		h;
 
 	double	pPosX;
 	double	pPosY;
@@ -164,13 +160,13 @@ typedef struct s_ray_casting
 	double	dirY;
 
 	int		drawStart;
-	int 	drawEnd;
-	int texNum;
-	int texX;
-} t_ray_casting;
+	int		drawEnd;
+	int		texNum;
+	int		texX;
+}	t_ray_casting;
 
 // GAME STRUCT
-typedef	struct s_game
+typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
@@ -185,9 +181,9 @@ typedef	struct s_game
 	char	dir_char;
 	t_img	img;
 	char	**map;
-	int 	map_height;
+	int		map_height;
 	int		map_width;
-} t_game;
+}	t_game;
 
 //CLEAN
 	//CLEAN_CONFIG.C
@@ -234,8 +230,8 @@ void	init_config(t_config *cfg, char **argv);
 void	rotate_right(t_game *game);
 void	rotate_left(t_game *game);
 	//HANDLE_INPUTS.C
-int 	hook_handler(int keycode, t_game *ctx);
-int 	claim_hooks( t_game *ctx);
+int		hook_handler(int keycode, t_game *ctx);
+int		claim_hooks( t_game *ctx);
 	//MOVE.C
 void	move_forward(t_game *game);
 void	move_backward(t_game *game);
@@ -270,10 +266,10 @@ bool	is_map_line(char *line);
 int		is_player_spawn(char c);
 void	find_player_pos(t_map_ctx *map);
 	//GLOBAL_PARSER.C
-int	parse_cub_file(t_config *cfg, char *filepath);
+int		parse_cub_file(t_config *cfg, char *filepath);
 	//PARSE_COLOR.C
-int	parse_rgb_values(char *line, int *dest);
-int	get_rgba(int r, int g, int b);
+int		parse_rgb_values(char *line, int *dest);
+int		get_rgba(int r, int g, int b);
 	//PARSE_CONFIG.C
 int		has_valid_extension(t_config *filename);
 int		mark_seen(t_flags *f, char *id);
