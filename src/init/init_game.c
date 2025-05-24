@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:50:21 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 21:10:09 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/24 12:19:21 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_game_from_config(t_game *game, t_config *cfg)
 	game->dir_char = cfg->map_ctx.player_dir;
 	game->map_height = cfg->map_ctx.height;
 	game->map_width = cfg->map_ctx.width;
-	game->map = rectangularize_map(cfg->map_ctx.map, cfg->map_ctx.height, cfg->map_ctx.width);
+	game->map = rectangularize_map(cfg->map_ctx.map,
+			cfg->map_ctx.height, cfg->map_ctx.width);
 	set_floor_ceiling_colors(game, cfg);
 }
