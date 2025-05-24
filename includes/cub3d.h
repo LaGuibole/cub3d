@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:36:11 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/24 11:41:31 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/24 13:07:39 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,6 @@ void	draw_minimap_tiles(t_game *game, t_vec2 c);
 
 
 void	exit_game(t_game *game);
-
 
 
 
