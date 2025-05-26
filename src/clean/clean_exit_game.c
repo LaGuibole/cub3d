@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 11:36:39 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/26 17:22:50 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:23:50 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,4 @@ void	exit_game(t_game *game)
 	free_textures(game);
 	if (game->img.img_ptr)
 		mlx_destroy_image(game->mlx, game->img.img_ptr);
-
 }

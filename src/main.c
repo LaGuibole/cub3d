@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/24 12:13:51 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:38:22 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,38 +43,94 @@ void	print_map(char **map)
 	}
 }
 
-int main(int argc, char **argv)
+static int	validate_config(t_config *cfg, char *filepath)
+{
+	if (has_valid_extension(cfg) != RET_OK)
+		return (fd_printf(STDERR_FILENO,
+			"Error: Invalid file extension\n"), RET_ERR);
+	if (parse_cub_file(cfg, filepath) != RET_OK)
+		return (RET_ERR);
+	if (check_textures_accessibility(cfg) != RET_OK)
+		return (RET_OK);
+	return (RET_OK);
+}
+
+static int	init_mlx(t_game *ctx)
+{
+	ctx->mlx = mlx_init();
+	if (!ctx->mlx)
+		return (fd_printf(STDERR_FILENO, "Error: mlx_init_failed\n"), RET_ERR);
+	ctx->win = mlx_new_window(ctx->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
+	if (!ctx->win)
+		return (fd_printf(STDERR_FILENO, "Error: window creation failed\n"), RET_ERR);
+	ctx->img.img_ptr = mlx_new_image(ctx->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!ctx->img.img_ptr)
+		return (fd_printf(STDERR_FILENO,
+			"Error: image creation failed\n"), RET_ERR);
+	ctx->img.img_addr = mlx_get_data_addr(ctx->img.img_ptr,
+		&ctx->img.bit_per_pixel,
+		&ctx->img.line_len,
+		&ctx->img.endian);
+	if (!ctx->img.img_addr)
+		return (fd_printf(STDERR_FILENO,
+			"Error: get_data_addr failed\n"), RET_ERR);
+	return (RET_OK);
+
+}
+
+int	main(int argc, char **argv)
 {
 	t_game		ctx;
-	t_config	config;
-	ctx = (t_game){0};
+	t_config	cfg;
 
 	if (argc != 2)
-		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
-			RET_ERR);
-	init_config(&config, argv);
-	init_game_parser(&ctx);
-	config.map_name = argv[1];
-	if (has_valid_extension(&config) != 0)
 		return (fd_printf(STDERR_FILENO,
-				"Error : Invalid file extension\n"), RET_ERR);
-	if (parse_cub_file(&config, argv[1]) != RET_OK)
+			"Usage: ./cub3d <map.cub>\n"), RET_ERR);
+	ctx = (t_game){0};
+	init_config(&cfg, argv);
+	init_game_parser(&ctx);
+	cfg.map_name = argv[1];
+	if (validate_config(&cfg, argv[1]) != RET_OK)
 		return (RET_ERR);
-	if (check_textures_accessibility(&config))
-		return (RET_ERR);
-	init_game_from_config(&ctx, &config);
-	print_map(ctx.map);
+	init_game_from_config(&ctx, &cfg);
 	player_angle(&ctx);
-	ctx.mlx = mlx_init();
-
-	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
-
-	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
-	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
+	if (init_mlx(&ctx) != RET_OK)
+		return(RET_ERR);
+	load_walls(&ctx, &cfg);
 	claim_hooks(&ctx);
-	load_walls(&ctx, &config);
 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
-	clean_config(&config);
+	clean_config(&cfg);
 	mlx_loop(ctx.mlx);
-	return (0);
+	return (RET_OK);
 }
+
+// int main(int argc, char **argv)
+// {
+// 	t_game		ctx;
+// 	t_config	config;
+// 	ctx = (t_game){0};
+
+// 	if (argc != 2)
+// 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
+// 			RET_ERR);
+// 	init_config(&config, argv);
+// 	init_game_parser(&ctx);
+// 	config.map_name = argv[1];
+// 	if (validate_config(&config, argv[1]) != RET_OK)
+// 		return (RET_ERR);
+// 	init_game_from_config(&ctx, &config);
+// 	print_map(ctx.map);
+// 	player_angle(&ctx);
+// 	ctx.mlx = mlx_init();
+
+// 	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
+
+// 	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
+// 	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
+// 	claim_hooks(&ctx);
+// 	load_walls(&ctx, &config);
+// 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
+// 	clean_config(&config);
+// 	mlx_loop(ctx.mlx);
+// 	return (0);
+// }
