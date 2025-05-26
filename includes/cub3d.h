@@ -137,33 +137,28 @@ typedef struct s_ray_casting
 {
 	int		w;
 	int		h;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+	int		line_height;
 
-	double	pPosX;
-	double	pPosY;
-
-	int		stepX;
-	int		stepY;
-
-	int		mapX;
-	int		mapY;
-	int		lineHeight;
-
-	double	perpWallDist;
+	double	perp_wall_dist;
 	int		hit;
 	int		side;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 
-	double	cameraX;
-	double	dirX;
-	double	dirY;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
 
-	int		drawStart;
-	int		drawEnd;
-	int		texNum;
-	int		texX;
+	int		draw_start;
+	int		draw_end;
+	int		tex_num;
+	int		tex_x;
 }	t_ray_casting;
 
 // GAME STRUCT
@@ -213,7 +208,7 @@ int		ray_casting(t_game *ctx);
 	//WALL.C
 void	calc_wall_dist(t_ray_casting *ray_cast, t_game *ctx);
 void	draw_textured_column(t_ray_casting *r, t_game *g, int x);
-void	pick_texture_and_texx(t_ray_casting *r, t_game *g);
+void	pick_texture_and_tex_x(t_ray_casting *r, t_game *g);
 
 // INIT
 	//INIT_GAME.C

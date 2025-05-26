@@ -34,11 +34,11 @@ static int	get_tex_color(t_img *tex, int tx, int ty)
 void	calc_wall_dist(t_ray_casting *ray_cast, t_game *ctx)
 {
 	if (ray_cast->side == 0)
-		ray_cast->perpWallDist = (ray_cast->mapX - ctx->player_pos.x
-				+ (1 - ray_cast->stepX) / 2) / ray_cast->dirX;
+		ray_cast->perp_wall_dist = (ray_cast->map_x - ctx->player_pos.x
+				+ (1 - ray_cast->step_x) / 2) / ray_cast->dir_x;
 	else
-		ray_cast->perpWallDist = (ray_cast->mapY - ctx->player_pos.y
-				+ (1 - ray_cast->stepY) / 2) / ray_cast->dirY;
+		ray_cast->perp_wall_dist = (ray_cast->map_y - ctx->player_pos.y
+				+ (1 - ray_cast->step_y) / 2) / ray_cast->dir_y;
 }
 
 void	draw_textured_column(t_ray_casting *r, t_game *g, int x)
@@ -49,13 +49,13 @@ void	draw_textured_column(t_ray_casting *r, t_game *g, int x)
 	int		y;
 	int		ty;
 
-	if (r->texNum < 0 || r->texNum >= TEX_COUNT)
+	if (r->tex_num < 0 || r->tex_num >= TEX_COUNT)
 		return ;
-	tex = g->textures[r->texNum];
-	lh = (int)(WIN_HEIGHT / r->perpWallDist);
+	tex = g->textures[r->tex_num];
+	lh = (int)(WIN_HEIGHT / r->perp_wall_dist);
 	ds = clamp(-lh / 2 + WIN_HEIGHT / 2,
 			0, WIN_HEIGHT - 1);
-	r->texX = clamp(r->texX,
+	r->tex_x = clamp(r->tex_x,
 			0, g->wall_width - 1);
 	y = ds;
 	while (y <= clamp(lh / 2 + WIN_HEIGHT / 2, 0, WIN_HEIGHT - 1))
@@ -63,30 +63,30 @@ void	draw_textured_column(t_ray_casting *r, t_game *g, int x)
 		ty = clamp(((y * 256 - WIN_HEIGHT * 128 + lh * 128)
 					* g->wall_height / lh) / 256,
 				0, g->wall_height - 1);
-		put_pixel(g->img, x, y++, get_tex_color(tex, r->texX, ty));
+		put_pixel(g->img, x, y++, get_tex_color(tex, r->tex_x, ty));
 	}
 }
 
-void	pick_texture_and_texx(t_ray_casting *r, t_game *g)
+void	pick_texture_and_tex_x(t_ray_casting *r, t_game *g)
 {
 	double	wallx;
 
-	if (r->side == 0 && r->dirX > 0)
-		r->texNum = TEX_WEST;
-	if (r->side == 0 && r->dirX <= 0)
-		r->texNum = TEX_EAST;
-	if (r->side == 1 && r->dirY > 0)
-		r->texNum = TEX_NORTH;
-	if (r->side == 1 && r->dirY <= 0)
-		r->texNum = TEX_SOUTH;
+	if (r->side == 0 && r->dir_x > 0)
+		r->tex_num = TEX_WEST;
+	if (r->side == 0 && r->dir_x <= 0)
+		r->tex_num = TEX_EAST;
+	if (r->side == 1 && r->dir_y > 0)
+		r->tex_num = TEX_NORTH;
+	if (r->side == 1 && r->dir_y <= 0)
+		r->tex_num = TEX_SOUTH;
 	if (r->side == 0)
-		wallx = g->player_pos.y + r->perpWallDist * r->dirY;
+		wallx = g->player_pos.y + r->perp_wall_dist * r->dir_y;
 	else
-		wallx = g->player_pos.x + r->perpWallDist * r->dirX;
+		wallx = g->player_pos.x + r->perp_wall_dist * r->dir_x;
 	wallx = wallx - floor(wallx);
-	r->texX = (int)(wallx * g->wall_width);
-	if (r->side == 0 && r->dirX < 0)
-		r->texX = g->wall_width - r->texX - 1;
-	if (r->side == 1 && r->dirY > 0)
-		r->texX = g->wall_width - r->texX - 1;
+	r->tex_x = (int)(wallx * g->wall_width);
+	if (r->side == 0 && r->dir_x < 0)
+		r->tex_x = g->wall_width - r->tex_x - 1;
+	if (r->side == 1 && r->dir_y > 0)
+		r->tex_x = g->wall_width - r->tex_x - 1;
 }
