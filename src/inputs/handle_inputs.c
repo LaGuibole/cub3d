@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 10:14:38 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/23 18:46:46 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:04 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int	hook_handler(int keycode, t_game *ctx)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 12:49:03 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/24 12:49:06 by jbastard         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:21 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static int	clamp(int v, int min, int max)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 12:47:36 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/24 12:47:39 by jbastard         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:37 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 /// @brief Print pixel at img address without mlx_put_pixel (+ opti)
 /// @param img Reference to the image struct for editing

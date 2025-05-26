@@ -6,48 +6,49 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/26 17:38:22 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:43:17 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
-void	print_config(t_config *cfg)
-{
-	ft_printf("North: %s\n", cfg->north_tex);
-	ft_printf("South: %s\n", cfg->south_tex);
-	ft_printf("West: %s\n", cfg->west_tex);
-	ft_printf("East: %s\n", cfg->east_tex);
-	ft_printf("Floor Red: %d\n", cfg->floor_rgb[0]);
-	ft_printf("Floor Green: %d\n", cfg->floor_rgb[1]);
-	ft_printf("Floor Blue: %d\n\n", cfg->floor_rgb[2]);
-	ft_printf("Ceiling Red: %d\n", cfg->ceiling_rgb[0]);
-	ft_printf("Ceiling Green: %d\n", cfg->ceiling_rgb[1]);
-	ft_printf("Ceiling Blue: %d\n\n", cfg->ceiling_rgb[2]);
-	ft_printf("Map width = [%d], Map height = [%d]\n",
-		cfg->map_ctx.width, cfg->map_ctx.height);
-	printf("Player Pos x = [%.2f], y = [%.2f]\n", cfg->map_ctx.player_pos.x, cfg->map_ctx.player_pos.y);
-	ft_printf("Player Dir = [%c]\n", cfg->map_ctx.player_dir);
-}
+// void	print_config(t_config *cfg)
+// {
+// 	ft_printf("North: %s\n", cfg->north_tex);
+// 	ft_printf("South: %s\n", cfg->south_tex);
+// 	ft_printf("West: %s\n", cfg->west_tex);
+// 	ft_printf("East: %s\n", cfg->east_tex);
+// 	ft_printf("Floor Red: %d\n", cfg->floor_rgb[0]);
+// 	ft_printf("Floor Green: %d\n", cfg->floor_rgb[1]);
+// 	ft_printf("Floor Blue: %d\n\n", cfg->floor_rgb[2]);
+// 	ft_printf("Ceiling Red: %d\n", cfg->ceiling_rgb[0]);
+// 	ft_printf("Ceiling Green: %d\n", cfg->ceiling_rgb[1]);
+// 	ft_printf("Ceiling Blue: %d\n\n", cfg->ceiling_rgb[2]);
+// 	ft_printf("Map width = [%d], Map height = [%d]\n",
+// 		cfg->map_ctx.width, cfg->map_ctx.height);
+// 	printf("Player Pos x = [%.2f], y = [%.2f]\n",
+//		cfg->map_ctx.player_pos.x, cfg->map_ctx.player_pos.y);
+// 	ft_printf("Player Dir = [%c]\n", cfg->map_ctx.player_dir);
+// }
 
-void	print_map(char **map)
-{
-	int	i;
+// void	print_map(char **map)
+// {
+// 	int	i;
 
-	i = 0;
-	ft_printf("Map Loaded: \n");
-	while (map[i])
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	ft_printf("Map Loaded: \n");
+// 	while (map[i])
+// 	{
+// 		ft_printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
 
 static int	validate_config(t_config *cfg, char *filepath)
 {
 	if (has_valid_extension(cfg) != RET_OK)
 		return (fd_printf(STDERR_FILENO,
-			"Error: Invalid file extension\n"), RET_ERR);
+				"Error: Invalid file extension\n"), RET_ERR);
 	if (parse_cub_file(cfg, filepath) != RET_OK)
 		return (RET_ERR);
 	if (check_textures_accessibility(cfg) != RET_OK)
@@ -62,20 +63,20 @@ static int	init_mlx(t_game *ctx)
 		return (fd_printf(STDERR_FILENO, "Error: mlx_init_failed\n"), RET_ERR);
 	ctx->win = mlx_new_window(ctx->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3d");
 	if (!ctx->win)
-		return (fd_printf(STDERR_FILENO, "Error: window creation failed\n"), RET_ERR);
+		return (fd_printf(STDERR_FILENO, "Error: window creation failed\n"),
+			RET_ERR);
 	ctx->img.img_ptr = mlx_new_image(ctx->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!ctx->img.img_ptr)
 		return (fd_printf(STDERR_FILENO,
-			"Error: image creation failed\n"), RET_ERR);
+				"Error: image creation failed\n"), RET_ERR);
 	ctx->img.img_addr = mlx_get_data_addr(ctx->img.img_ptr,
-		&ctx->img.bit_per_pixel,
-		&ctx->img.line_len,
-		&ctx->img.endian);
+			&ctx->img.bit_per_pixel,
+			&ctx->img.line_len,
+			&ctx->img.endian);
 	if (!ctx->img.img_addr)
 		return (fd_printf(STDERR_FILENO,
-			"Error: get_data_addr failed\n"), RET_ERR);
+				"Error: get_data_addr failed\n"), RET_ERR);
 	return (RET_OK);
-
 }
 
 int	main(int argc, char **argv)
@@ -85,7 +86,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (fd_printf(STDERR_FILENO,
-			"Usage: ./cub3d <map.cub>\n"), RET_ERR);
+				"Usage: ./cub3d <map.cub>\n"), RET_ERR);
 	ctx = (t_game){0};
 	init_config(&cfg, argv);
 	init_game_parser(&ctx);
@@ -95,7 +96,7 @@ int	main(int argc, char **argv)
 	init_game_from_config(&ctx, &cfg);
 	player_angle(&ctx);
 	if (init_mlx(&ctx) != RET_OK)
-		return(RET_ERR);
+		return (RET_ERR);
 	load_walls(&ctx, &cfg);
 	claim_hooks(&ctx);
 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
@@ -103,34 +104,3 @@ int	main(int argc, char **argv)
 	mlx_loop(ctx.mlx);
 	return (RET_OK);
 }
-
-// int main(int argc, char **argv)
-// {
-// 	t_game		ctx;
-// 	t_config	config;
-// 	ctx = (t_game){0};
-
-// 	if (argc != 2)
-// 		return (fd_printf(STDERR_FILENO, "Usage: ./cub3d <map.cub>\n"),
-// 			RET_ERR);
-// 	init_config(&config, argv);
-// 	init_game_parser(&ctx);
-// 	config.map_name = argv[1];
-// 	if (validate_config(&config, argv[1]) != RET_OK)
-// 		return (RET_ERR);
-// 	init_game_from_config(&ctx, &config);
-// 	print_map(ctx.map);
-// 	player_angle(&ctx);
-// 	ctx.mlx = mlx_init();
-
-// 	ctx.win = mlx_new_window(ctx.mlx, WIN_WIDTH, WIN_HEIGHT, "cube3d");
-
-// 	ctx.img.img_ptr = mlx_new_image(ctx.mlx, WIN_WIDTH, WIN_HEIGHT);
-// 	ctx.img.img_addr = mlx_get_data_addr(ctx.img.img_ptr, &ctx.img.bit_per_pixel, &ctx.img.line_len, &ctx.img.endian);
-// 	claim_hooks(&ctx);
-// 	load_walls(&ctx, &config);
-// 	mlx_loop_hook(ctx.mlx, ray_casting, &ctx);
-// 	clean_config(&config);
-// 	mlx_loop(ctx.mlx);
-// 	return (0);
-// }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player_angle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbastard <jbastard@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 12:42:41 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/24 12:43:09 by jbastard         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:31 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static void	player_angle1(t_game *ctx)
 {

@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:50:21 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/24 12:19:21 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:18 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 /// @brief
 /// @param game

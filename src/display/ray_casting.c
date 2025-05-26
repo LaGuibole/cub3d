@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 09:08:34 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/23 21:09:21 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:27 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int	calculate_pixel_to_fill(t_ray_casting *ray_cast, t_game *game, int x)
 {

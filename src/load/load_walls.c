@@ -6,13 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:55:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/24 11:07:13 by jbastard         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:43:55 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static void	load_north(t_game *g, t_config *cfg)
 {

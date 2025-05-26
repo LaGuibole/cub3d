@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:45:01 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/23 17:45:45 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:34 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 int	init_dda(t_ray_casting *ray_cast, t_game *ctx)
 {

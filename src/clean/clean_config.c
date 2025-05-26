@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:23:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:52:47 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:45 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static void	clean_textures(t_config *cfg);
 static void	clean_floor_ceiling(t_config *cfg);

@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:40:51 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/24 10:26:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:43:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	move_forward(t_game *game)
 {

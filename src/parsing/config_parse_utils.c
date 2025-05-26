@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:00:19 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/22 19:57:14 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:43:41 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 /// @brief Checks if a line corresponds to a configuration directive
 /// (texture or color)

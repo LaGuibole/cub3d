@@ -6,11 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:16:06 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 17:10:04 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/26 17:44:11 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 static void	init_rgb(t_config *cfg);
 static void	init_vec(t_vec2 *vec);
