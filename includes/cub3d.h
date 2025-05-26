@@ -46,7 +46,8 @@
 // RETURN DEFINES
 
 # define RET_OK	0
-# define RET_ERR	1
+# define RET_ERR 1
+# define RET_NEG_ERR -1
 
 // HOOKS DEFINES
 
