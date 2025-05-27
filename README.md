@@ -71,9 +71,9 @@ Each `.cub` file contains:
 
 
 ## 📸 Screenshots
-
+<p align="center">
 ![Cub3D Demo](assets/cub.gif)
-
+</p>
 ---
 
 ## 📚 Resources
