@@ -72,7 +72,7 @@ Each `.cub` file contains:
 
 ## 📸 Screenshots
 
-<img src="assets/cub.gif"></img>
+<img src="LaGuibole/assets/cub.gif"></img>
 
 ---
 
