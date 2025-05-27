@@ -68,18 +68,11 @@ Each `.cub` file contains:
 
 ---
 
-## 🧪 Bonus (if included)
 
-- ✅ Player animation  
-- ✅ Texture support for floor/ceiling  
-- ✅ Mouse control  
-- ✅ Sprite rendering (enemies, items...)
-
----
 
 ## 📸 Screenshots
 
-*(Add `.png` or `.gif` here if you have some visual output to show)*
+
 
 ---
 
