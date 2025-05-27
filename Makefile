@@ -43,8 +43,8 @@ OBJ_DIR				= 		build
 SRC_FILES = \
 	src/clean/clean_config.c \
 	src/clean/clean_context.c \
-	src/display/display.c \
 	src/clean/clean_exit_game.c \
+	src/display/display.c \
 	src/display/init_display.c \
 	src/display/player_angle.c \
 	src/display/ray_casting.c \

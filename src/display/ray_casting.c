@@ -6,12 +6,19 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 09:08:34 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/26 17:44:27 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:45:40 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief Calculates the vertical slice to draw for a wall hit and fills it
+/// with color. Determines the line height and draw start / end positions based
+/// on wall distance. Then fills the vertical line of pixels at column 'x'
+/// @param ray_cast Pointer to the raycasting structure with hit info
+/// @param game Pointer to the game context containing the image buffer
+/// @param x Current screen to column where the wall slice should be drawn
+/// @return Always returns 0
 int	calculate_pixel_to_fill(t_ray_casting *ray_cast, t_game *game, int x)
 {
 	int	y;
@@ -32,6 +39,13 @@ int	calculate_pixel_to_fill(t_ray_casting *ray_cast, t_game *game, int x)
 	return (0);
 }
 
+/// @brief Executes the DDA algorithm to detect the first wall hit along a ray.
+/// Steps through the map grid until a wall cell ('1') is hit or boundaries are
+/// exceeded.
+/// Updates side and hit information in the raycasting structure.
+/// @param ray_cast Pointer to the raycasting structure being updated.
+/// @param ctx Pointer to the game context containing the map data.
+/// @return Always returns 0.
 int	perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 {
 	while (ray_cast->hit == 0)
@@ -59,6 +73,11 @@ int	perform_dda(t_ray_casting *ray_cast, t_game *ctx)
 	return (0);
 }
 
+/// @brief Main rendering function using raycasting to draw the 3D scenes
+/// Iterate over each vertical column on screen, casts a ray, calculate its hit
+/// info, selects a texture, and draws the corresponding wall slice + minimap
+/// @param ctx Pointer to the game context containing player state and render
+/// @return Always returns 0
 int	ray_casting(t_game *ctx)
 {
 	int				x;

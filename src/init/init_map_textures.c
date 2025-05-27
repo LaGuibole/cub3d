@@ -6,14 +6,14 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:41:20 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 17:25:37 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:06:57 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/// @brief
-/// @param cfg
+/// @brief Init all textures files descriptors to -1 to indicate an error later
+/// @param cfg Pointer to the config structure where descriptors are stocked
 void	init_textures_fds(t_config *cfg)
 {
 	cfg->no_fd = -1;
@@ -22,9 +22,9 @@ void	init_textures_fds(t_config *cfg)
 	cfg->ea_fd = -1;
 }
 
-/// @brief
-/// @param game
-/// @param cfg
+/// @brief Converts RGB floor and ceiling values from the config
+/// @param game Pointer to the game structure to receive the color value
+/// @param cfg Pointer to the config structure containing RGB arrays
 void	set_floor_ceiling_colors(t_game *game, t_config *cfg)
 {
 	game->ceiling_color = get_rgba(cfg->ceiling_rgb[0],
@@ -33,9 +33,11 @@ void	set_floor_ceiling_colors(t_game *game, t_config *cfg)
 			cfg->floor_rgb[1], cfg->floor_rgb[2]);
 }
 
-/// @brief
-/// @param cfg
-/// @return
+/// @brief Verifies that each texture path in the config is not NULL and
+/// accessible. Attempts to open each texture file and returns an error if
+/// any file is missing or invalid
+/// @param cfg Pointer to the config structure containing texture paths
+/// @return RET_OKK if all textures are accessible, RET_ERR otherwise
 int	check_textures_accessibility(t_config *cfg)
 {
 	if (!cfg->north_tex)

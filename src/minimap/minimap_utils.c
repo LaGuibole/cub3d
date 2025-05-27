@@ -6,12 +6,18 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 11:14:22 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/24 12:44:25 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:18:55 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief Draws a filled square on the image buffer, used to represent player
+/// in the mini map
+/// @param game Pointer to the game context containing the image buffer
+/// @param px Position X og the top left corner of the square
+/// @param py Poistion Y of the top left corner of the square
+/// @param color Color to fill the square with
 void	draw_square(t_game *game, int px, int py, int color)
 {
 	int	x;
@@ -30,6 +36,9 @@ void	draw_square(t_game *game, int px, int py, int color)
 	}
 }
 
+/// @brief Draws a small green dot at the center of the minimap to reprensent
+/// the current player's position
+/// @param game Pointer to the game structure containing player statse
 void	draw_player_dot(t_game *game)
 {
 	t_vec2	p;
@@ -53,6 +62,8 @@ void	draw_player_dot(t_game *game)
 	}
 }
 
+/// @brief Draws a red line extending from the player's position
+/// @param game Pointer to the game structure containing player direction
 void	draw_direction_ray(t_game *game)
 {
 	int			i;
@@ -75,6 +86,10 @@ void	draw_direction_ray(t_game *game)
 	}
 }
 
+/// @brief Determines the color to use for a given tile in the mini-map
+/// @param game Pointer to the game context containing the map and floor
+/// @param map 2D vector representing the tile's map coordinates
+/// @return Hexadecimal color to represent the tile
 int	get_tile_color(t_game *game, t_vec2 map)
 {
 	char	tile;
@@ -87,6 +102,11 @@ int	get_tile_color(t_game *game, t_vec2 map)
 	return (0);
 }
 
+/// @brief Renders all visible tiles around the player position in the
+/// mini-map. Draws each tile using its corresponding color
+/// @param game Pointer to the game context containing the map and rendering
+/// infos
+/// @param c 2D vector representing the center of the mini-map (player map pos)
 void	draw_minimap_tiles(t_game *game, t_vec2 c)
 {
 	t_vec2	p;

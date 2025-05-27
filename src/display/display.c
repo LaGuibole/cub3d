@@ -6,15 +6,17 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 12:47:36 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/26 17:44:37 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:31:50 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/// @brief Print pixel at img address without mlx_put_pixel (+ opti)
-/// @param img Reference to the image struct for editing
-/// @param color Color in hexadecimal
+/// @brief Draws a single pixel to the image buffer without using mlxputpixel
+/// @param img Reference to the img structure to modify
+/// @param x Horizontal pixel position
+/// @param y Vertical pixel position
+/// @param color Pixel color in hexadeciaml format
 void	put_pixel(t_img img, int x, int y, int color)
 {
 	char	*dst;
@@ -26,6 +28,10 @@ void	put_pixel(t_img img, int x, int y, int color)
 	}
 }
 
+/// @brief Renders the backgroumd by filling the top half with the ceiling
+/// color and the bottom half with the floor color, then displays the image
+/// @param ctx Pointer to the game context containing rendering data
+/// @return Always returns 0
 int	print_background(t_game *ctx)
 {
 	int	x;

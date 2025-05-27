@@ -6,12 +6,14 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 13:40:51 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/26 17:43:59 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:11:33 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief Seems obvious
+/// @param game Pointer to the game struct
 void	move_forward(t_game *game)
 {
 	double	new_x;
@@ -25,6 +27,8 @@ void	move_forward(t_game *game)
 		game->player_pos.x = new_x;
 }
 
+/// @brief Seems obvious
+/// @param game Pointer to the game struct
 void	move_backward(t_game *game)
 {
 	double	new_x;
@@ -38,6 +42,8 @@ void	move_backward(t_game *game)
 		game->player_pos.x = new_x;
 }
 
+/// @brief Seems obvious
+/// @param game Pointer to the game struct
 void	move_left(t_game *game)
 {
 	double	new_x;
@@ -51,6 +57,8 @@ void	move_left(t_game *game)
 		game->player_pos.x = new_x;
 }
 
+/// @brief Seems obvious
+/// @param game Pointer to the game struct
 void	move_right(t_game *game)
 {
 	double	new_x;

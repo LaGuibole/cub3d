@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 14:55:46 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/26 17:43:55 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:12:55 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ static void	load_west(t_game *g, t_config *cfg)
 			&g->textures[TEX_WEST]->endian);
 }
 
+/// @brief Loads all wall textures (north, south, west, east) from file
+/// paths specified in the configuration and stores thme in the game ctx
+/// @param g Pointer to the game structure
+/// @param cfg Pointer to the configuration structure
 void	load_walls(t_game *g, t_config *cfg)
 {
 	load_north(g, cfg);

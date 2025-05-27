@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:23:59 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/26 17:44:45 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:19:54 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	clean_config(t_config *cfg)
 		free_double_tab(cfg->map_ctx.map);
 }
 
+/// @brief Frees all dynamically allocated texture paths in the config
+/// @param cfg Pointer to the config structure containing texture paths
 static void	clean_textures(t_config *cfg)
 {
 	if (cfg->north_tex)
@@ -49,6 +51,8 @@ static void	clean_textures(t_config *cfg)
 	}
 }
 
+/// @brief Frees the floor and ceiling texture paths from the config if needed
+/// @param cfg Pointer to the config structure containing floor and ceiling tex
 static void	clean_floor_ceiling(t_config *cfg)
 {
 	if (cfg->ceiling_tex)
@@ -63,6 +67,11 @@ static void	clean_floor_ceiling(t_config *cfg)
 	}
 }
 
+/// @brief Frees the map config and the array of file lines
+/// @param cfg Pointer to the config structure to clean
+/// @param lines Array of strings read from the config file tobe freed
+/// @param ret Return value to propagate afeter cleanup
+/// @return The value passed in 'ret'
 int	free_config_and_lines(t_config *cfg, char **lines, int ret)
 {
 	if (lines)

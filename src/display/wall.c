@@ -6,12 +6,17 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 12:49:03 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/26 17:44:21 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:01:35 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief Restricts a value to stay within the range [min, max]
+/// @param v Value to clamp
+/// @param min Minimum allowed value
+/// @param max Maximum allowed value
+/// @return The clamped value
 static int	clamp(int v, int min, int max)
 {
 	if (v < min)
@@ -21,6 +26,11 @@ static int	clamp(int v, int min, int max)
 	return (v);
 }
 
+/// @brief Retrieves the color of a specific pixel from a texture image
+/// @param tex Pointer to the texture image
+/// @param tx X-coordinate in the texture
+/// @param ty Y-coordinate in the texture
+/// @return The color value (as an integer) at the specified texture coordinate
 static int	get_tex_color(t_img *tex, int tx, int ty)
 {
 	char	*p;
@@ -31,6 +41,10 @@ static int	get_tex_color(t_img *tex, int tx, int ty)
 	return (*(int *)p);
 }
 
+/// @brief Calculates the perpendicular distance from the player to the
+/// wall hit, correcting for fish-eye distortion
+/// @param ray_cast Pointer to the raycasting structure with hit data
+/// @param ctx Pointer to the game context with the player position and directi
 void	calc_wall_dist(t_ray_casting *ray_cast, t_game *ctx)
 {
 	if (ray_cast->side == 0)
@@ -41,6 +55,11 @@ void	calc_wall_dist(t_ray_casting *ray_cast, t_game *ctx)
 				+ (1 - ray_cast->step_y) / 2) / ray_cast->dir_y;
 }
 
+/// @brief Draws a vertical column of the wall texture onto the screen,
+/// scaled according to distance and wall height
+/// @param r Pointer to the raycasting structure with rendering info
+/// @param g Pointer to the game context containing texture and screen data
+/// @param x Screen column (horizontal pixel) to draw to
 void	draw_textured_column(t_ray_casting *r, t_game *g, int x)
 {
 	t_img	*tex;
@@ -67,6 +86,10 @@ void	draw_textured_column(t_ray_casting *r, t_game *g, int x)
 	}
 }
 
+/// @brief Determines which texture to use based on wall side and ray distance
+/// Also calcuates the horizontal coordinate within the texture
+/// @param r Pointer to the raycasting structure with hit data
+/// @param g Pointer to the game context with player and texture info
 void	pick_texture_and_tex_x(t_ray_casting *r, t_game *g)
 {
 	double	wallx;

@@ -6,12 +6,14 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 19:04:45 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/24 11:17:11 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:12:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief 
+/// @param game
 void	draw_minimap(t_game *game)
 {
 	t_vec2	c;

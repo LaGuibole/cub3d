@@ -6,43 +6,11 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 15:33:37 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/26 17:43:17 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:19:09 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	print_config(t_config *cfg)
-// {
-// 	ft_printf("North: %s\n", cfg->north_tex);
-// 	ft_printf("South: %s\n", cfg->south_tex);
-// 	ft_printf("West: %s\n", cfg->west_tex);
-// 	ft_printf("East: %s\n", cfg->east_tex);
-// 	ft_printf("Floor Red: %d\n", cfg->floor_rgb[0]);
-// 	ft_printf("Floor Green: %d\n", cfg->floor_rgb[1]);
-// 	ft_printf("Floor Blue: %d\n\n", cfg->floor_rgb[2]);
-// 	ft_printf("Ceiling Red: %d\n", cfg->ceiling_rgb[0]);
-// 	ft_printf("Ceiling Green: %d\n", cfg->ceiling_rgb[1]);
-// 	ft_printf("Ceiling Blue: %d\n\n", cfg->ceiling_rgb[2]);
-// 	ft_printf("Map width = [%d], Map height = [%d]\n",
-// 		cfg->map_ctx.width, cfg->map_ctx.height);
-// 	printf("Player Pos x = [%.2f], y = [%.2f]\n",
-//		cfg->map_ctx.player_pos.x, cfg->map_ctx.player_pos.y);
-// 	ft_printf("Player Dir = [%c]\n", cfg->map_ctx.player_dir);
-// }
-
-// void	print_map(char **map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	ft_printf("Map Loaded: \n");
-// 	while (map[i])
-// 	{
-// 		ft_printf("%s\n", map[i]);
-// 		i++;
-// 	}
-// }
 
 static int	validate_config(t_config *cfg, char *filepath)
 {

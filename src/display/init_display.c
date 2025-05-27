@@ -6,12 +6,17 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:45:01 by jbastard          #+#    #+#             */
-/*   Updated: 2025/05/26 17:44:34 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:35:59 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/// @brief Init DDA (Digital Differential Analysis) params for raycasting,
+/// setting step directions and initial side distances based on ray direction
+/// @param ray_cast Pointer to the raycasting sruct to init
+/// @param ctx Pointer to the game context containing the player position
+/// @return Always returns 0
 int	init_dda(t_ray_casting *ray_cast, t_game *ctx)
 {
 	if (ray_cast->dir_x < 0)
@@ -41,6 +46,12 @@ int	init_dda(t_ray_casting *ray_cast, t_game *ctx)
 	return (0);
 }
 
+/// @brief Init the raycasting struct for a specific vertical stripe of the
+/// screen. Calculates ray direction, current map position, and delta distances
+/// @param ray_cast Pointer to the raycasting structure to init
+/// @param ctx Pointer to the game context containing player direction + plane
+/// @param x Current sreen column(pixel) used to compute camera ray
+/// @return Always returns 0
 int	init_ray_struct(t_ray_casting *ray_cast, t_game *ctx, int x)
 {
 	ray_cast->camera_x = 2 * x / (double)WIN_WIDTH - 1;
