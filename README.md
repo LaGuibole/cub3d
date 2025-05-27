@@ -72,7 +72,7 @@ Each `.cub` file contains:
 
 ## 📸 Screenshots
 <p align="center">
-![Cub3D Demo](assets/cub.gif)
+  <img src="assets/cub.gif" alt="Cub3D Demo" width="700"/>
 </p>
 ---
 
