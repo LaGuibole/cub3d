@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:00:19 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/26 17:43:41 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:29:24 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,6 @@ void	sanitize_path(char *path)
 /// @return
 int	is_texture_missing(t_flags *flags)
 {
-	if (flags->f == 0)
-		return (fd_printf(STDERR_FILENO,
-				"Error: Floor textures is missing\n"), RET_ERR);
-	if (flags->c == 0)
-		return (fd_printf(STDERR_FILENO,
-				"Error: Ceiling textures is missing\n"), RET_ERR);
 	if (flags->no == 0)
 		return (fd_printf(STDERR_FILENO,
 				"Error: North textures is missing\n"), RET_ERR);
@@ -92,5 +86,11 @@ int	is_texture_missing(t_flags *flags)
 	if (flags->we == 0)
 		return (fd_printf(STDERR_FILENO,
 				"Error: West textures is missing\n"), RET_ERR);
+	if (flags->f == 0)
+		return (fd_printf(STDERR_FILENO,
+				"Error: Floor textures is missing\n"), RET_ERR);
+	if (flags->c == 0)
+		return (fd_printf(STDERR_FILENO,
+				"Error: Ceiling textures is missing\n"), RET_ERR);
 	return (RET_OK);
 }

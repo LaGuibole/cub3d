@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:13:02 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 11:19:35 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:34:53 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	flood_fill(t_map_ctx *map_ctx, int x, int y)
 		return (false);
 	if (map_ctx->copy[y][x] == '1' || map_ctx->copy[y][x] == 'V')
 		return (true);
-	if (map_ctx->copy[y][x] == ' ')
+	if (map_ctx->copy[y][x] == '2')
 		return (false);
 	map_ctx->copy[y][x] = 'V';
 	return (

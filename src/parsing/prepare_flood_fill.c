@@ -6,7 +6,7 @@
 /*   By: guphilip <guphilip@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 14:37:50 by guphilip          #+#    #+#             */
-/*   Updated: 2025/05/23 21:06:10 by guphilip         ###   ########.fr       */
+/*   Updated: 2025/05/28 11:34:14 by guphilip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**prepare_map_for_flood(char **map, int height, int width)
 		while (x < width)
 		{
 			if (copy[y][x] == ' ')
-				copy[y][x] = '1';
+				copy[y][x] = '2';
 			x++;
 		}
 		y++;

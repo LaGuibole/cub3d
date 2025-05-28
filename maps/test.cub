@@ -1,14 +1,14 @@
-NO ./textures/BrickOv.xpm
-SO ./textures/Bricks.xpm
-EA ./textures/Glass.xpm
-WE ./textures/Gold0.xpm
+NO ./textures/north_quake.xpm
+SO ./textures/south_quake.xpm
+EA ./textures/east_quake.xpm
+WE ./textures/west_quake.xpm
 F 24,26,33
 C 98,188,227
 
 111111
 100001
 1000S1
-10001111111111
+11110111111111
 11000000000001
 11111111100001
         100001
